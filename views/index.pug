@@ -1,0 +1,11 @@
+extends layout
+
+block headScripts
+	script(type='text/javascript').
+		window.__INITIAL_STATE__ = !{JSON.stringify(initialState)}
+
+block content
+	div#app-slot!= markup
+
+block styles
+	!= styleTags
