@@ -4,12 +4,16 @@ import { Theme } from '../../theme';
 
 const fixedNavbarMixin = (props: ThemeProps<Theme>) => css`
   position: fixed;
-  padding-top: .5em;
-  padding-bottom: .5em;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background: rgba(0, 0, 0, .25);
   z-index: ${props => props.theme.zindex.navbarFixed};
   box-shadow: 0 1px 10px rgba(0,0,0,.3);
   border-bottom-color: #aaa;
+
+  ${Brand} {
+    font-size: 1.5em;
+  }
 `;
 
 export const Navbar = styled.nav<{ fixed: boolean }>`
@@ -50,6 +54,7 @@ export const Brand = styled.span`
   font-size: 2em;
   font-family: ${props => props.theme.font.family.headings};
   cursor: pointer;
+  transition: font-size .2s ease;
 
   svg {
     display: block;

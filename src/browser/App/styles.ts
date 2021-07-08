@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     color: #303030;
     line-height: 1.5;
+    overflow: hidden;
   }
   #app-slot {
     display: block;
