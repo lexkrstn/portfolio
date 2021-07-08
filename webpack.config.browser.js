@@ -28,7 +28,7 @@ module.exports = (env, options) => {
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         openAnalyzer: false,
-        reportFilename: path.join(__dirname, 'bundle-size-report.html'),
+        reportFilename: path.join(__dirname, 'reports', 'bundle-size.html'),
       }),
     ];
   }
