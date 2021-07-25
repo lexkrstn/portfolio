@@ -6,6 +6,7 @@ import {
   ShapeBufferGeometry,
 } from 'three';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+import { lerp, clamp } from '../../utils';
 import { WalkMode } from '../duck/types';
 import FONT from './fonts/helvetiker_regular';
 import * as S from './styles';
@@ -13,14 +14,6 @@ import * as S from './styles';
 const PLANE_SIZE = 500;
 const CELL_SIZE  = 3;
 const NUM_CELLS = PLANE_SIZE / CELL_SIZE;
-
-function clamp(x: number, min: number, max: number): number {
-  return x < min ? min : (x > max ? max : x);
-}
-
-function lerp(x: number, min: number, max: number): number {
-  return min + x * (max - min);
-}
 
 interface CanvasProps {
   scroll: number;
@@ -66,15 +59,11 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
 
   public render(): ReactElement {
     return (
-      <S.Canvas ref={this.canvasRef}>
+      <S.Canvas ref={this.canvasRef} onTouchStart={console.log}>
         Upgrade your browser to see the WebGL animation
       </S.Canvas>
     );
   }
-
-  // public shouldComponentUpdate(): boolean {
-  //   return false;
-  // }
 
   public componentDidMount(): void {
     this.initializeRenderer();
@@ -260,7 +249,7 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     // Map [0, 1] -> [startPosition, endPosition] and render
     const from = this.stopPoints[0];
     const to = this.stopPoints[this.stopPoints.length - 1];
-    this.renderSceneAtPoint(lerp(scroll, from, to));
+    this.renderSceneAtPoint(lerp(from, to, scroll));
   }
 
   /**
