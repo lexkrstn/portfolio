@@ -1,9 +1,9 @@
-import * as appActions from './actions';
-import * as appSelectors from './selectors';
-import * as appTypes from './types';
+import * as homeActions from './actions';
+import * as homeSelectors from './selectors';
+import * as homeTypes from './types';
 
 export {
-  appActions,
-  appSelectors,
-  appTypes,
+  homeActions,
+  homeSelectors,
+  homeTypes,
 };

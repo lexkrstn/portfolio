@@ -1,4 +1,4 @@
-export const WALK_MODE_SET = 'app/WALK_MODE_SET';
+export const WALK_MODE_SET = 'home/WALK_MODE_SET';
 
 export type WalkMode = 'play' | 'scroll';
 

@@ -8,6 +8,12 @@ const createStyledComponentsTransformer = require('typescript-plugin-styled-comp
 
 dotenv.config();
 
+const envVarsImporting = ['API_URL', 'HTTPS', 'PORT', 'DOMAIN'];
+const definitions = {};
+for (const name of envVarsImporting) {
+  definitions[`process.env.${name}`] = JSON.stringify(process.env[name]);
+}
+
 module.exports = (env, options) => {
   let plugins = [];
   if (env.WEBPACK_SERVE) {
@@ -106,12 +112,7 @@ module.exports = (env, options) => {
         },
       ],
     },
-    plugins: [
-      ...plugins,
-      new webpack.DefinePlugin({
-        'process.env.API_URL': JSON.stringify(process.env.API_URL || '/'),
-      }),
-    ],
+    plugins,
   };
   if (options.mode === 'production') {
     return {
@@ -121,7 +122,8 @@ module.exports = (env, options) => {
       plugins: [
         ...config.plugins,
         new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify('development'),
+          ...definitions,
+          'process.env.NODE_ENV': JSON.stringify('production'),
         }),
         new webpack.IgnorePlugin({
           resourceRegExp: /^source-map-support\/register|redux\-devtools\-extension|remote-redux-devtools$/
@@ -136,6 +138,7 @@ module.exports = (env, options) => {
     plugins: [
       ...config.plugins,
       new webpack.DefinePlugin({
+        ...definitions,
         'process.env.NODE_ENV': JSON.stringify('development'),
       }),
     ],

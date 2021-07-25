@@ -1,6 +1,6 @@
 import { combineEpics } from 'redux-observable';
-// import { authEpic } from './auth/duck';
+import portfolio from './Portfolio/duck/epic';
 
 export default combineEpics(
-  // authEpic
+  portfolio,
 );
