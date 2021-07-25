@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import { containerWrapMixin } from '../Widgets/mixins';
-import { ScrollButton } from '../Widgets/ScrollButton/styles';
+import { containerWrapMixin } from '../widgets/mixins';
+import { ScrollButton } from '../widgets/ScrollButton/styles';
 
 export const BackgroundAnimation = keyframes`
   0% { background-position: 0% 50%; }

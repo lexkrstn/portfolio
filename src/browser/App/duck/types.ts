@@ -6,9 +6,6 @@ export interface AppState {
 
 export interface InitialNowSetAction {
   type: typeof INITIAL_NOW_SET;
-  payload: {
-    time: number,
-  };
+  payload: number;
 }
-
 export type AppActionTypes = InitialNowSetAction;

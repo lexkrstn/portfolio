@@ -1,4 +1,4 @@
-import { AppActionTypes, AppState, INITIAL_NOW_SET } from './types';
+import { AppActionTypes, AppState, InitialNowSetAction, INITIAL_NOW_SET } from './types';
 
 const defaultState: AppState = {
   initialNow: undefined,
@@ -12,7 +12,7 @@ export default function reducer(
     case INITIAL_NOW_SET:
       return {
         ...state,
-        initialNow: action.payload.time,
+        initialNow: (action as InitialNowSetAction).payload,
       };
     default:
       return state;

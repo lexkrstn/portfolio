@@ -1,5 +1,5 @@
 import styled, { css, ThemeProps } from 'styled-components';
-import { containerMixin, containerWrapMixin } from '../../Widgets/mixins';
+import { containerMixin, containerWrapMixin } from '../../widgets/mixins';
 import { Theme } from '../../theme';
 
 const fixedNavbarMixin = (props: ThemeProps<Theme>) => css`

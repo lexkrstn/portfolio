@@ -12,9 +12,7 @@ import { INITIAL_NOW_SET, InitialNowSetAction } from './types';
  */
 export function setInitialNow(time: number | Date): InitialNowSetAction {
   return {
-    payload: {
-      time: time instanceof Date ? time.getTime() : time,
-    },
+    payload: time instanceof Date ? time.getTime() : time,
     type: INITIAL_NOW_SET,
   };
 }

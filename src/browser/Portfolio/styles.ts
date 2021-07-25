@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { containerMixin, containerWrapMixin } from '../Widgets/mixins';
+import { containerMixin, containerWrapMixin } from '../widgets/mixins';
 
 export const Portfolio = styled.div`
   ${containerWrapMixin}
