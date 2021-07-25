@@ -7,13 +7,13 @@ interface ParallaxScroll {
 }
 
 interface ParallaxScrollContextType {
-  scroll: number;
   resetScroll: () => void;
+  scroll: number;
 }
 
 export const ParallaxScrollContext = React.createContext<ParallaxScrollContextType>({
+  resetScroll: () => {}, // tslint:disable-line no-empty
   scroll: 0,
-  resetScroll: () => {},
 });
 
 export default function ParallaxScroll({ children, height }: ParallaxScroll): ReactElement {
@@ -25,11 +25,11 @@ export default function ParallaxScroll({ children, height }: ParallaxScroll): Re
     setScroll(maxScroll > 0 ? el.scrollTop / maxScroll : 0);
   }, []);
   const contextValue = useMemo(() => ({
-    scroll,
     resetScroll: () => {
       scrollerRef.current.scrollTop = 0;
       setScroll(0);
     },
+    scroll,
   }), [scroll]);
   return (
     <S.ParallaxScroll>

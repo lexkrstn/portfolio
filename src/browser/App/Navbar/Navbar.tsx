@@ -1,9 +1,9 @@
-import { Location } from 'history';
 import { push } from 'connected-react-router';
+import { Location } from 'history';
 import React, { ReactElement, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import * as S from './styles';
 import Logo from './Logo';
+import * as S from './styles';
 
 const routeNavs: Array<{ route: string, name: string }> = [
   { route: '/', name: 'Home' },

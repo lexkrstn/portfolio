@@ -1,4 +1,4 @@
-import { WALK_MODE_SET, WalkModeSetAction, WalkMode } from './types';
+import { WALK_MODE_SET, WalkMode, WalkModeSetAction } from './types';
 
 export function setWalkMode(walkMode: WalkMode): WalkModeSetAction {
   return {

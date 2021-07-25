@@ -1,13 +1,13 @@
 import styled, { css, ThemeProps } from 'styled-components';
-import { containerMixin, containerWrapMixin } from '../../widgets/mixins';
 import { Theme } from '../../theme';
+import { containerMixin, containerWrapMixin } from '../../widgets/mixins';
 
 const fixedNavbarMixin = (props: ThemeProps<Theme>) => css`
   position: fixed;
   padding-top: 15px;
   padding-bottom: 15px;
   background: rgba(0, 0, 0, .25);
-  z-index: ${props => props.theme.zindex.navbarFixed};
+  z-index: ${props.theme.zindex.navbarFixed};
   box-shadow: 0 1px 10px rgba(0,0,0,.3);
   border-bottom-color: #aaa;
 

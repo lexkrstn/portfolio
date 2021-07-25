@@ -1,4 +1,4 @@
-import { AppActionTypes, AppState, InitialNowSetAction, INITIAL_NOW_SET } from './types';
+import { AppActionTypes, AppState, INITIAL_NOW_SET, InitialNowSetAction } from './types';
 
 const defaultState: AppState = {
   initialNow: undefined,

@@ -1,14 +1,14 @@
 import React, { ReactElement } from 'react';
 import {
-  Scene, PerspectiveCamera, WebGLRenderer, Vector3, CatmullRomCurve3,
-  PlaneGeometry, WireframeGeometry, LineSegments, Mesh, Color, Group,
-  ShaderMaterial, MeshBasicMaterial, DoubleSide, FontLoader, Font,
-  ShapeBufferGeometry,
+  CatmullRomCurve3, Color, DoubleSide, Font, FontLoader, Group, LineSegments,
+  Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene,
+  ShaderMaterial, ShapeBufferGeometry, Vector3, WebGLRenderer, WireframeGeometry,
 } from 'three';
+// tslint:disable-next-line no-submodule-imports
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
-import { lerp, clamp } from '../../utils';
+import { clamp, lerp } from '../../utils';
 import { WalkMode } from '../duck/types';
-import FONT from './fonts/helvetiker_regular';
+import FONT from './fonts/helvetiker_regular.json';
 import * as S from './styles';
 
 const PLANE_SIZE = 500;
@@ -29,6 +29,9 @@ interface CanvasState {
  * The component that renders WebGL canvas on the Home screen.
  */
 export default class Canvas extends React.Component<CanvasProps, CanvasState> {
+  public state: CanvasState = {
+    stopPoint: 0,
+  };
   private viewPointOffset = 0.1;
   private walkDuration = 10; // in seconds
   private walkOffset = -0.5; // to adjust start position, in seconds
@@ -53,13 +56,9 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
   private font: Font;
   private animationFrameId: number = null;
 
-  public state: CanvasState = {
-    stopPoint: 0,
-  };
-
   public render(): ReactElement {
     return (
-      <S.Canvas ref={this.canvasRef} onTouchStart={console.log}>
+      <S.Canvas ref={this.canvasRef}>
         Upgrade your browser to see the WebGL animation
       </S.Canvas>
     );
@@ -126,7 +125,7 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     if (this.props.walkMode === 'scroll') {
       this.renderSceneAtScrollPosition();
     }
-  };
+  }
 
   /**
    * Adds the terrain on the scene.
@@ -140,6 +139,12 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     const wireframe = new WireframeGeometry(geometry);
     wireframe.rotateX(- Math.PI / 2);
     const material = new ShaderMaterial({
+      fragmentShader: `
+        varying float transparency;
+        void main() {
+          gl_FragColor = vec4(1.0, 1.0, 1.0, transparency);
+        }
+      `,
       vertexShader: `
         varying float transparency;
 
@@ -153,12 +158,6 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
         void main() {
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
           transparency = fade(gl_Position.z, 30.0, 50.0);
-        }
-      `,
-      fragmentShader: `
-        varying float transparency;
-        void main() {
-          gl_FragColor = vec4(1.0, 1.0, 1.0, transparency);
         }
       `,
       wireframe: true,
@@ -182,10 +181,10 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
 
     const matLite = new MeshBasicMaterial({
       color,
-      transparent: true,
       opacity: 0.2,
       side: DoubleSide,
-    })
+      transparent: true,
+    });
     const shapes = this.font.generateShapes(text, size);
     const textGeometry = new ShapeBufferGeometry(shapes);
     textGeometry.computeBoundingBox();
@@ -198,12 +197,10 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     this.scene.add(mesh);
 
     const holeShapes = [];
-    for ( let i = 0; i < shapes.length; i ++ ) {
-      const shape = shapes[ i ];
-      if ( shape.holes && shape.holes.length > 0 ) {
-        for ( let j = 0; j < shape.holes.length; j ++ ) {
-          const hole = shape.holes[ j ];
-          holeShapes.push( hole );
+    for (const shape of shapes) {
+      if (shape.holes) {
+        for (const hole of shape.holes) {
+          holeShapes.push(hole);
         }
       }
     }
@@ -241,7 +238,7 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     this.renderSceneAtPoint(t < 0 ? t + 1 : t);
 
     this.animationFrameId = requestAnimationFrame(this.renderFrame);
-  };
+  }
 
   private renderSceneAtScrollPosition(): void {
     // Clamp overscroll
