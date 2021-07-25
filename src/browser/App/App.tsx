@@ -19,7 +19,7 @@ export default function App({ location, route: { routes } }: AppProps): ReactEle
   return (
     <ThemeProvider theme={theme}>
       <S.App>
-        <ParallaxScroll height={parallaxHeight}>
+        <ParallaxScroll height={parallaxHeight} resetOnChange={location.pathname}>
           <S.GlobalStyle />
           <Navbar location={location} />
           <PageNav location={location} routes={routes} />
