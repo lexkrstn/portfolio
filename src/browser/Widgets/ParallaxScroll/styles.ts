@@ -19,13 +19,14 @@ export const Expander = styled.div`
   height: 200%;
   z-index: 2;
   position: relative;
+  margin-right: 100px;
 `;
 
 export const Content = styled.div`
   position: sticky;
   top: 0;
   left: 0;
-  right: 100px;
+  right: 0;
   bottom: 0;
   z-index: 1;
 `;
