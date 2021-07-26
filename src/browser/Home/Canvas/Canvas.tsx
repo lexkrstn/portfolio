@@ -7,7 +7,7 @@ import {
 // tslint:disable-next-line no-submodule-imports
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 import { clamp, lerp } from '../../utils';
-import { WalkMode } from '../duck/types';
+import { WalkMode } from '../duck';
 import FONT from './fonts/helvetiker_regular.json';
 import * as S from './styles';
 

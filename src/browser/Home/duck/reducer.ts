@@ -1,10 +1,14 @@
-import { HomeActionTypes, HomeState, WALK_MODE_SET } from './types';
+import { AllActions } from './actions';
+import { WALK_MODE_SET } from './types';
+import { WalkMode } from './WalkMode';
 
-const defaultState: HomeState = {
-  walkMode: 'scroll',
+const defaultState = {
+  walkMode: 'scroll' as WalkMode,
 };
 
-export default function reducer(state = defaultState, action: HomeActionTypes): HomeState {
+export type HomeState = typeof defaultState;
+
+export default function reducer(state = defaultState, action: AllActions): HomeState {
   switch (action.type) {
     case WALK_MODE_SET:
       return {

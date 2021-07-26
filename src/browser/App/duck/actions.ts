@@ -1,4 +1,11 @@
-import { INITIAL_NOW_SET, InitialNowSetAction } from './types';
+import * as types from './types';
+
+export interface InitialNowSetAction {
+  type: typeof types.INITIAL_NOW_SET;
+  payload: number;
+}
+
+export type AllActions = InitialNowSetAction;
 
 /**
  * Creates an action that sets initial application construction time.
@@ -13,6 +20,6 @@ import { INITIAL_NOW_SET, InitialNowSetAction } from './types';
 export function setInitialNow(time: number | Date): InitialNowSetAction {
   return {
     payload: time instanceof Date ? time.getTime() : time,
-    type: INITIAL_NOW_SET,
+    type: types.INITIAL_NOW_SET,
   };
 }

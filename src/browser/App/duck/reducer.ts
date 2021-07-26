@@ -1,15 +1,15 @@
-import { AppActionTypes, AppState, INITIAL_NOW_SET, InitialNowSetAction } from './types';
+import { AllActions, InitialNowSetAction } from './actions';
+import * as types from './types';
 
-const defaultState: AppState = {
-  initialNow: undefined,
+const defaultState = {
+  initialNow: null as number,
 };
 
-export default function reducer(
-  state = defaultState,
-  action: AppActionTypes,
-): AppState {
+export type AppState = typeof defaultState;
+
+export default function reducer(state = defaultState, action: AllActions): AppState {
   switch (action.type) {
-    case INITIAL_NOW_SET:
+    case types.INITIAL_NOW_SET:
       return {
         ...state,
         initialNow: (action as InitialNowSetAction).payload,

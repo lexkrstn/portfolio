@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import GradientBackground from '../widgets/GradientBackground';
-import { PortfolioSelectors } from './duck';
-import HashTagFilter from './HashTagFilter';
+import { selectors } from './duck';
+import TagFilter from './TagFilter';
 import * as S from './styles';
 
 export default function Portfolio(): ReactElement {
-  const selectedTagId = useSelector(PortfolioSelectors.getSelectedHashTagId);
-  const tags = useSelector(PortfolioSelectors.getHashTags);
+  const selectedTagId = useSelector(selectors.tags.getSelectedId);
+  const tags = useSelector(selectors.tags.getTags);
   const selectedTag = tags ? tags.find(tag => tag.id === selectedTagId) : null;
 
   return (
@@ -19,7 +19,7 @@ export default function Portfolio(): ReactElement {
           From Web Components and UI/UX animations to React, Redux, Vue, and NodeJS.
           Check out my latest web software development portfolio projects.
         </S.Subheading>
-        <HashTagFilter />
+        <TagFilter />
         <S.ResultSummary>
           {selectedTagId > 0 && <>
             Showing <b>3</b> works filtered by <b>{selectedTag.name}</b>

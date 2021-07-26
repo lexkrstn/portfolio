@@ -1,13 +1,13 @@
 import React, { ReactElement, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Chip, { ChipGroup } from '../widgets/Chip';
-import { PortfolioSelectors, PortfolioActions } from './duck';
+import { selectors, actions } from './duck';
 
 export default function HashTagFilter(): ReactElement {
   const dispatch = useDispatch();
-  const selectedTagId = useSelector(PortfolioSelectors.getSelectedHashTagId);
-  const tags = useSelector(PortfolioSelectors.getHashTags);
-  const loadingTags = useSelector(PortfolioSelectors.areHashTagsLoading)
+  const selectedTagId = useSelector(selectors.tags.getSelectedId);
+  const tags = useSelector(selectors.tags.getTags);
+  const loadingTags = useSelector(selectors.tags.areLoading)
 
   const sortedTags = useMemo(
     () => !tags ? [] : [
@@ -19,14 +19,14 @@ export default function HashTagFilter(): ReactElement {
 
   const clickCallbacks = useMemo(
     () => sortedTags.map(tag => () => {
-      dispatch(PortfolioActions.selectHashTag(tag.id));
+      dispatch(actions.tags.select(tag.id));
     }),
     [tags],
   );
 
   useEffect(() => {
     if (!tags && !loadingTags) {
-      dispatch(PortfolioActions.requestHashTags());
+      dispatch(actions.tags.request());
     }
   });
 

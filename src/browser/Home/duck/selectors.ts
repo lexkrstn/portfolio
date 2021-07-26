@@ -1,4 +1,4 @@
 import { RootState } from '../../rootReducer';
-import { WalkMode } from './types';
+import { WalkMode } from './WalkMode';
 
 export const getWalkMode = (state: RootState): WalkMode => state.home.walkMode;

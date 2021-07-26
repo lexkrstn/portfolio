@@ -1,9 +1,3 @@
-import * as appActions from './actions';
-import * as appSelectors from './selectors';
-import * as appTypes from './types';
-
-export {
-  appActions,
-  appSelectors,
-  appTypes,
-};
+export * as actions from './actions';
+export * as selectors from './selectors';
+export * as types from './types';

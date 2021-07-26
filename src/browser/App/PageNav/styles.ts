@@ -1,4 +1,4 @@
-import styled, { StyledComponent, StyledFunction } from 'styled-components';
+import styled from 'styled-components';
 
 export const PageNav = styled.div`
   position: fixed;

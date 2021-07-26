@@ -1,9 +1,4 @@
-import * as homeActions from './actions';
-import * as homeSelectors from './selectors';
-import * as homeTypes from './types';
-
-export {
-  homeActions,
-  homeSelectors,
-  homeTypes,
-};
+export * as actions from './actions';
+export * as selectors from './selectors';
+export * as types from './types';
+export * from './WalkMode';

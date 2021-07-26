@@ -1,9 +1,5 @@
-import * as PortfolioActions from './actions';
-import * as PortfolioSelectors from './selectors';
-import * as PortfolioTypes from './types';
-
-export {
-  PortfolioActions,
-  PortfolioSelectors,
-  PortfolioTypes,
-};
+export * as actions from './actions';
+export * as selectors from './selectors';
+export * from './tags/Tag';
+export * as types from './types';
+export * from './works/Work';
