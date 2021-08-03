@@ -1,13 +1,30 @@
-import styled, { css, ThemeProps } from 'styled-components';
-import { Theme } from '../../theme';
+import styled, { css } from 'styled-components';
 import { containerMixin, containerWrapMixin } from '../../widgets/mixins';
 
-const fixedNavbarMixin = (props: ThemeProps<Theme>) => css`
+export const Brand = styled.span`
+  display: block;
+  margin-right: 20px;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 2em;
+  font-family: ${props => props.theme.font.family.headings};
+  cursor: pointer;
+  transition: font-size .2s ease;
+
+  svg {
+    display: block;
+    height: 1em;
+  }
+`;
+
+const fixedNavbarMixin = css`
   position: fixed;
   padding-top: 15px;
   padding-bottom: 15px;
   background: rgba(0, 0, 0, .25);
-  z-index: ${props.theme.zindex.navbarFixed};
+  z-index: ${props => props.theme.zindex.navbarFixed};
   box-shadow: 0 1px 10px rgba(0,0,0,.3);
   border-color: rgba(255, 255, 255, 0.2);
 
@@ -34,7 +51,7 @@ export const Navbar = styled.nav<{ fixed: boolean }>`
     padding-top .2s ease,
     padding-bottom .2s ease;
 
-  ${props => props.fixed ? fixedNavbarMixin(props) : ''}
+  ${props => !!props.fixed && fixedNavbarMixin}
 `;
 
 export const Container = styled.div`
@@ -42,24 +59,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-`;
-
-export const Brand = styled.span`
-  display: block;
-  margin-right: 20px;
-  color: white;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 2em;
-  font-family: ${props => props.theme.font.family.headings};
-  cursor: pointer;
-  transition: font-size .2s ease;
-
-  svg {
-    display: block;
-    height: 1em;
-  }
 `;
 
 export const Nav = styled.ul`
