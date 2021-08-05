@@ -1,14 +1,32 @@
-import React, { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import React, { ReactElement, useCallback, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import GradientBackground from '../widgets/GradientBackground';
-import { selectors } from './duck';
+import { Col, GridTheme, Row } from '../widgets/Grid';
+import Card from './Card';
+import { actions, selectors } from './duck';
+import Appeal from './Appeal';
 import TagFilter from './TagFilter';
 import * as S from './styles';
 
 export default function Portfolio(): ReactElement {
+  const dispatch = useDispatch();
   const selectedTagId = useSelector(selectors.tags.getSelectedId);
   const tags = useSelector(selectors.tags.getTags);
   const selectedTag = tags ? tags.find(tag => tag.id === selectedTagId) : null;
+  const allWorks = useSelector(selectors.works.getWorks);
+
+  const works = useMemo(
+    () => !selectedTagId ? allWorks : allWorks?.filter(work => work.tagIds.includes(selectedTagId)),
+    [selectedTagId, allWorks]
+  );
+
+  const onClickTag = useCallback((tagId: number) => {
+    dispatch(actions.tags.select(tagId));
+  }, []);
+
+  useEffect(() => {
+    dispatch(actions.works.request());
+  });
 
   return (
     <S.Portfolio>
@@ -22,12 +40,28 @@ export default function Portfolio(): ReactElement {
         <TagFilter />
         <S.ResultSummary>
           {selectedTagId > 0 && <>
-            Showing <b>3</b> works filtered by <b>{selectedTag.name}</b>
+            Showing <b>{works ? works.length : '?'}</b> works filtered by <b>{selectedTag.name}</b>
           </>}
           {selectedTagId === 0 && <>
             Showing all works. Use the filter to list them by skill.
           </>}
         </S.ResultSummary>
+        <GridTheme gutterX="25px" gutterY="25px">
+          <Row>
+            {!!works && !!tags && works.map(work => (
+              <Col sm={1/2} lg={1/3} key={work.id}>
+                <Card
+                  caption={work.name}
+                  cover={work.images[0].thumbnail}
+                  route={`/portfolio/${work.id}`}
+                  tags={tags.filter(tag => work.tagIds.some(tagId => tagId === tag.id))}
+                  onClickTag={onClickTag}
+                />
+              </Col>
+            ))}
+          </Row>
+        </GridTheme>
+        <Appeal />
       </S.Container>
     </S.Portfolio>
   );

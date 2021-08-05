@@ -7,7 +7,7 @@ export default function HashTagFilter(): ReactElement {
   const dispatch = useDispatch();
   const selectedTagId = useSelector(selectors.tags.getSelectedId);
   const tags = useSelector(selectors.tags.getTags);
-  const loadingTags = useSelector(selectors.tags.areLoading)
+  const loadingTags = useSelector(selectors.tags.areLoading);
 
   const sortedTags = useMemo(
     () => !tags ? [] : [

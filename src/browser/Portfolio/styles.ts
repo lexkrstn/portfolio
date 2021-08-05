@@ -1,15 +1,20 @@
 import styled from 'styled-components';
+import { GradientBackground } from '../widgets/GradientBackground/styles';
 import { containerMixin, containerWrapMixin } from '../widgets/mixins';
 
 export const Portfolio = styled.div`
   ${containerWrapMixin}
   position: relative;
   min-height: 100vh;
+
+  ${GradientBackground} {
+    position: fixed; // to look good in overscroll effect
+  }
 `;
 
 export const Container = styled.div`
   ${containerMixin}
-  padding-top: 65px;
+  padding: 65px 0 50px;
   color: white;
 `;
 
@@ -32,7 +37,7 @@ export const Subheading = styled.h2`
 `;
 
 export const ResultSummary = styled.p`
-  margin: 0 0 15px;
+  margin: 35px 0 25px;
   font-weight: 300;
 
   &:last-child { margin-bottom: 0 }
