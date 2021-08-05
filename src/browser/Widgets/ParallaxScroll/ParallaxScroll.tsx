@@ -74,7 +74,7 @@ export default function ParallaxScroll({
         // scrolling animation that leads to the animation ending up overscrolled
         // when the new content height is less than the one before the scrolling
         // had started.
-        style={{ overflow: height === 0 ? 'visible' : '' }}
+        style={{ overflow: height === 0 ? 'auto' : '' }}
       >
         <S.Expander style={{ height: `${Math.round((1 + (height ?? 1)) * 100)}%` }}>
           <S.Content>
