@@ -58,12 +58,13 @@ export default function Card({ caption, cover, onClickTag, route, tags }: CardPr
               <Chip
                 key={tag.id}
                 onClick={clickCallbacks[i]}
+                style={{ transitionDelay: `${200 + 150 * i}ms` }}
               >
                 {tag.name}
               </Chip>
             ))}
           </ChipGroup>
-          <S.Button>
+          <S.Button style={{ transitionDelay: `${200 + 150 * sortedTags.length}ms` }}>
             Open
             <S.ButtonLinkIcon />
           </S.Button>

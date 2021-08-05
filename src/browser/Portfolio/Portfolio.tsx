@@ -26,8 +26,12 @@ export default function Portfolio(): ReactElement {
   }, []);
 
   useEffect(() => {
-    dispatch(actions.tags.request());
-    dispatch(actions.works.request());
+    if (!tags) {
+      dispatch(actions.tags.request());
+    }
+    if (!allWorks) {
+      dispatch(actions.works.request());
+    }
   });
 
   return (

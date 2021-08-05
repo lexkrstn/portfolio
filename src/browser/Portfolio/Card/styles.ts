@@ -1,7 +1,7 @@
 import { ExternalLinkAlt } from '@styled-icons/fa-solid';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { Chip, ChipGroup } from '../../widgets/Chip/styles';
+import { Chip, ChipGroup, chipMixin } from '../../widgets/Chip/styles';
 
 export const Card = styled(NavLink)`
   display: block;
@@ -90,6 +90,17 @@ export const Overlay = styled.div`
   ${ChipGroup} {
     text-align: center;
   }
+
+  ${Chip} {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+
+  ${Card}:hover & ${Chip} {
+    transition: opacity .2s ease, transform .2s ease;
+    opacity: 1;
+    transform: translateY(0px);
+  }
 `;
 
 export const Cover = styled.div`
@@ -109,10 +120,20 @@ export const Image = styled.img`
   }
 `;
 
-export const Button = styled(Chip)`
+export const Button = styled.span`
+  ${chipMixin}
+
   margin-top: 15px;
   padding: 6px 30px;
   border-radius: 100px;
+  opacity: 0;
+  transform: translateY(40px);
+
+  ${Card}:hover & {
+    transition: opacity .2s ease, transform .2s ease;
+    opacity: 1;
+    transform: translateY(0px);
+  }
 `;
 
 export const ButtonLinkIcon = styled(ExternalLinkAlt)`

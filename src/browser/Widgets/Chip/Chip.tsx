@@ -1,9 +1,11 @@
-import React, { MouseEvent, ReactElement, ReactNode } from 'react';
+import React, { CSSProperties, MouseEvent, ReactElement, ReactNode } from 'react';
 import * as S from './styles';
 
 export interface ChipProps {
   active?: boolean;
   children: ReactNode;
+  className?: string;
+  style?: CSSProperties;
   onClick?: (event: MouseEvent<HTMLSpanElement>) => void;
 }
 
