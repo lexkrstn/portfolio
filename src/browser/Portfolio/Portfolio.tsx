@@ -7,6 +7,7 @@ import { actions, selectors } from './duck';
 import Appeal from './Appeal';
 import TagFilter from './TagFilter';
 import * as S from './styles';
+import RingSpinner from '../widgets/RingSpinner';
 
 export default function Portfolio(): ReactElement {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ export default function Portfolio(): ReactElement {
   }, []);
 
   useEffect(() => {
+    dispatch(actions.tags.request());
     dispatch(actions.works.request());
   });
 
@@ -37,30 +39,38 @@ export default function Portfolio(): ReactElement {
           From Web Components and UI/UX animations to React, Redux, Vue, and NodeJS.
           Check out my latest web software development portfolio projects.
         </S.Subheading>
-        <TagFilter />
-        <S.ResultSummary>
-          {selectedTagId > 0 && <>
-            Showing <b>{works ? works.length : '?'}</b> works filtered by <b>{selectedTag.name}</b>
-          </>}
-          {selectedTagId === 0 && <>
-            Showing all works. Use the filter to list them by skill.
-          </>}
-        </S.ResultSummary>
-        <GridTheme gutterX="25px" gutterY="25px">
-          <Row>
-            {!!works && !!tags && works.map(work => (
-              <Col sm={1/2} lg={1/3} key={work.id}>
-                <Card
-                  caption={work.name}
-                  cover={work.images[0].thumbnail}
-                  route={`/portfolio/${work.id}`}
-                  tags={tags.filter(tag => work.tagIds.some(tagId => tagId === tag.id))}
-                  onClickTag={onClickTag}
-                />
-              </Col>
-            ))}
-          </Row>
-        </GridTheme>
+        {!!tags && !!works && <>
+          <TagFilter />
+          <S.ResultSummary>
+            {selectedTagId > 0 && <>
+              Showing <b>{works ? works.length : '?'}</b> works
+              filtered by <b>{selectedTag.name}</b>
+            </>}
+            {selectedTagId === 0 && <>
+              Showing all works. Use the filter to list them by skill.
+            </>}
+          </S.ResultSummary>
+          {!!works && !!tags && <GridTheme gutterX="25px" gutterY="25px">
+            <Row>
+              {works.map(work => (
+                <Col sm={1/2} lg={1/3} key={work.id}>
+                  <Card
+                    caption={work.name}
+                    cover={work.images[0].thumbnail}
+                    route={`/portfolio/${work.id}`}
+                    tags={tags.filter(tag => work.tagIds.some(tagId => tagId === tag.id))}
+                    onClickTag={onClickTag}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </GridTheme>}
+        </>}
+        {(!works || !tags) && (
+          <S.Placeholder>
+            <RingSpinner size="2em" />
+          </S.Placeholder>
+        )}
         <Appeal />
       </S.Container>
     </S.Portfolio>

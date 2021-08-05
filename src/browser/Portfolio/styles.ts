@@ -46,3 +46,10 @@ export const ResultSummary = styled.p`
     font-weight: 400;
   }
 `;
+
+export const Placeholder = styled.div`
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+`;
