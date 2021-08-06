@@ -1,5 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition, Transition, SwitchTransition } from 'react-transition-group';
 import GradientBackground from '../widgets/GradientBackground';
 import { Col, GridTheme, Row } from '../widgets/Grid';
 import Card from './Card';
@@ -55,19 +56,23 @@ export default function Portfolio(): ReactElement {
             </>}
           </S.ResultSummary>
           {!!works && !!tags && <GridTheme gutterX="25px" gutterY="25px">
-            <Row>
-              {works.map(work => (
-                <Col sm={1/2} lg={1/3} key={work.id}>
-                  <Card
-                    caption={work.name}
-                    cover={work.images[0].thumbnail}
-                    route={`/portfolio/${work.id}`}
-                    tags={tags.filter(tag => work.tagIds.some(tagId => tagId === tag.id))}
-                    onClickTag={onClickTag}
-                  />
-                </Col>
-              ))}
-            </Row>
+            <SwitchTransition mode="out-in">
+              <CSSTransition key={selectedTagId} timeout={300} classNames="item">
+                <Row>
+                  {works.map(work => (
+                    <Col key={work.id} sm={1/2} lg={1/3}>
+                      <Card
+                        caption={work.name}
+                        cover={work.images[0].thumbnail}
+                        route={`/portfolio/${work.id}`}
+                        tags={tags.filter(tag => work.tagIds.some(tagId => tagId === tag.id))}
+                        onClickTag={onClickTag}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              </CSSTransition>
+            </SwitchTransition>
           </GridTheme>}
         </>}
         {(!works || !tags) && (

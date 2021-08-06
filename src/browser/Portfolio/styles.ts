@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { GradientBackground } from '../widgets/GradientBackground/styles';
 import { containerMixin, containerWrapMixin } from '../widgets/mixins';
+import { Card } from './Card/styles';
 
 export const Portfolio = styled.div`
   ${containerWrapMixin}
@@ -9,6 +10,21 @@ export const Portfolio = styled.div`
 
   ${GradientBackground} {
     position: fixed; // to look good in overscroll effect
+  }
+
+  .item-enter ${Card} {
+    transform: scale(0.2);
+  }
+  .item-enter-active ${Card} {
+    transform: scale(1);
+    transition: transform 300ms ease-in;
+  }
+  .item-exit ${Card} {
+    transform: scale(1);
+  }
+  .item-exit-active ${Card} {
+    transform: scale(0.2);
+    transition: transform 300ms ease-in;
   }
 `;
 
