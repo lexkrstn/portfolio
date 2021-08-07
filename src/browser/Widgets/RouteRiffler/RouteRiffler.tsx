@@ -40,24 +40,3 @@ export default function RouteRiffler(props: RouteRifflerProps): ReactElement {
     </>
   );
 }
-
-// {props.routes.map((route, i) => (
-//   <Route
-//     path={route.path}
-//     exact={route.exact}
-//     strict={route.strict}
-//     location={props.location}
-//   >
-//     {({ match }) => (
-//       <CSSTransition<undefined>
-//         key={i}
-//         in={!!match}
-//         addEndListener={transitionEndListener}
-//         classNames={effect}
-//         unmountOnExit
-//       >
-//         {React.createElement(route.component)}
-//       </CSSTransition>
-//     )}
-//   </Route>
-// ))}
