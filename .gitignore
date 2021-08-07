@@ -9,3 +9,4 @@ public/fonts/
 dist/*
 reports/*
 !reports/.gitkeep
+.DS_Store
