@@ -4,6 +4,7 @@ import React, { ReactElement, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { matchPath } from 'react-router';
 import { RouteConfig } from 'react-router-config';
+import { isRootRoute } from '../../utils/routes';
 import * as S from './styles';
 
 interface PageNavProps {
@@ -12,18 +13,25 @@ interface PageNavProps {
 }
 
 export default function PageNav({ location, routes }: PageNavProps): ReactElement {
-  const activeIdx = routes.findIndex(route => matchPath(location.pathname, route));
   const dispatch = useDispatch();
-  const pageRoutes = routes.filter(route => route.path !== '*');
-  const clickHandlers = useMemo(() => {
-    return pageRoutes.map(route => () => {
-      dispatch(push(Array.isArray(route.path) ? route.path[0] : route.path));
-    });
+  const { rootRoutes, clickHandlers } = useMemo(() => {
+    const rootRoutes = routes.filter(isRootRoute);
+    return {
+      clickHandlers: rootRoutes.map(route => () => {
+        dispatch(push(Array.isArray(route.path) ? route.path[0] : route.path));
+      }),
+      rootRoutes,
+    }
   }, []);
+  const activeRoute = routes.find(route => matchPath(location.pathname, route));
   return (
     <S.PageNav>
-      {pageRoutes.map((route, i) => (
-        <S.PageButton key={i} active={i === activeIdx} onClick={clickHandlers[i]} />
+      {rootRoutes.map((route, i) => (
+        <S.PageButton
+          key={i}
+          active={route.path === activeRoute.path}
+          onClick={clickHandlers[i]}
+        />
       ))}
     </S.PageNav>
   );
