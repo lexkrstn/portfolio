@@ -3,8 +3,10 @@ import App from './App';
 import Home from './Home';
 import NotFound from './NotFound';
 import Portfolio from './Portfolio';
+import Work from './Portfolio/Work';
+import { RouteConfig } from 'react-router-config';
 
-export default [{
+const routeConfig: RouteConfig[] = [{
   component: App,
   routes: [
     {
@@ -14,7 +16,12 @@ export default [{
     },
     {
       component: Portfolio,
+      exact: true,
       path: '/portfolio',
+    },
+    {
+      component: Work,
+      path: '/portfolio/:id',
     },
     {
       component: About,
@@ -26,3 +33,5 @@ export default [{
     },
   ],
 }];
+
+export default routeConfig;

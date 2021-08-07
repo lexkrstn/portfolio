@@ -1,14 +1,14 @@
 import React, { ReactElement, useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CSSTransition, Transition, SwitchTransition } from 'react-transition-group';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import GradientBackground from '../widgets/GradientBackground';
 import { Col, GridTheme, Row } from '../widgets/Grid';
+import RingSpinner from '../widgets/RingSpinner';
 import Card from './Card';
 import { actions, selectors } from './duck';
 import Appeal from './Appeal';
 import TagFilter from './TagFilter';
 import * as S from './styles';
-import RingSpinner from '../widgets/RingSpinner';
 
 export default function Portfolio(): ReactElement {
   const dispatch = useDispatch();
