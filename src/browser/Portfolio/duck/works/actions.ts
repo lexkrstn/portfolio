@@ -1,5 +1,5 @@
 import * as Types from './types';
-import Work from './Work';
+import Work from '../work/Work';
 
 export interface WorkSelectedAction {
   type: typeof Types.SELECTED,

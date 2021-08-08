@@ -1,5 +1,5 @@
 import { RootState } from '../../../rootReducer';
-import Work from './Work';
+import Work from '../work/Work';
 
 export const getWorks = (state: RootState): Work[] => state.portfolio.works.works;
 export const areLoading = (state: RootState): boolean => state.portfolio.works.loading;

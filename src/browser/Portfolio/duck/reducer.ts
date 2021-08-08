@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import tagsReducer from './tags/reducer';
-import worksReducer from './works/reducer';
+import tags from './tags/reducer';
+import work from './work/reducer';
+import works from './works/reducer';
 
-export default combineReducers({
-  tags: tagsReducer,
-  works: worksReducer,
-});
+export default combineReducers({ tags, work, works });

@@ -1,79 +1,83 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useEffect, useMemo, useRef } from 'react';
+import { RouteConfigComponentProps } from 'react-router-config';
 import GradientBackground from '../../widgets/GradientBackground';
 import Slider from '../../widgets/Slider';
 import Image from '../../widgets/Image';
 import Appeal from '../Appeal';
 import { actions, selectors } from '../duck';
 import * as S from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../../widgets/Loading';
 
-export default function Work(): ReactElement {
+type WorkProps = RouteConfigComponentProps<{ id: string }>;
+
+export default function Work(props: WorkProps): ReactElement {
+  const dispatch = useDispatch();
   const imageCache = useRef<Record<string, string>>({});
-  const images = [
-    '/images/portfolio/tms.jpg',
-    '/images/portfolio/socket.png',
-    '/images/portfolio/vpnmgr.png',
-  ];
+  const work = useSelector(selectors.work.getWork);
+  const loading = useSelector(selectors.work.isLoading);
+  const about = useMemo(() => {
+    if (!work) return [];
+    return work.about
+      .split(/(?:\r?\n){2}/g)
+      .map(s => s.trim())
+      .filter(s => s.length > 0);
+  }, [work]);
+
+  useEffect(() => {
+    if (!work && !loading) {
+      dispatch(actions.work.request(parseInt(props.match.params.id, 10)));
+    }
+  });
+
   return (
     <S.Work>
       <GradientBackground />
       <S.Container>
         <S.Box>
-          <S.Title>Theatre Management System</S.Title>
-          <S.Brief>
-            Open Source web chat platform developed as UI/UX Javascript Specialist
-            at Konecty → Rocket.Chat.
-          </S.Brief>
-          <Slider>
-            {images.map(image => (
-              <Image
-                key={image}
-                src={image}
-                alt="Theatre Management System"
-                aspect={2}
-                cache={imageCache.current}
-              />
-            ))}
-          </Slider>
-          <S.Section>
-            <S.Heading>About this project</S.Heading>
-            <S.Divider />
-            <S.Para>
-                On this Open Source project I was responsible for the initial UI/UX
-                architecture, structure, design and animations.
-                The idea was to follow the 3 column UX trend of webchats like skype,
-                hipchat, gitter and slack. Building upon that an Open Source alternative
-                with similar functionalities.
-              </S.Para>
-              <S.Para>
-                The UI/UX was conceived with a mobile first approach. So it would
-                be possible to effortlessly launch it into any platform without
-                making any changes to the main application.
-              </S.Para>
-          </S.Section>
-          <S.Section>
-            <S.Heading>Technical Sheet</S.Heading>
-            <S.Subheading>
-              Code technologies I got involved with while working on this project.
-            </S.Subheading>
-            <S.Divider />
-            <S.List>
-              <S.Item>UI/UX Design</S.Item>
-              <S.Item>UI/UX Architecture</S.Item>
-              <S.Item>CSS3 – preprocessed with LESS + LESSHAT</S.Item>
-              <S.Item>Blaze</S.Item>
-              <S.Item>MongoDB</S.Item>
-            </S.List>
-          </S.Section>
-          <S.Section>
-            <S.Heading>Resources</S.Heading>
-            <S.Divider />
-            <S.List>
-              <S.Item>
-                The project is online at <S.Link href="#">HTTPS://ROCKET.CHAT</S.Link>
-              </S.Item>
-              <S.Item>Access the project's source on <S.Link href="#">GITHUB</S.Link></S.Item>
-            </S.List>
-          </S.Section>
+          {!work && <Loading aspect={2} />}
+          {!!work && <>
+            <S.Title>{work.name}</S.Title>
+            <S.Brief>{work.description}</S.Brief>
+            <Slider>
+              {work.screenshots.map((src: string, i: number) => (
+                <Image
+                  key={src}
+                  src={src}
+                  alt={`${work.name} ${i + 1}`}
+                  aspect={2}
+                  cache={imageCache.current}
+                />
+              ))}
+            </Slider>
+            <S.Section>
+              <S.Heading>About this project</S.Heading>
+              <S.Divider />
+              {about.map(para => <S.Para key={para}>{para}</S.Para>)}
+            </S.Section>
+            <S.Section>
+              <S.Heading>Technical Sheet</S.Heading>
+              <S.Subheading>
+                Code technologies I got involved with while working on this project.
+              </S.Subheading>
+              <S.Divider />
+              <S.List>
+                {work.techniques.map(tech => <S.Item key={tech}>{tech}</S.Item>)}
+              </S.List>
+            </S.Section>
+            <S.Section>
+              <S.Heading>Resources</S.Heading>
+              <S.Divider />
+              <S.List>
+                {work.links.map((link, i) => (
+                  <S.Item key={i}>
+                    {link.description ? link.description + ' ' : false}
+                    <S.Link href={link.url}>{link.label}</S.Link>
+                  </S.Item>
+                ))}
+              </S.List>
+            </S.Section>
+          </>}
         </S.Box>
         <Appeal />
       </S.Container>

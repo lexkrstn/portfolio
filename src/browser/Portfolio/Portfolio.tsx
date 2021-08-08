@@ -63,7 +63,7 @@ export default function Portfolio(): ReactElement {
                     <Col key={work.id} sm={1/2} lg={1/3}>
                       <Card
                         caption={work.name}
-                        cover={work.images[0].thumbnail}
+                        cover={work.thumbnail}
                         route={`/portfolio/${work.id}`}
                         tags={tags.filter(tag => work.tagIds.some(tagId => tagId === tag.id))}
                         onClickTag={onClickTag}

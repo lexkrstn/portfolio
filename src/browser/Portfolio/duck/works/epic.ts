@@ -27,57 +27,45 @@ const requestedEpic = (
   mapTo(receive([
     {
       id: 1,
-      name: 'Work 1',
+      name: 'Thetre Management System',
       tagIds: [1, 2, 3],
-      images: [{
-        full: 'https://caferati.me/images/portfolio/perverte/list.jpg',
-        thumbnail: 'https://caferati.me/images/portfolio/perverte/list.jpg',
-      }],
-    },
-    {
-      id: 2,
-      name: 'Work 2',
-      tagIds: [4, 1, 2],
-      images: [{
-        full: 'https://caferati.me/images/portfolio/sky-go-desktop/1.jpg',
-        thumbnail: 'https://caferati.me/images/portfolio/sky-go-desktop/1.jpg',
-      }],
-    },
-    {
-      id: 3,
-      name: 'Work 3',
-      tagIds: [2, 3],
-      images: [{
-        full: 'https://caferati.me/images/portfolio/sky-go-desktop/2.jpg',
-        thumbnail: 'https://caferati.me/images/portfolio/sky-go-desktop/2.jpg',
-      }],
-    },
-    {
-      id: 4,
-      name: 'Work 4',
-      tagIds: [4, 1],
-      images: [{
-        full: 'https://caferati.me/images/portfolio/sky-go-desktop/3.jpg',
-        thumbnail: 'https://caferati.me/images/portfolio/sky-go-desktop/3.jpg',
-      }],
-    },
-    {
-      id: 5,
-      name: 'Work 5',
-      tagIds: [3, 4, 5],
-      images: [{
-        full: 'https://caferati.me/images/portfolio/whygowild/5.jpg',
-        thumbnail: 'https://caferati.me/images/portfolio/whygowild/5.jpg',
-      }],
-    },
-    {
-      id: 6,
-      name: 'Work 6',
-      tagIds: [2, 3],
-      images: [{
-        full: 'https://caferati.me/images/portfolio/whygowild/6.jpg',
-        thumbnail: 'https://caferati.me/images/portfolio/whygowild/6.jpg',
-      }],
+      thumbnail: '/images/portfolio/tms.jpg',
+      screenshots: [
+        '/images/portfolio/tms.jpg',
+      ],
+      description: `
+        Open Source web chat platform developed as UI/UX Javascript Specialist
+        at Konecty → Rocket.Chat.
+      `,
+      about: `
+        On this Open Source project I was responsible for the initial UI/UX
+        architecture, structure, design and animations. The idea was to follow
+        the 3 column UX trend of webchats like skype, hipchat, gitter and slack.
+        Building upon that an Open Source alternative with similar functionalities.
+
+        The UI/UX was conceived with a mobile first approach. So it would be
+        possible to effortlessly launch it into any platform without making
+        any changes to the main application.
+      `,
+      techniques: [
+        'UI/UX Design',
+        'UI/UX Architecture',
+        'CSS3 – preprocessed with LESS + LESSHAT',
+        'Blaze',
+        'MongoDB',
+      ],
+      links: [
+        {
+          label: 'https://rocket.chat',
+          url: '#',
+          description: 'The project is online at',
+        },
+        {
+          label: 'github',
+          url: '#',
+          description: 'Access the project\'s source on',
+        },
+      ],
     },
   ])),
 );
