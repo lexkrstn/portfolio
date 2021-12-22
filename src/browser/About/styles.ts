@@ -146,6 +146,17 @@ export const AttributeValue = styled.dd`
   flex: 1 1 auto;
   display: block;
   text-align: right;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom-color .15s ease;
+
+    &:hover {
+      border-bottom-color: currentColor;
+    }
+  }
 `;
 
 export const Placeholder = styled.div`

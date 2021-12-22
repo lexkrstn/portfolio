@@ -9,6 +9,7 @@ import SkillCard from './SkillCard';
 import * as S from './styles';
 import * as actions from './duck/actions';
 import { yearsFrom } from '../utils';
+import config from '../config';
 
 export default function About() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function About() {
   const miscSkills = skills ? skills.filter(s => s.group === 'misc') : [];
   const langSkills = skills ? skills.filter(s => s.group === 'lang') : [];
   const skillsRequested = useSelector(haveRequestedSkills);
+  const { email } = config.contact;
 
   useEffect(() => {
     if (!skillsRequested) {
@@ -58,6 +60,12 @@ export default function About() {
                     <S.Attribute>
                       <S.AttributeName>Location</S.AttributeName>
                       <S.AttributeValue>Ukraine</S.AttributeValue>
+                    </S.Attribute>
+                    <S.Attribute>
+                      <S.AttributeName>Email</S.AttributeName>
+                      <S.AttributeValue>
+                        <a href={`mailto:${email}`}>{email}</a>
+                      </S.AttributeValue>
                     </S.Attribute>
                   </S.CharSheet>
                 </Col>

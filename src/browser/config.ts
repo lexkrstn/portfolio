@@ -6,8 +6,11 @@ export default {
   accessTokenLife: 7 * 24 * 60 * 60,
   accessTokenName: 'accessToken',
   apiUrl: `${process.env.API_URL}/api/v1`,
+  basePath: '/',
+  contact: {
+    email: 'lexkrstn@gmail.com',
+  },
   debug: ['dev', 'development'].includes(process.env.NODE_ENV),
   prefetchTimeout: 5000,
   url: `${scheme}://${process.env.DOMAIN}${port === 80 ? '' : ':' + port}`,
-  basePath: '/',
 };
