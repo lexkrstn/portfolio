@@ -40,7 +40,7 @@ export default function About() {
                 <Col md={1/2} lg={1}>
                   <S.PhotoAndName>
                     <S.Photo>
-                      <Image src="/images/photo.png" height={250} aspect={1} />
+                      <Image src="/images/photo.png" height={200} aspect={1} />
                     </S.Photo>
                     <S.Name>Alexander Korostin</S.Name>
                   </S.PhotoAndName>
