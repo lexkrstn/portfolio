@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react';
 import config from '../../config';
+import { yearsFrom } from '../../utils/filters';
 import Skill, { LanguageLevels } from '../duck/Skill';
 import * as S from './styles';
-
-const YEAR = new Date().getFullYear();
 
 export interface SkillCardProps {
   skill: Skill;
@@ -18,7 +17,7 @@ export default function SkillCard({ skill }: SkillCardProps): ReactElement {
         )}
         <S.Name>{skill.name}</S.Name>
         {!!skill.masteryYear && (
-          <S.Experience>{YEAR - skill.masteryYear} years</S.Experience>
+          <S.Experience>{yearsFrom(skill.masteryYear)}</S.Experience>
         )}
         {!skill.masteryYear && skill.group !== 'lang' && (
           <S.Experience>*</S.Experience>
