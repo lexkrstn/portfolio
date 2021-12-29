@@ -10,7 +10,7 @@ export const LanguageLevels: Record<number, string> = {
   9: 'Very Advanced (C2)',
 };
 
-export default interface ISkill {
+export default interface Skill {
   id: number;
   name: string;
   icon: string;

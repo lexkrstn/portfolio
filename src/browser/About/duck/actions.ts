@@ -1,5 +1,5 @@
 import * as Types from './types';
-import ISkill from './ISkill';
+import Skill from './Skill';
 
 export interface SkillsRequestedAction {
   type: typeof Types.REQUESTED;
@@ -7,7 +7,7 @@ export interface SkillsRequestedAction {
 
 export interface SkillsReceivedAction {
   type: typeof Types.RECEIVED;
-  payload: ISkill[];
+  payload: Skill[];
 }
 
 export interface SkillsRequestFailedAction {
@@ -24,7 +24,7 @@ export function request(): SkillsRequestedAction {
   return { type: Types.REQUESTED };
 }
 
-export function receive(skills: ISkill[]): SkillsReceivedAction {
+export function receive(skills: Skill[]): SkillsReceivedAction {
   return {
     payload: skills,
     type: Types.RECEIVED,

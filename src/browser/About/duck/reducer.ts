@@ -1,10 +1,10 @@
 import * as Types from './types';
-import ISkill from './ISkill';
+import Skill from './Skill';
 
 import { AllActions, SkillsReceivedAction } from './actions';
 
 const defaultState = {
-  skills: null as ISkill[],
+  skills: null as Skill[],
   loading: false,
 };
 

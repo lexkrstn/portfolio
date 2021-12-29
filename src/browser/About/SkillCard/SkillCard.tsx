@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
 import config from '../../config';
-import ISkill, { LanguageLevels } from '../duck/ISkill';
+import Skill, { LanguageLevels } from '../duck/Skill';
 import * as S from './styles';
 
 const YEAR = new Date().getFullYear();
 
 export interface SkillCardProps {
-  skill: ISkill;
+  skill: Skill;
 }
 
 export default function SkillCard({ skill }: SkillCardProps): ReactElement {
