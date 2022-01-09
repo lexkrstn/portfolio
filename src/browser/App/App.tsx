@@ -46,7 +46,6 @@ export default function App({ location, route: { routes } }: AppProps): ReactEle
           open={snackbar.open}
           autoHideDuration={snackbar.duration}
           onClose={handleCloseSnackbar}
-          security={snackbar.severity}
         >
           <Alert
             onClose={handleCloseSnackbar}
