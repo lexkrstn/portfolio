@@ -1,8 +1,6 @@
-import { from, Observable } from 'rxjs';
-import { switchMap, delay, mapTo } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { delay, mapTo } from 'rxjs/operators';
 import { combineEpics, ofType } from 'redux-observable';
-import CONFIG from '../../../config';
-import { checkFetchResponseStatus } from '../../../utils';
 import * as actions from './actions';
 import * as types from './types';
 
@@ -10,18 +8,6 @@ const requestedEpic = (
   action$: Observable<actions.AllActions>
 ): Observable<actions.AllActions> => action$.pipe(
   ofType(types.REQUESTED),
-  // switchMap((): Observable<Types.PortfolioActionTypes> => {
-  //   const promise = fetch(`${CONFIG.apiUrl}/tags`, {
-  //       headers: { 'Accept': 'application/json' },
-  //     })
-  //     .then(checkFetchResponseStatus)
-  //     .then(Actions.receiveHashTags)
-  //     .catch(error => Actions.failHashTagsRequest(
-  //       error.message || 'Connection error',
-  //       error.сode,
-  //     ));
-  //   return from(promise);
-  // }),
   delay(1000),
   mapTo(actions.receive([
     { id: 1, name: 'JavaScript' },

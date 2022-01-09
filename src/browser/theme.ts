@@ -35,7 +35,7 @@ const regularFont = '"Roboto", sans-serif';
 const baseFontSize = 16;
 const baseLineHeight = 1.5;
 
-const theme: MyTheme = {
+const myTheme: MyTheme = {
   bp: {
     lg: '1200px',
     md: '960px',
@@ -70,4 +70,4 @@ const theme: MyTheme = {
   },
 };
 
-export default createTheme(theme);
+export default createTheme(myTheme);

@@ -1,7 +1,8 @@
 import { push } from 'connected-react-router';
 import { Location } from 'history';
-import React, { ReactElement, useMemo } from 'react';
+import React, { ReactElement, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
+import { contactDialog } from '../duck';
 import Logo from './Logo';
 import * as S from './styles';
 
@@ -22,6 +23,7 @@ export default function Navbar({ location }: NavbarProps): ReactElement {
       return () => dispatch(push(route));
     });
   }, []);
+  const openContactDialog = useCallback(() => dispatch(contactDialog.open()), []);
   return (
     <S.Navbar fixed={location.pathname !== '/'}>
       <S.Container>
@@ -35,7 +37,7 @@ export default function Navbar({ location }: NavbarProps): ReactElement {
             </S.NavItem>
           ))}
           <S.NavItem key="contact">
-            <S.NavLink >Contact</S.NavLink>
+            <S.NavLink onClick={openContactDialog}>Contact</S.NavLink>
           </S.NavItem>
         </S.Nav>
       </S.Container>
