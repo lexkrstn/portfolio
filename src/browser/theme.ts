@@ -70,4 +70,9 @@ const myTheme: MyTheme = {
   },
 };
 
-export default createTheme(myTheme);
+export default createTheme({
+  ...myTheme,
+  palette: {
+    mode: 'dark',
+  },
+});
