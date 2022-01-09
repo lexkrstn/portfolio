@@ -1,9 +1,10 @@
+import { Global } from '@emotion/react';
 import { Location } from 'history';
 import React, { ReactElement, useRef } from 'react';
 import { matchPath } from 'react-router';
 import { renderRoutes, RouteConfig } from 'react-router-config';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { GlobalStyle } from './styles';
+import * as S from './styles';
 
 interface RouteRifflerProps {
   routes: RouteConfig[];
@@ -27,7 +28,7 @@ export default function RouteRiffler(props: RouteRifflerProps): ReactElement {
   oldRouteIdx.current = routeIdx;
   return (
     <>
-      <GlobalStyle />
+      <Global styles={S.GlobalStyle} />
       <TransitionGroup component={React.Fragment} childFactory={createChildFactory(effect)}>
         <CSSTransition<undefined>
           key={props.location.pathname}

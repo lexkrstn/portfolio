@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { Loading } from '../Loading/styles';
 
 export const Image = styled.div<{ aspect?: number }>`

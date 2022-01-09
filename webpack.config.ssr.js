@@ -2,9 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const nodeFlag = require('node-flag');
 const nodeExternals = require('webpack-node-externals');
-const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
-
-const styledComponentsTransformer = createStyledComponentsTransformer();
 
 const DEBUG = nodeFlag.get('mode') !== 'production';
 
@@ -25,11 +22,6 @@ const config = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
-        options: {
-          getCustomTransformers: () => ({
-            before: DEBUG ? [styledComponentsTransformer] : [],
-          }),
-        },
       },
     ],
   },

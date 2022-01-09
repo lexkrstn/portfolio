@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { containerMixin, containerWrapMixin } from '../../widgets/mixins';
 
 export const Brand = styled.span`
@@ -9,7 +10,7 @@ export const Brand = styled.span`
   text-decoration: none;
   font-weight: 400;
   font-size: 2em;
-  font-family: ${props => props.theme.font.family.headings};
+  font-family: ${props => props.theme.font.family.heading};
   cursor: pointer;
   transition: font-size .2s ease;
 
@@ -24,7 +25,7 @@ const fixedNavbarMixin = css`
   padding-top: 15px;
   padding-bottom: 15px;
   background: rgba(0, 0, 0, .25);
-  z-index: ${props => props.theme.zindex.navbarFixed};
+  z-index: 1030;
   box-shadow: 0 1px 10px rgba(0,0,0,.3);
   border-color: rgba(255, 255, 255, 0.2);
 
@@ -38,7 +39,7 @@ export const Navbar = styled.nav<{ fixed: boolean }>`
   top: 0;
   left: 0;
   right: 0;
-  z-index: ${props => props.theme.zindex.navbar};
+  z-index: 1000;
   display: block;
   ${containerWrapMixin}
   padding-top: 25px;
@@ -85,7 +86,7 @@ export const NavLink = styled.span`
   text-transform: uppercase;
   color: white;
   font-size: 1em;
-  font-family: ${props => props.theme.font.family.headings};
+  font-family: ${props => props.theme.font.family.heading};
   white-space: nowrap;
   cursor: pointer;
   user-select: none;

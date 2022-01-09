@@ -4,7 +4,6 @@ const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
 
 dotenv.config();
 
@@ -73,13 +72,8 @@ module.exports = (env, options) => {
       rules: [
         {
           test: /\.tsx?$/,
-          loader: 'ts-loader',
+          use: 'babel-loader',
           exclude: /node_modules/,
-          options: {
-            getCustomTransformers: () => ({
-              before: options.mode !== 'production' ? [createStyledComponentsTransformer()] : [],
-            }),
-          },
         },
         // File loader for supporting images, for example, in CSS files.
         {
@@ -108,7 +102,7 @@ module.exports = (env, options) => {
         // Required for loading templates by HtmlWebpackPlugin
         {
           test: /\.pug$/,
-          loader: 'pug-loader',
+          use: 'pug-loader',
         },
       ],
     },

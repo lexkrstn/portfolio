@@ -1,8 +1,8 @@
+import { ThemeProvider, Global } from '@emotion/react';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { matchPath } from 'react-router';
 import { RouteConfigComponentProps } from 'react-router-config';
-import { ThemeProvider } from 'styled-components';
 import { getWalkMode } from '../Home/duck/selectors';
 import theme from '../theme';
 import { isRootRoute } from '../utils/routes';
@@ -23,7 +23,7 @@ export default function App({ location, route: { routes } }: AppProps): ReactEle
     <ThemeProvider theme={theme}>
       <S.App>
         <ParallaxScroll height={parallaxHeight} resetOnChange={location.pathname}>
-          <S.GlobalStyle />
+          <Global styles={S.GlobalStyle} />
           <Navbar location={location} />
           {isRootRoute(activeRoute, 0, routes) && <>
             <PageNav location={location} routes={routes} />

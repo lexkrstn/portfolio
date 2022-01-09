@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback, ReactNode, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { ChevronLeft, ChevronRight } from '@styled-icons/fa-solid';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import * as S from './styles';
 
 export interface SliderProps {
@@ -42,10 +43,10 @@ export default function Slider({ children }: SliderProps): ReactElement {
     <S.Slider>
       <S.Frame>
         <S.LeftArea onClick={slidePrev}>
-          <ChevronLeft />
+          <ChevronLeftIcon fontSize="large" />
         </S.LeftArea>
         <S.RightArea onClick={slideNext}>
-          <ChevronRight />
+          <ChevronRightIcon fontSize="large" />
         </S.RightArea>
         <TransitionGroup component={null} childFactory={createChildFactory(effect)}>
           <CSSTransition key={correctedIndex} classNames={effect} timeout={300}>

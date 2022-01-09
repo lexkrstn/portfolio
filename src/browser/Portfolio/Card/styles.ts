@@ -1,6 +1,6 @@
-import { ExternalLinkAlt } from '@styled-icons/fa-solid';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import Link from '@mui/icons-material/Link';
 import { Chip, ChipGroup, chipMixin } from '../../widgets/Chip/styles';
 
 export const Card = styled(NavLink)`
@@ -136,7 +136,7 @@ export const Button = styled.span`
   }
 `;
 
-export const ButtonLinkIcon = styled(ExternalLinkAlt)`
+export const ButtonLinkIcon = styled(Link)`
   width: 1em;
   height: 1em;
   margin-left: 0.5em;

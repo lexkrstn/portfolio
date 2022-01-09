@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const SocialNav = styled.div`
   position: fixed;
@@ -15,9 +15,9 @@ export const SocialButton = styled.a`
   display: block;
   text-decoration: none;
   color: #fff;
-  width: 32px;
-  height: 32px;
-  margin-bottom: 15px;
+  line-height: 1;
+  font-size: 0;
+  margin-bottom: 10px;
   cursor: pointer;
   transition: transform 100ms ease;
 

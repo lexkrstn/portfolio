@@ -1,3 +1,6 @@
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
+import createEmotionServer from '@emotion/server/create-instance';
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -5,7 +8,6 @@ import { Provider } from 'react-redux';
 import { MatchedRoute, matchRoutes, renderRoutes } from 'react-router-config';
 import { StaticRouter } from 'react-router-dom';
 import { Store } from 'redux';
-import { ServerStyleSheet } from 'styled-components';
 import { ReadyState } from '../browser/constants';
 import '../browser/polyfills';
 import { RootState } from '../browser/rootReducer';
@@ -94,19 +96,24 @@ router.get('*', async (req, res) => {
   }
   const context: { url?: string } = {};
   let markup = '';
-  const sheet = new ServerStyleSheet();
+  let styles = '';
+  const cache = createCache({ key: 'custom' });
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
   try {
-    const root = (
-      <Provider store={store}>
-        <StaticRouter
-          location={req.url}
-          context={context}
-        >
-          {renderRoutes(routes)}
-        </StaticRouter>
-      </Provider>
+    markup = renderToString(
+      <CacheProvider value={cache}>
+        <Provider store={store}>
+          <StaticRouter
+            location={req.url}
+            context={context}
+          >
+            {renderRoutes(routes)}
+          </StaticRouter>
+        </Provider>
+      </CacheProvider>
     );
-    markup = renderToString(sheet.collectStyles(root));
+    const chunks = extractCriticalToChunks(markup);
+    styles = constructStyleTagsFromChunks(chunks);
   } catch (e) {
     logger.error('renderToString() failed', e);
   }
@@ -123,7 +130,7 @@ router.get('*', async (req, res) => {
     const vars = {
       initialState,
       markup,
-      styleTags: sheet.getStyleTags(),
+      styleTags: styles,
       title: 'Portfolio',
     };
     res.render('index', vars, (err, html) => {

@@ -1,4 +1,5 @@
-import styled, { css, DefaultTheme } from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export const Slider = styled.div`
   position: relative;
@@ -27,10 +28,6 @@ const directionAreaMixin = css`
 
   &:hover {
     opacity: 1;
-  }
-
-  svg {
-    width: 20px;
   }
 `;
 

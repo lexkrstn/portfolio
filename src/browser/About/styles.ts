@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { GradientBackground } from '../widgets/GradientBackground/styles';
 import { containerMixin, containerWrapMixin } from '../widgets/mixins';
 

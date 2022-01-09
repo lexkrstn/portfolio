@@ -1,60 +1,41 @@
-import { DefaultTheme } from 'styled-components';
+import { createTheme, Theme as MuiTheme } from '@mui/material';
 
 export const BREAKPOINTS = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 export type BreakpointType = typeof BREAKPOINTS[number];
 export type GridType = 'inline' | 'float' | 'flex';
+export type TextSize = 'base' | 'h1' | 'h2' | 'h3' | 'h4';
 
-declare module "styled-components" {
-  export interface DefaultTheme {
-    bp: { [T in BreakpointType]: string };
-    container: {
-      margin: number;
-      maxWidth: number;
+interface MyTheme {
+  bp: Record<BreakpointType, string>;
+  container: {
+    margin: number;
+    maxWidth: number;
+  };
+  font: {
+    family: {
+      regular: string;
+      caption: string;
+      heading: string;
     };
-    font: {
-      family: {
-        base: string;
-        captions: string;
-        headings: string;
-      };
-      size: {
-        base: number;
-        h1: number;
-        h2: number;
-        h3: number;
-        h4: number;
-      };
-    };
-    grid: {
-      type: GridType;
-      gutterX: string;
-      gutterY: string;
-    },
-    lineHeight: {
-      base: number;
-      h1: number;
-      h2: number;
-      h3: number;
-      h4: number;
-    };
-    zindex: {
-      dropdown: number;
-      mobileMenu: number;
-      modal: number;
-      modalBackground: number;
-      navbar: number;
-      navbarFixed: number;
-      popover: number;
-      tooltip: number;
-    },
-  }
+    size: Record<TextSize, number>;
+  };
+  lineHeight: Record<TextSize, number>;
+}
+
+declare module '@emotion/react' {
+  interface Theme extends MyTheme {}
+}
+
+declare module '@mui/material/styles' {
+  interface Theme extends MyTheme {}
+  interface ThemeOptions extends Partial<Theme> {}
 }
 
 const regularFont = '"Roboto", sans-serif';
 const baseFontSize = 16;
 const baseLineHeight = 1.5;
 
-const defaultTheme: DefaultTheme = {
+const theme: MyTheme = {
   bp: {
     lg: '1200px',
     md: '960px',
@@ -68,9 +49,9 @@ const defaultTheme: DefaultTheme = {
   },
   font: {
     family: {
-      base: regularFont,
-      captions: regularFont,
-      headings: regularFont,
+      regular: regularFont,
+      caption: regularFont,
+      heading: regularFont,
     },
     size: {
       base: baseFontSize,
@@ -80,11 +61,6 @@ const defaultTheme: DefaultTheme = {
       h4: baseFontSize,
     },
   },
-  grid: {
-    type: 'flex',
-    gutterX: '15px',
-    gutterY: '15px',
-  },
   lineHeight: {
     base: baseLineHeight,
     h1: baseLineHeight,
@@ -92,16 +68,6 @@ const defaultTheme: DefaultTheme = {
     h3: baseLineHeight,
     h4: baseLineHeight,
   },
-  zindex: {
-    dropdown:          1000,
-    mobileMenu:        1090,
-    modal:             1050,
-    modalBackground:   1040,
-    navbar:            1000,
-    navbarFixed:       1030,
-    popover:           1060,
-    tooltip:           1070,
-  },
 };
 
-export default defaultTheme;
+export default createTheme(theme);

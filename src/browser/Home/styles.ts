@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components';
+import { keyframes } from '@emotion/react';
+import styled from '@emotion/styled';
 import { containerWrapMixin } from '../widgets/mixins';
 import { ScrollButton } from '../widgets/ScrollButton/styles';
 

@@ -1,8 +1,8 @@
+import Grid from '@mui/material/Grid';
 import React, { ReactElement, useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import GradientBackground from '../widgets/GradientBackground';
-import { Col, GridTheme, Row } from '../widgets/Grid';
 import RingSpinner from '../widgets/RingSpinner';
 import Card from './Card';
 import { actions, selectors } from './duck';
@@ -55,12 +55,12 @@ export default function Portfolio(): ReactElement {
               Showing all works. Use the filter to list them by skill.
             </>}
           </S.ResultSummary>
-          {!!works && !!tags && <GridTheme gutterX="25px" gutterY="25px">
+          {!!works && !!tags && (
             <SwitchTransition mode="out-in">
               <CSSTransition key={selectedTagId} timeout={300} classNames="item">
-                <Row>
+                <Grid container spacing={2}>
                   {works.map(work => (
-                    <Col key={work.id} sm={1/2} lg={1/3}>
+                    <Grid item key={work.id} sm={6} lg={4}>
                       <Card
                         caption={work.name}
                         cover={work.thumbnail}
@@ -68,12 +68,12 @@ export default function Portfolio(): ReactElement {
                         tags={tags.filter(tag => work.tagIds.some(tagId => tagId === tag.id))}
                         onClickTag={onClickTag}
                       />
-                    </Col>
+                    </Grid>
                   ))}
-                </Row>
+                </Grid>
               </CSSTransition>
             </SwitchTransition>
-          </GridTheme>}
+          )}
         </>}
         {(!works || !tags) && (
           <S.Placeholder>
