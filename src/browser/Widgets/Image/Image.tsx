@@ -17,8 +17,10 @@ export default function Image({ alt, aspect, cache, height, src }: ImageProps): 
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     if (cache && cache[src]) {
+      console.log('cache hit')
       setUrl(cache[src]);
     } else {
+      console.log('cache miss')
       loadImage(src, setProgress)
         .then(newUrl => {
           if (cache) {

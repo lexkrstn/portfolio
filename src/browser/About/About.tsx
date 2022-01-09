@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from '../widgets/Image';
 import GradientBackground from '../widgets/GradientBackground';
@@ -11,6 +11,13 @@ import * as actions from './duck/actions';
 import { yearsFrom } from '../utils';
 import config from '../config';
 
+// Cache for images.
+// The Image don't load on server side, so it's ok to keep to it here even on SSR.
+const imageCache = {};
+
+/**
+ * About page HOC.
+ */
 export default function About() {
   const dispatch = useDispatch();
   const skills = useSelector(getSkills);
@@ -42,7 +49,12 @@ export default function About() {
               <Grid item md={6} lg={12}>
                 <S.PhotoAndName>
                   <S.Photo>
-                    <Image src="/images/photo.png" height={200} aspect={1} />
+                    <Image
+                      src="/images/photo.png"
+                      height={200}
+                      aspect={1}
+                      cache={imageCache}
+                    />
                   </S.Photo>
                   <S.Name>Alexander Korostin</S.Name>
                 </S.PhotoAndName>
