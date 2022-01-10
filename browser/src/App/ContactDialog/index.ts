@@ -1,1 +1,1 @@
-export { default } from "./ContactDialog";
+export { default } from './ContactDialog';

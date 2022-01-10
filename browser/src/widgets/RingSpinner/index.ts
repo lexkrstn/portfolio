@@ -1,3 +1,3 @@
-import RingSpinner from "./RingSpinner";
+import RingSpinner from './RingSpinner';
 
 export default RingSpinner;

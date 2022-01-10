@@ -8,7 +8,7 @@ export function loadImage(url: string, onProgress: (percents: number) => void): 
 
     request.onload = () => {
       const headers = request.getAllResponseHeaders();
-      const contentTypeMatch = headers.match( /^Content-Type\:\s*(.*?)$/mi );
+      const contentTypeMatch = headers.match(/^Content-Type\:\s*(.*?)$/mi);
       const type = contentTypeMatch[1] || 'image/png';
       const blob = new Blob([request.response], { type });
       const objectUrl = URL.createObjectURL(blob);

@@ -1,8 +1,6 @@
-import { from, Observable } from 'rxjs';
-import { switchMap, delay, mapTo } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { delay, mapTo } from 'rxjs/operators';
 import { combineEpics, ofType } from 'redux-observable';
-import CONFIG from '../../../config';
-import { checkFetchResponseStatus } from '../../../utils';
 import { AllActions } from '../actions';
 import { receive } from './actions';
 import * as types from './types';

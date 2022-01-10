@@ -6,7 +6,9 @@ import { contactDialog } from '../duck';
 import Logo from './Logo';
 import * as S from './styles';
 
-const routeNavs: Array<{ route: string, name: string }> = [
+type RouteNav = { route: string, name: string };
+
+const routeNavs: RouteNav[] = [
   { route: '/', name: 'Home' },
   { route: '/portfolio', name: 'Portfolio' },
   { route: '/about', name: 'About' },

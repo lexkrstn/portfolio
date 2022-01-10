@@ -32,7 +32,7 @@ export function lerp(a: number, b: number, w: number): number {
  * @param date The date to count years from.
  * @returns Number of years elapsed.
  */
-export function yearsFrom(dateLike: Date|string): number {
+export function yearsFrom(dateLike: Date | string): number {
   const date = dateLike instanceof Date ? dateLike : new Date(dateLike);
   return Math.floor((Date.now() - date.getTime()) / YEAR);
 }

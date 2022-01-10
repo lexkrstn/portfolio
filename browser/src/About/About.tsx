@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from '../widgets/Image';
 import GradientBackground from '../widgets/GradientBackground';
@@ -38,7 +38,7 @@ export default function About() {
       <GradientBackground />
       <S.Container>
         <Grid container spacing={4}>
-          <Grid item lg={4}></Grid>
+          <Grid item lg={4} />
           <Grid item lg={8}>
             <S.Title>About me</S.Title>
           </Grid>
