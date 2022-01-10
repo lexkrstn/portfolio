@@ -1,5 +1,5 @@
-const apiConfig = require('./webpack.config.api');
-const ssrConfig = require('./webpack.config.ssr');
-const browserConfig = require('./webpack.config.browser');
+const apiConfig = require('./api/webpack.config');
+const ssrConfig = require('./ssr/webpack.config');
+const browserConfig = require('./browser/webpack.config');
 
-module.exports = [/*apiConfig,*/ ssrConfig, browserConfig];
+module.exports = [apiConfig, ssrConfig, browserConfig];

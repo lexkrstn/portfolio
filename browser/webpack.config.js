@@ -19,7 +19,7 @@ module.exports = (env, options) => {
     plugins = [
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'views/index.pug',
+        template: 'ssr/views/index.pug',
         templateParameters: {
           title: 'Portfolio',
           initialState: {},
@@ -39,10 +39,10 @@ module.exports = (env, options) => {
   }
   const config = {
     entry: {
-      'app': './src/browser/index.tsx',
+      'app': './browser/src/index.tsx',
     },
     devServer: {
-      contentBase: path.join(__dirname, 'public'),
+      contentBase: path.join(__dirname, '..', 'public'),
       compress: true,
       port: 8080,
       disableHostCheck: false,
@@ -53,7 +53,7 @@ module.exports = (env, options) => {
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.join(__dirname, 'public', 'js'),
+      path: path.join(__dirname, '..', 'public', 'js'),
     },
     optimization: {
       minimize: options.mode === 'production',

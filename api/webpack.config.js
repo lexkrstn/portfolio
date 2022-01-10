@@ -6,12 +6,12 @@ const nodeFlag = require('node-flag');
 const config = {
   // Tells webpack not to touch any built-in modules like fs or path
   target: 'node',
-  entry: './src/api/main.ts',
+  entry: './api/src/main.ts',
   resolve: {
     alias: {
       // Although it's actually resolved by a babel plugin (see below) these
       // lines are required for eslint's plugin which relies on them.
-      '~': path.resolve(__dirname, 'src/api'),
+      '~': path.resolve(__dirname, 'api/src'),
     }
   },
   output: {

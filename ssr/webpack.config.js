@@ -7,7 +7,7 @@ const DEBUG = nodeFlag.get('mode') !== 'production';
 
 const config = {
   target: 'node',
-  entry: './src/ssr/server.ts',
+  entry: './ssr/src/server.ts',
   output: {
     libraryTarget: 'commonjs2',
     filename: 'ssr.js',

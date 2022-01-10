@@ -1,5 +1,5 @@
 module.exports = {
-  rootDir: 'src/browser',
+  rootDir: 'browser/src',
   verbose: true,
   preset: 'ts-jest',
   globals: {
