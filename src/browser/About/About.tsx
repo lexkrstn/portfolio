@@ -12,7 +12,7 @@ import { yearsFrom } from '../utils';
 import config from '../config';
 
 // Cache for images.
-// The Image don't load on server side, so it's ok to keep to it here even on SSR.
+// The Image doesn't load on server side, so it's safe to keep it here in SSR.
 const imageCache = {};
 
 /**
