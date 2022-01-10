@@ -7,6 +7,10 @@ public/images/generated/*
 !public/images/generated/.gitkeep
 public/fonts/
 dist/*
-reports/*
-!reports/.gitkeep
+api/reports/coverage/**/*
+!api/reports/coverage/.gitkeep
+browser/reports/coverage/**/*
+!browser/reports/coverage/.gitkeep
+ssr/reports/coverage/**/*
+!ssr/reports/coverage/.gitkeep
 .DS_Store

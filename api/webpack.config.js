@@ -11,13 +11,14 @@ const config = {
     alias: {
       // Although it's actually resolved by a babel plugin (see below) these
       // lines are required for eslint's plugin which relies on them.
-      '~': path.resolve(__dirname, 'api/src'),
-    }
+      '~': path.resolve(__dirname, 'src'),
+    },
+    extensions: ['.js', '.json', '.ts'],
   },
   output: {
     libraryTarget: 'commonjs2',
     filename: 'api.js',
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '..', 'dist'),
   },
   node: {
     // Enables __dirname constant for sources in bundle.

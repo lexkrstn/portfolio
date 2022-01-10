@@ -4,19 +4,19 @@ module.exports = {
   preset: 'ts-jest',
   testRegex: '.*\\.spec\\.ts$',
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest',
+    '^.+\\.(t|j)s$': 'ts-jest',
   },
   collectCoverageFrom: [
-    "**/*.[tj]sx?",
+    "**/*.[tj]s",
   ],
   coverageDirectory: '../reports/coverage',
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
   globals: {
     NODE_ENV: 'test',
     // 'ts-jest': {
     //   tsConfig: 'tsconfig.test.json',
     // },
   },
-  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
+  moduleFileExtensions: ['js', 'ts', 'json'],
   moduleDirectories: ['node_modules'],
 };
