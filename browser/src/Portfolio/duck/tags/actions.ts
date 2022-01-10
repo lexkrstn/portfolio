@@ -23,8 +23,10 @@ export interface TagsRequestFailedAction {
   };
 }
 
-export type AllActions = TagSelectedAction | TagsRequestedAction |
-  TagsReceivedAction | TagsRequestFailedAction;
+export type AllActions = (
+  TagSelectedAction | TagsRequestedAction | TagsReceivedAction
+  | TagsRequestFailedAction
+);
 
 export function select(id: number): TagSelectedAction {
   return {

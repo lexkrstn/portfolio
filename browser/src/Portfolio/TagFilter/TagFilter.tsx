@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Chip, { ChipGroup } from '../../widgets/Chip';
 import { selectors, actions } from '../duck';
@@ -26,17 +26,19 @@ export default function TagFilter(): ReactElement {
 
   return (
     <S.TagFilter>
-      {!!tags && <ChipGroup>
-        {sortedTags.map((tag, i) => (
-          <Chip
-            key={tag.id}
-            active={tag.id === selectedTagId}
-            onClick={clickCallbacks[i]}
-          >
-            {tag.name}
-          </Chip>
-        ))}
-      </ChipGroup>}
+      {!!tags && (
+        <ChipGroup>
+          {sortedTags.map((tag, i) => (
+            <Chip
+              key={tag.id}
+              active={tag.id === selectedTagId}
+              onClick={clickCallbacks[i]}
+            >
+              {tag.name}
+            </Chip>
+          ))}
+        </ChipGroup>
+      )}
     </S.TagFilter>
   );
 }

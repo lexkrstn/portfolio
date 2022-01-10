@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, ReactNode, useState } from 'react';
+import React, { ReactElement, useCallback, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -59,7 +59,7 @@ export default function Slider({ children }: SliderProps): ReactElement {
       <S.Pills>
         {childrenArray.map((child, i) => (
           <S.Pill
-            key={`${child.key}-${i}`}
+            key={child.key}
             active={i === correctedIndex}
             onClick={clickHandlers[i]}
           />

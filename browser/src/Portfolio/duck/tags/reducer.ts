@@ -13,7 +13,7 @@ export type TagsState = typeof defaultState;
 
 export default function tagsReducer(
   state = defaultState,
-  action: AllActions,
+  action: AllActions = undefined,
 ): TagsState {
   switch (action.type) {
     case Types.SELECTED:

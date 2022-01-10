@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-export default function(): ReactElement {
+export default function Logo(): ReactElement {
   return (
     <svg viewBox="0 0 404 315">
       <g id="logo">

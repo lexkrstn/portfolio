@@ -1,3 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export default () => <div>Not found!</div>;
+export default function NotFound(): ReactElement {
+  return (
+    <div>Not found!</div>
+  );
+}

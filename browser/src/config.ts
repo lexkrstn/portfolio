@@ -12,5 +12,5 @@ export default {
   },
   debug: ['dev', 'development'].includes(process.env.NODE_ENV),
   prefetchTimeout: 5000,
-  url: `${scheme}://${process.env.DOMAIN}${port === 80 ? '' : ':' + port}`,
+  url: `${scheme}://${process.env.DOMAIN}${port === 80 ? '' : `:${port}`}`,
 };

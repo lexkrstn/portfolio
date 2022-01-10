@@ -1,5 +1,7 @@
 import { push } from 'connected-react-router';
-import React, { MouseEvent, ReactElement, useCallback, useMemo } from 'react';
+import React, {
+  MouseEvent, ReactElement, useCallback, useMemo,
+} from 'react';
 import { useDispatch } from 'react-redux';
 import Chip, { ChipGroup } from '../../widgets/Chip';
 import Tag from '../duck/tags/Tag';
@@ -14,7 +16,9 @@ export interface CardProps {
   onClickTag?: (id: number) => void;
 }
 
-export default function Card({ caption, cover, onClickTag, route, tags }: CardProps): ReactElement {
+export default function Card({
+  caption, cover, onClickTag, route, tags,
+}: CardProps): ReactElement {
   const dispatch = useDispatch();
 
   const onHostClick = useCallback(

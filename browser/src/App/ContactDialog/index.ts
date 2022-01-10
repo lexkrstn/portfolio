@@ -1,1 +1,3 @@
-export { default } from './ContactDialog';
+import ContactDialog from './ContactDialog';
+
+export default ContactDialog;

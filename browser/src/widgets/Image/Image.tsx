@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { loadImage } from '../../utils/helpers';
 import Loading from '../Loading';
@@ -12,7 +12,9 @@ export interface ImageProps {
   src: string;
 }
 
-export default function Image({ alt, aspect, cache, height, src }: ImageProps): ReactElement {
+export default function Image({
+  alt, aspect, cache, height, src,
+}: ImageProps): ReactElement {
   const [url, setUrl] = useState((cache && cache[src]) || '');
   const [progress, setProgress] = useState(0);
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function Image({ alt, aspect, cache, height, src }: ImageProps): 
       loadImage(src, setProgress)
         .then(newUrl => {
           if (cache) {
-            cache[src] = newUrl;
+            cache[src] = newUrl; // eslint-disable-line no-param-reassign
           }
           setUrl(newUrl);
         });

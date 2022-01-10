@@ -12,7 +12,9 @@ export const YEAR = DAY * 365;
  * @param max Scalar for top of clamp range.
  */
 export function clamp(x: number, min: number, max: number): number {
-  return x < min ? min : (x > max ? max : x);
+  if (x < min) return min;
+  if (x > max) return max;
+  return x;
 }
 
 /**

@@ -21,8 +21,8 @@ function createChildFactory(classNames: string) {
   };
 }
 
-export default function RouteRiffler(props: RouteRifflerProps): ReactElement {
-  const routeIdx = props.routes.findIndex(route => matchPath(props.location.pathname, route));
+export default function RouteRiffler({ location, routes }: RouteRifflerProps): ReactElement {
+  const routeIdx = routes.findIndex(route => matchPath(location.pathname, route));
   const oldRouteIdx = useRef(routeIdx);
   const effect = routeIdx > oldRouteIdx.current ? 'scroll-down' : 'scroll-up';
   oldRouteIdx.current = routeIdx;
@@ -31,11 +31,11 @@ export default function RouteRiffler(props: RouteRifflerProps): ReactElement {
       <Global styles={S.GlobalStyle} />
       <TransitionGroup component={React.Fragment} childFactory={createChildFactory(effect)}>
         <CSSTransition<undefined>
-          key={props.location.pathname}
+          key={location.pathname}
           addEndListener={transitionEndListener}
           classNames={effect}
         >
-          {renderRoutes(props.routes, {}, { location: props.location })}
+          {renderRoutes(routes, {}, { location })}
         </CSSTransition>
       </TransitionGroup>
     </>

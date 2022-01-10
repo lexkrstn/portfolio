@@ -20,8 +20,8 @@ interface NavbarProps {
 
 export default function Navbar({ location }: NavbarProps): ReactElement {
   const dispatch = useDispatch();
-  const handlers = useMemo(() => {
-    return routeNavs.map(({ route }) => {
+  const handlers = useMemo(() => { // eslint-disable-line arrow-body-style
+    return routeNavs.map(({ route }) => { // eslint-disable-line arrow-body-style
       return () => dispatch(push(route));
     });
   }, []);

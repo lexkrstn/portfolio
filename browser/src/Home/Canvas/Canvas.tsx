@@ -4,7 +4,6 @@ import {
   Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene,
   ShaderMaterial, ShapeBufferGeometry, Vector3, WebGLRenderer, WireframeGeometry,
 } from 'three';
-// tslint:disable-next-line no-submodule-imports
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 import { clamp, lerp } from '../../utils';
 import { WalkMode } from '../duck';
@@ -12,7 +11,7 @@ import FONT from './fonts/helvetiker_regular.json';
 import * as S from './styles';
 
 const PLANE_SIZE = 500;
-const CELL_SIZE  = 3;
+const CELL_SIZE = 3;
 const NUM_CELLS = PLANE_SIZE / CELL_SIZE;
 
 interface CanvasProps {
@@ -21,33 +20,16 @@ interface CanvasProps {
   onNavigateNext: () => void;
 }
 
-interface CanvasState {
-  stopPoint: number;
-}
+interface CanvasState {}
 
 /**
  * The component that renders WebGL canvas on the Home screen.
  */
 export default class Canvas extends React.Component<CanvasProps, CanvasState> {
-  public state: CanvasState = {
-    stopPoint: 0,
-  };
   private viewPointOffset = 0.1;
   private walkDuration = 10; // in seconds
   private walkOffset = -0.5; // to adjust start position, in seconds
   private stopPoints = [0.11, 0.325, 0.605, 0.815];
-  private walkPath = new CatmullRomCurve3([
-    new Vector3(-50, 5, -50),
-    new Vector3(-50, 5, 50),
-    new Vector3(50, 5, 50),
-    new Vector3(50, 5, -50),
-  ], true);
-  private textBoards = [
-    { text: 'Hi there!', position: 0.18, size: 10 },
-    { text: '     My name is\nAlexander Korostin', position: 0.4, size: 5 },
-    { text: '  I\'m a fullstack\nweb programmer', position: 0.7, size: 5 },
-    { text: 'Scroll down to see\n  my latest works', position: 0.9, size: 5 },
-  ];
   private canvasRef = React.createRef<HTMLCanvasElement>();
   private scene = new Scene();
   private renderer: WebGLRenderer;
@@ -56,21 +38,39 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
   private font: Font;
   private animationFrameId: number = null;
 
-  public render(): ReactElement {
-    return (
-      <S.Canvas ref={this.canvasRef}>
-        Upgrade your browser to see the WebGL animation
-      </S.Canvas>
-    );
-  }
+  private walkPath = new CatmullRomCurve3([
+    new Vector3(-50, 5, -50),
+    new Vector3(-50, 5, 50),
+    new Vector3(50, 5, 50),
+    new Vector3(50, 5, -50),
+  ], true);
+
+  private textBoards = [
+    { text: 'Hi there!', position: 0.18, size: 10 },
+    { text: '     My name is\nAlexander Korostin', position: 0.4, size: 5 },
+    { text: '  I\'m a fullstack\nweb programmer', position: 0.7, size: 5 },
+    { text: 'Scroll down to see\n  my latest works', position: 0.9, size: 5 },
+  ];
 
   public componentDidMount(): void {
     this.initializeRenderer();
     this.setUpScene();
-    if (this.props.walkMode === 'play') {
+    const { walkMode } = this.props;
+    if (walkMode === 'play') {
       this.animationFrameId = requestAnimationFrame(this.renderFrame);
     }
     window.addEventListener('resize', this.onWindowResize);
+  }
+
+  public componentDidUpdate(): void {
+    const { scroll, walkMode, onNavigateNext } = this.props;
+    if (walkMode === 'scroll') {
+      this.renderSceneAtScrollPosition();
+
+      if (scroll > 0.99) {
+        onNavigateNext();
+      }
+    }
   }
 
   public componentWillUnmount(): void {
@@ -78,25 +78,6 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
       cancelAnimationFrame(this.animationFrameId);
     }
     window.removeEventListener('resize', this.onWindowResize);
-  }
-
-  public componentDidUpdate(): void {
-    if (this.props.walkMode === 'scroll') {
-      this.renderSceneAtScrollPosition();
-
-      if (this.props.scroll > 0.99) {
-        this.props.onNavigateNext();
-      }
-    }
-  }
-
-  private initializeRenderer() {
-    const canvas = this.canvasRef.current;
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-
-    this.renderer = new WebGLRenderer({ alpha: true, canvas });
-    this.renderer.setClearColor(0, 0);
   }
 
   private setUpScene(): void {
@@ -122,9 +103,19 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
-    if (this.props.walkMode === 'scroll') {
+    const { walkMode } = this.props;
+    if (walkMode === 'scroll') {
       this.renderSceneAtScrollPosition();
     }
+  };
+
+  private initializeRenderer() {
+    const canvas = this.canvasRef.current;
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
+    this.renderer = new WebGLRenderer({ alpha: true, canvas });
+    this.renderer.setClearColor(0, 0);
   }
 
   /**
@@ -137,7 +128,7 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
       position.setZ(i, Math.random());
     }
     const wireframe = new WireframeGeometry(geometry);
-    wireframe.rotateX(- Math.PI / 2);
+    wireframe.rotateX(-Math.PI / 2);
     const material = new ShaderMaterial({
       fragmentShader: `
         varying float transparency;
@@ -204,7 +195,7 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
         }
       }
     }
-    shapes.push.apply(shapes, holeShapes);
+    shapes.push(...holeShapes as any[]);
 
     const matDark = new MeshBasicMaterial({
       color,
@@ -238,15 +229,15 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     this.renderSceneAtPoint(t < 0 ? t + 1 : t);
 
     this.animationFrameId = requestAnimationFrame(this.renderFrame);
-  }
+  };
 
   private renderSceneAtScrollPosition(): void {
     // Clamp overscroll
-    const scroll = clamp(this.props.scroll, 0, 1);
+    const { scroll } = this.props;
     // Map [0, 1] -> [startPosition, endPosition] and render
     const from = this.stopPoints[0];
     const to = this.stopPoints[this.stopPoints.length - 1];
-    this.renderSceneAtPoint(lerp(from, to, scroll));
+    this.renderSceneAtPoint(lerp(from, to, clamp(scroll, 0, 1)));
   }
 
   /**
@@ -260,5 +251,13 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     this.camera.lookAt(this.walkPath.getPointAt((t + this.viewPointOffset) % 1));
 
     this.renderer.render(this.scene, this.camera);
+  }
+
+  public render(): ReactElement {
+    return (
+      <S.Canvas ref={this.canvasRef}>
+        Upgrade your browser to see the WebGL animation
+      </S.Canvas>
+    );
   }
 }

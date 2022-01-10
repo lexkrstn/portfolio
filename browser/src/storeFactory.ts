@@ -1,6 +1,8 @@
 import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory, createMemoryHistory } from 'history';
-import { applyMiddleware, compose, createStore, Store } from 'redux';
+import {
+  applyMiddleware, compose, createStore, Store,
+} from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 
 // These two are excluded from the production code via replacing by noop-loader of webpack
@@ -10,6 +12,7 @@ import { composeWithDevTools as composeWithDevToolsExtension } from 'redux-devto
 import epic from './rootEpic';
 import createRootReducer, { RootState } from './rootReducer';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
 declare const __INITIAL_STATE__: RootState;
 type StoreEnhancer = typeof composeWithDevToolsExtension;
 
@@ -30,8 +33,9 @@ export default function storeFactory(): Store<RootState> {
     preloadedState = __INITIAL_STATE__;
 
     // Use browser extension version of redux dev tools
-    composeWithDevTools = process.env.NODE_ENV === 'production' ?
-      compose : composeWithDevToolsExtension;
+    composeWithDevTools = process.env.NODE_ENV === 'production'
+      ? compose
+      : composeWithDevToolsExtension;
   } else {
     // Use remote version of redux dev tools
     // composeWithDevTools = process.env.NODE_ENV === 'production' ?

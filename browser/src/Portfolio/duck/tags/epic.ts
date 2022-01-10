@@ -5,7 +5,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 const requestedEpic = (
-  action$: Observable<actions.AllActions>
+  action$: Observable<actions.AllActions>,
 ): Observable<actions.AllActions> => action$.pipe(
   ofType(types.REQUESTED),
   delay(1000),

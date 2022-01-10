@@ -8,32 +8,32 @@ export interface RingSpinnerProps {
 }
 
 export default function RingSpinner({ size, color, thickness }: RingSpinnerProps): ReactElement {
-	const hostStyle = useMemo(
+  const hostStyle = useMemo(
     () => ({
       width: size,
       height: size,
     }),
     [size],
   );
-	const ringStyle = useMemo(
+  const ringStyle = useMemo(
     () => ({
       borderTopColor: color,
       borderWidth: thickness,
     }),
     [color, thickness],
   );
-	return (
-		<S.RingSpinner style={hostStyle} className={`ring-spinner`}>
-			<S.Ring style={ringStyle} />
-			<S.Ring style={ringStyle} />
-			<S.Ring style={ringStyle} />
-			<S.Ring style={ringStyle} />
-		</S.RingSpinner>
-	);
-};
+  return (
+    <S.RingSpinner style={hostStyle}>
+      <S.Ring style={ringStyle} />
+      <S.Ring style={ringStyle} />
+      <S.Ring style={ringStyle} />
+      <S.Ring style={ringStyle} />
+    </S.RingSpinner>
+  );
+}
 
 RingSpinner.defaultProps = {
-	color: '#fff',
-	thickness: '0.125em',
-	size: '1em',
+  color: '#fff',
+  thickness: '0.125em',
+  size: '1em',
 };

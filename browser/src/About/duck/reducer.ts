@@ -12,7 +12,7 @@ export type SkillsState = typeof defaultState;
 
 export default function skillsReducer(
   state = defaultState,
-  action: AllActions,
+  action: AllActions = undefined,
 ): SkillsState {
   switch (action.type) {
     case Types.REQUESTED:

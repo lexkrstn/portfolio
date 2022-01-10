@@ -20,7 +20,7 @@ export const slice = createSlice({
   name: 'contactForm',
   initialState,
   reducers: {
-    send(state, action: PayloadAction<SendPayload>) {
+    send(state) {
       state.loading = true;
       state.error = '';
       state.errorCode = '';

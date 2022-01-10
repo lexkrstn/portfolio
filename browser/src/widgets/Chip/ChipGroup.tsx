@@ -6,5 +6,5 @@ export interface ChipGroupProps {
 }
 
 export default function ChipGroup(props: ChipGroupProps): ReactElement {
-  return <S.ChipGroup>{props.children}</S.ChipGroup>;
+  return <S.ChipGroup {...props} />;
 }

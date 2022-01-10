@@ -1,6 +1,8 @@
 import { combineEpics, ofType } from 'redux-observable';
 import { from, Observable } from 'rxjs';
-import { switchMap, map, filter, mapTo } from 'rxjs/operators';
+import {
+  switchMap, map, filter, mapTo,
+} from 'rxjs/operators';
 import { ErrorRecord, post } from '../../utils/api';
 import { send, sendingError, sendingSuccess } from './contactFormSlice';
 import { show } from './snackbarSlice';
@@ -18,7 +20,7 @@ interface ServerPayload {
 }
 
 const sendEpic = (
-  action$: Observable<Action>
+  action$: Observable<Action>,
 ): Observable<Action> => action$.pipe(
   filter((action: SendAction) => action.type === send.type),
   map(action => action.payload),
@@ -31,14 +33,14 @@ const sendEpic = (
 );
 
 const sendingSuccessEpic = (
-  action$: Observable<Action>
+  action$: Observable<Action>,
 ): Observable<Action> => action$.pipe(
   ofType(sendingSuccess.type),
   mapTo(show({ message: 'Your email has been sent!', severity: 'success' })),
 );
 
 const sendingErrorEpic = (
-  action$: Observable<Action>
+  action$: Observable<Action>,
 ): Observable<Action> => action$.pipe(
   filter((action: SendingErrorAction) => action.type === sendingError.type),
   map(action => action.payload),

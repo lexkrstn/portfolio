@@ -10,9 +10,6 @@
     "target": "es5",
     "jsx": "react",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "plugins": [
-      { "name": "typescript-tslint-plugin" }
-    ]
+    "resolveJsonModule": true
   }
 }

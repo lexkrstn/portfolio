@@ -8,7 +8,7 @@ const defaultState = {
 
 export type HomeState = typeof defaultState;
 
-export default function reducer(state = defaultState, action: AllActions): HomeState {
+export default function reducer(state = defaultState, action: AllActions = undefined): HomeState {
   switch (action.type) {
     case WALK_MODE_SET:
       return {

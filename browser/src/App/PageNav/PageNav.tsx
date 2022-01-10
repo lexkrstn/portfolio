@@ -28,7 +28,7 @@ export default function PageNav({ location, routes }: PageNavProps): ReactElemen
     <S.PageNav>
       {rootRoutes.map((route, i) => (
         <S.PageButton
-          key={i}
+          key={route.key}
           active={route.path === activeRoute.path}
           onClick={clickHandlers[i]}
         />

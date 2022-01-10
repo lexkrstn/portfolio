@@ -6,7 +6,7 @@ import { receive } from './actions';
 import * as types from './types';
 
 const requestedEpic = (
-  action$: Observable<AllActions>
+  action$: Observable<AllActions>,
 ): Observable<AllActions> => action$.pipe(
   ofType(types.REQUESTED),
   // switchMap((): Observable<Types.PortfolioActionTypes> => {

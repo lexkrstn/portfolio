@@ -17,10 +17,10 @@ export function isRootRoute(route: RouteConfig, index: number, routes: RouteConf
   for (const aRoute of routes) {
     const aPath = aRoute.path;
     if (
-      (typeof aPath === 'string' || (aPath instanceof String)) &&
-      aPath !== '*' &&
-      aPath !== '/' &&
-      route.path.startsWith(`${aPath}/`)
+      (typeof aPath === 'string' || (aPath instanceof String))
+      && aPath !== '*'
+      && aPath !== '/'
+      && route.path.startsWith(`${aPath}/`)
     ) {
       return false;
     }

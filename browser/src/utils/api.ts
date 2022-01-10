@@ -8,11 +8,17 @@ export interface ErrorRecord {
   message: string;
 }
 
+export class RequestError extends Error {
+  public constructor(public code: string, message: string) {
+    super(message);
+  }
+}
+
 export async function request<P>(method: RequestMethod, uri: string, payload?: P) {
   try {
     const response = await fetch(`${config.apiUrl}/${uri}`, {
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       method,
@@ -20,34 +26,19 @@ export async function request<P>(method: RequestMethod, uri: string, payload?: P
     });
     if (!response.ok) {
       if (response.status === 401) {
-        throw {
-          code: 'unauthorized',
-          message: 'You are not authorized',
-        };
+        throw new RequestError('unauthorized', 'You are not authorized');
       }
       if (response.status === 403) {
-        throw {
-          code: 'forbidden',
-          message: 'You have no permission',
-        };
+        throw new RequestError('forbidden', 'You have no permission');
       }
       if (response.status === 500) {
-        throw {
-          code: 'internal',
-          message: 'Internal server error',
-        };
+        throw new RequestError('internal', 'Internal server error');
       }
-      throw {
-        code: 'http',
-        message: `Server error: ${response.statusText} (${response.status})`,
-      };
+      throw new RequestError('http', `Server error: ${response.statusText} (${response.status})`);
     }
     return await response.json();
   } catch (err) {
-    throw {
-      code: err.code ?? 'internal',
-      message: err.message ?? err,
-    };
+    throw new RequestError(err.code ?? 'internal', err.message ?? err);
   }
 }
 

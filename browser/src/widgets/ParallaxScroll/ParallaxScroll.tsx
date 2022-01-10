@@ -1,4 +1,6 @@
-import React, { ReactElement, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  ReactElement, ReactNode, useCallback, useEffect, useMemo, useRef, useState,
+} from 'react';
 import * as S from './styles';
 
 interface ParallaxScrollProps {
@@ -31,7 +33,7 @@ interface ParallaxScrollContextType {
 }
 
 export const ParallaxScrollContext = React.createContext<ParallaxScrollContextType>({
-  resetScroll: () => {}, // tslint:disable-line no-empty
+  resetScroll: () => {}, // eslint-disable-line no-empty
   scroll: 0,
 });
 
@@ -87,3 +89,8 @@ export default function ParallaxScroll({
     </S.ParallaxScroll>
   );
 }
+
+ParallaxScroll.defaultProps = {
+  height: undefined,
+  resetOnChange: '',
+};

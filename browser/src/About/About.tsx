@@ -96,8 +96,8 @@ export default function About() {
               is SPA development, both server-side and client-side.
             </S.Para>
             <S.Para>
-              But before I became a web developer, I couldn't imagine myself
-              to be anyone other than a 3d programmer. So I took an
+              But before I became a web developer, I couldn&apos;t imagine
+              myself to be anyone other than a 3d programmer. So I took an
               academic leave for several years to devote myself entirely to
               development of my own start-up project. During
               this time I had to make a living as a freelance web developer,
@@ -111,32 +111,34 @@ export default function About() {
         </Grid>
         <S.Section>
           <S.Heading>Skills &amp; experience</S.Heading>
-          {!!skills && <>
-            <S.SubHeading>Languages and frameworks</S.SubHeading>
-            <Grid container spacing={4}>
-              {basicSkills.map(skill => (
-                <Grid item key={skill.id} sm={6} md={4} lg={3}>
-                  <SkillCard skill={skill} />
-                </Grid>
-              ))}
-            </Grid>
-            <S.SubHeading>Miscellaneous</S.SubHeading>
-            <Grid container spacing={4}>
-              {miscSkills.map(skill => (
-                <Grid item key={skill.id} sm={6} md={4} lg={3}>
-                  <SkillCard skill={skill} />
-                </Grid>
-              ))}
-            </Grid>
-            <S.SubHeading>Languages</S.SubHeading>
-            <Grid container spacing={4}>
-              {langSkills.map(skill => (
-                <Grid item key={skill.id} sm={6} md={4}>
-                  <SkillCard skill={skill} />
-                </Grid>
-              ))}
-            </Grid>
-          </>}
+          {!!skills && (
+            <>
+              <S.SubHeading>Languages and frameworks</S.SubHeading>
+              <Grid container spacing={4}>
+                {basicSkills.map(skill => (
+                  <Grid item key={skill.id} sm={6} md={4} lg={3}>
+                    <SkillCard skill={skill} />
+                  </Grid>
+                ))}
+              </Grid>
+              <S.SubHeading>Miscellaneous</S.SubHeading>
+              <Grid container spacing={4}>
+                {miscSkills.map(skill => (
+                  <Grid item key={skill.id} sm={6} md={4} lg={3}>
+                    <SkillCard skill={skill} />
+                  </Grid>
+                ))}
+              </Grid>
+              <S.SubHeading>Languages</S.SubHeading>
+              <Grid container spacing={4}>
+                {langSkills.map(skill => (
+                  <Grid item key={skill.id} sm={6} md={4}>
+                    <SkillCard skill={skill} />
+                  </Grid>
+                ))}
+              </Grid>
+            </>
+          )}
           {!skills && (
             <S.Placeholder>
               <RingSpinner size="2em" />

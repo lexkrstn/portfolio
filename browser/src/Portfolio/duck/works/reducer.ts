@@ -13,7 +13,7 @@ export type WorksState = typeof defaultState;
 
 export default function worksReducer(
   state = defaultState,
-  action: AllActions,
+  action: AllActions = undefined,
 ): WorksState {
   switch (action.type) {
     case Types.SELECTED:

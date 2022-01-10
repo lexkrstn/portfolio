@@ -11,7 +11,7 @@ export type WorkState = typeof defaultState;
 
 export default function workReducer(
   state = defaultState,
-  action: Actions.AllActions,
+  action: Actions.AllActions = undefined,
 ): WorkState {
   switch (action.type) {
     case Types.REQUESTED:

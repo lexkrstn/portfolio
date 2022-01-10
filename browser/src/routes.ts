@@ -1,10 +1,10 @@
+import { RouteConfig } from 'react-router-config';
 import About from './About';
 import App from './App';
 import Home from './Home';
 import NotFound from './NotFound';
 import Portfolio from './Portfolio';
 import Work from './Portfolio/Work';
-import { RouteConfig } from 'react-router-config';
 
 const routeConfig: RouteConfig[] = [{
   component: App,

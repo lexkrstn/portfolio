@@ -5,7 +5,7 @@ import * as S from './styles';
 export default function Appeal(): ReactElement {
   return (
     <S.Appeal>
-      <S.Heading>Let's talk</S.Heading>
+      <S.Heading>Let&apos;s talk</S.Heading>
       <S.Para>Wanna get in touch or talk about a project?</S.Para>
       <S.Para>
         Feel free to contact me via email

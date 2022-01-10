@@ -1,4 +1,4 @@
-import { createTheme, Theme as MuiTheme } from '@mui/material';
+import { createTheme } from '@mui/material';
 
 export const BREAKPOINTS = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 export type BreakpointType = typeof BREAKPOINTS[number];
@@ -23,14 +23,11 @@ interface MyTheme {
 }
 
 declare module '@emotion/react' {
-  // tslint:disable-next-line no-empty-interface
   interface Theme extends MyTheme {}
 }
 
 declare module '@mui/material/styles' {
-  // tslint:disable-next-line no-empty-interface
   interface Theme extends MyTheme {}
-  // tslint:disable-next-line no-empty-interface
   interface ThemeOptions extends Partial<Theme> {}
 }
 

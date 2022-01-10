@@ -23,8 +23,10 @@ export interface WorksRequestFailedAction {
   };
 }
 
-export type AllActions = WorkSelectedAction | WorksRequestedAction |
-  WorksReceivedAction | WorksRequestFailedAction;
+export type AllActions = (
+  WorkSelectedAction | WorksRequestedAction | WorksReceivedAction
+  | WorksRequestFailedAction
+);
 
 export function select(id: number): WorkSelectedAction {
   return {

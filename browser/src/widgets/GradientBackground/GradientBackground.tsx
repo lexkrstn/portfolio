@@ -10,7 +10,7 @@ interface GradientBackgroundProps {
 export default function GradientBackground({ interactive }: GradientBackgroundProps): ReactElement {
   const ref = useRef<HTMLDivElement>();
   useEffect(() => {
-    if (interactive === false) return;
+    if (!interactive) return undefined;
     const onMouseMove = throttle((e: MouseEvent) => {
       const x = Math.round(lerp(0.2, 0.8, e.screenX / window.innerWidth) * 100);
       ref.current.style.backgroundImage = `
@@ -19,9 +19,13 @@ export default function GradientBackground({ interactive }: GradientBackgroundPr
       `;
     }, 20);
     window.addEventListener('mousemove', onMouseMove);
-    return function cleanup() {
+    return () => {
       window.removeEventListener('mousemove', onMouseMove);
     };
   });
   return <S.GradientBackground ref={ref} />;
 }
+
+GradientBackground.defaultProps = {
+  interactive: true,
+};
