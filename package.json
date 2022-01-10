@@ -23,7 +23,7 @@
     "lint:api": "tslint --config api/tslint.json \"api/src/**/*.ts\"",
     "lint:ssr": "tslint --config ssr/tslint.json \"ssr/src/**/*.{ts,tsx}\"",
     "lint": "npm run lint:browser && npm run lint:api && npm run lint:ssr",
-    "test": "test:api && test:browser",
+    "test": "npm run test:api && npm run test:browser",
     "test:api": "jest --config ./api/jest.config.js",
     "test:api:watch": "jest --watch --config ./api/jest.config.js",
     "test:api:coverage": "jest --coverage --config ./api/jest.config.js",
