@@ -18,25 +18,22 @@ describe('ContactService', () => {
 
   beforeEach(async () => {
     jest.useFakeTimers();
-
+    sendMail = jest.fn(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
     const module = await Test
       .createTestingModule({
-        controllers: [ContactService, ConfigService],
-      })
-      .useMocker((token) => {
-        if (token === MailerService) {
-          sendMail = jest.fn(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
-          return { sendMail };
-        }
-        if (token === ConfigService) {
-          return {
-            get: jest.fn((path: string) => get(mockConfig, path)),
-          };
-        }
-        return undefined;
+        providers: [
+          ContactService,
+          {
+            provide: MailerService,
+            useValue: { sendMail },
+          },
+          {
+            provide: ConfigService,
+            useValue: { get: (path: string) => get(mockConfig, path) },
+          },
+        ],
       })
       .compile();
-
     contactService = module.get(ContactService);
   });
 
