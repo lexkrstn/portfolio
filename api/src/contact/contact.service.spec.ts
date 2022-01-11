@@ -56,8 +56,8 @@ describe('ContactService', () => {
     it('should call MailerService.sendMail()', async () => {
       const spy = jest.fn();
       contactService.sendMail(contactFixture).then(spy);
-      expect(sendMail).toHaveBeenCalledTimes(1);
-      expect(sendMail.mock.calls[0][0]).toMatchObject(mailFixture);
+      expect(sendMail).toBeCalledTimes(1);
+      expect(sendMail).toBeCalledWith(mailFixture);
       expect(spy).not.toHaveBeenCalled();
       jest.advanceTimersToNextTimer();
       for (let i = 0; i < 10; i++) {
