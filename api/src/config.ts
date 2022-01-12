@@ -45,7 +45,7 @@ function makeDatabaseConfig(): DatabaseConfig {
 }
 
 export default (): Config => ({
-  port: parseInt(process.env.PORT, 10) || 3000,
+  port: parseInt(process.env.API_PORT, 10) || 3000,
   contact: {
     email: process.env.CONTACT_EMAIL || 'lexkrstn@gmail.com',
     subject: 'A message from portfolio visitor',
@@ -57,7 +57,7 @@ export default (): Config => ({
     secure: false, // true for 465, false for 587
     auth: {
       user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
+      pass: process.env.MAIL_PASSWORD,
     },
   },
 });

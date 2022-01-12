@@ -14,3 +14,4 @@ browser/reports/coverage/**/*
 ssr/reports/coverage/**/*
 !ssr/reports/coverage/.gitkeep
 .DS_Store
+.env
