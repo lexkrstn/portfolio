@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import config from '../../config';
 import { yearsFrom } from '../../utils/filters';
-import Skill, { LanguageLevels } from '../duck/Skill';
+import { LanguageLevels, Skill } from '../interfaces';
 import * as S from './styles';
 
 export interface SkillCardProps {

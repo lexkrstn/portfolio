@@ -7,7 +7,7 @@ import RingSpinner from '../widgets/RingSpinner';
 import { haveRequestedSkills, getSkills } from './duck/selectors';
 import SkillCard from './SkillCard';
 import * as S from './styles';
-import * as actions from './duck/actions';
+import * as actions from './duck/skillsSlice';
 import { yearsFrom } from '../utils';
 import config from '../config';
 

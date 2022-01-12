@@ -47,6 +47,11 @@ module.exports = (env, options) => {
       port: 8080,
       disableHostCheck: false,
       historyApiFallback: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+        'Access-Control-Allow-Headers': '*',
+      },
     },
     resolve: {
       extensions: ['.js', '.jsx', '.tsx', '.ts'],
