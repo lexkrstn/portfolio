@@ -33,6 +33,10 @@ describe('SkillsController (e2e)', () => {
     skillsService = moduleFixture.get(SkillsService);
   });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
   describe('/skills (GET)', () => {
     beforeEach(async () => {
       await skillsService.create(skillsFixture[0]);

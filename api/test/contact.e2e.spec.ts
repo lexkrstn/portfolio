@@ -22,6 +22,10 @@ describe('ContactController (e2e)', () => {
     await app.init();
   });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
   describe('/contact (POST)', () => {
     const dto: ContactDto = {
       email: 'test@gmail.com',
