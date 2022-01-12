@@ -1,10 +1,12 @@
 import { Module, Global } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MailerService } from './mail';
 import config from './config';
 import { ContactModule } from './contact';
+import { SkillsModule } from './skills';
 
 @Global()
 @Module({
@@ -13,7 +15,16 @@ import { ContactModule } from './contact';
       load: [config],
       isGlobal: true,
     }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('database.uri'),
+        dbName: configService.get<string>('database.name'),
+      }),
+      inject: [ConfigService],
+    }),
     ContactModule,
+    SkillsModule,
   ],
   controllers: [
     AppController,

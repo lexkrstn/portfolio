@@ -18,7 +18,7 @@ describe('ContactService', () => {
 
   beforeEach(async () => {
     jest.useFakeTimers();
-    sendMail = jest.fn(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
+    sendMail = jest.fn(() => new Promise(resolve => { setTimeout(resolve, 100); }));
     const module = await Test
       .createTestingModule({
         providers: [

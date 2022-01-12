@@ -13,9 +13,9 @@ describe('ContactService', () => {
       .createTestingModule({
         controllers: [ContactController],
       })
-      .useMocker((token) => {
+      .useMocker(token => {
         if (token === ContactService) {
-          sendMail = jest.fn(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
+          sendMail = jest.fn(() => new Promise(resolve => { setTimeout(resolve, 100); }));
           return { sendMail };
         }
         return undefined;
@@ -40,8 +40,8 @@ describe('ContactService', () => {
     it('should call ContactService.sendMail()', async () => {
       const spy = jest.fn();
       controller.send(dto).then(spy);
-      expect(sendMail).toHaveBeenCalledTimes(1);
-      expect(sendMail.mock.calls[0][0]).toMatchObject(mailFixture);
+      expect(sendMail).toBeCalledTimes(1);
+      expect(sendMail).toBeCalledWith(mailFixture);
       expect(spy).not.toHaveBeenCalled();
       jest.advanceTimersToNextTimer();
       for (let i = 0; i < 10; i++) {

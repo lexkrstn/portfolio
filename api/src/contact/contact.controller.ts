@@ -19,7 +19,7 @@ const contactSchema = joi.object<ContactDto>({
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
-  @Post('contact')
+  @Post('api/v1/contact')
   @HttpCode(204)
   @UsePipes(new JoiValidationPipe(contactSchema))
   async send(@Body() dto: ContactDto) {

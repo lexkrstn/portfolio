@@ -30,7 +30,7 @@ describe('ContactController (e2e)', () => {
 
     it('should call MailerService.sendMail()', async () => {
       await request(app.getHttpServer())
-        .post('/contact')
+        .post('/api/v1/contact')
         .send(dto)
         .expect(204);
       expect(sendMail).toBeCalled();
@@ -38,14 +38,14 @@ describe('ContactController (e2e)', () => {
 
     it('should fail if invalid email sent', async () => {
       await request(app.getHttpServer())
-        .post('/contact')
+        .post('/api/v1/contact')
         .send({ ...dto, email: 'aaa' })
         .expect(400);
     });
 
     it('should fail if no message sent', async () => {
       await request(app.getHttpServer())
-        .post('/contact')
+        .post('/api/v1/contact')
         .send({ ...dto, message: '' })
         .expect(400);
     });
