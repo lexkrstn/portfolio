@@ -1,5 +1,5 @@
 import { getModelToken } from '@nestjs/mongoose';
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { omit } from 'lodash';
 import { mockMongooseModel } from '../utils/mock';
 import { Skill } from './skill.schema';
@@ -23,12 +23,13 @@ const dtoDefaults: Partial<SkillDto> = {
 const minDto = omit(dto, Object.keys(dtoDefaults)) as SkillDto;
 
 describe('SkillsService', () => {
+  let module: TestingModule;
   let skillsService: SkillsService;
   let mockSkillModel: ReturnType<typeof mockMongooseModel>;
 
   beforeEach(async () => {
     mockSkillModel = mockMongooseModel(['']);
-    const module = await Test
+    module = await Test
       .createTestingModule({
         providers: [
           SkillsService,
@@ -42,8 +43,9 @@ describe('SkillsService', () => {
     skillsService = module.get(SkillsService);
   });
 
-  afterEach(() => {
+  afterEach(async () => {
     jest.restoreAllMocks();
+    await module.close();
   });
 
   describe('getAll()', () => {

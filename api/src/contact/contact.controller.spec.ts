@@ -1,15 +1,16 @@
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { ContactEmail, ContactService } from './contact.service';
 import { ContactController, ContactDto } from './contact.controller';
 
 describe('ContactService', () => {
+  let module: TestingModule;
   let controller: ContactController;
   let sendMail: jest.Mock;
 
   beforeEach(async () => {
     jest.useFakeTimers();
 
-    const module = await Test
+    module = await Test
       .createTestingModule({
         controllers: [ContactController],
       })
@@ -25,7 +26,10 @@ describe('ContactService', () => {
     controller = module.get(ContactController);
   });
 
-  afterEach(() => { jest.useRealTimers(); });
+  afterEach(async () => {
+    jest.useRealTimers();
+    await module.close();
+  });
 
   describe('sendEmail()', () => {
     const dto: ContactDto = {

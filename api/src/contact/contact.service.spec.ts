@@ -1,4 +1,4 @@
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigService } from '@nestjs/config';
 import { get } from 'lodash';
 import { ContactService } from './contact.service';
@@ -13,13 +13,14 @@ const mockConfig: Pick<Config, 'contact'> = {
 };
 
 describe('ContactService', () => {
+  let module: TestingModule;
   let contactService: ContactService;
   let sendMail: jest.Mock;
 
   beforeEach(async () => {
     jest.useFakeTimers();
     sendMail = jest.fn(() => new Promise(resolve => { setTimeout(resolve, 100); }));
-    const module = await Test
+    module = await Test
       .createTestingModule({
         providers: [
           ContactService,
@@ -37,7 +38,10 @@ describe('ContactService', () => {
     contactService = module.get(ContactService);
   });
 
-  afterEach(() => { jest.useRealTimers(); });
+  afterEach(async () => {
+    jest.useRealTimers();
+    await module.close();
+  });
 
   describe('sendEmail()', () => {
     const contactFixture = {

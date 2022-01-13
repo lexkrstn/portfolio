@@ -1,15 +1,16 @@
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { SkillsService } from './skills.service';
 import { SkillsController } from './skills.controller';
 
 describe('SkillsController', () => {
+  let module: TestingModule;
   let controller: SkillsController;
   let getAll: jest.Mock;
 
   beforeEach(async () => {
     jest.useFakeTimers();
     getAll = jest.fn(() => Promise.resolve(['']));
-    const module = await Test
+    module = await Test
       .createTestingModule({
         controllers: [SkillsController],
         providers: [{
@@ -21,7 +22,10 @@ describe('SkillsController', () => {
     controller = module.get(SkillsController);
   });
 
-  afterEach(() => { jest.useRealTimers(); });
+  afterEach(async () => {
+    jest.useRealTimers();
+    await module.close();
+  });
 
   describe('list()', () => {
     it('should call SkillsService.getAll()', () => {
