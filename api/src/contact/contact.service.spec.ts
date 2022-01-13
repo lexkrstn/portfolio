@@ -17,8 +17,7 @@ describe('ContactService', () => {
   let contactService: ContactService;
   let sendMail: jest.Mock;
 
-  beforeEach(async () => {
-    jest.useFakeTimers();
+  beforeAll(async () => {
     sendMail = jest.fn(() => new Promise(resolve => { setTimeout(resolve, 100); }));
     module = await Test
       .createTestingModule({
@@ -38,9 +37,17 @@ describe('ContactService', () => {
     contactService = module.get(ContactService);
   });
 
-  afterEach(async () => {
-    jest.useRealTimers();
+  afterAll(async () => {
     await module.close();
+  });
+
+  beforeEach(() => {
+    jest.useFakeTimers();
+  })
+
+  afterEach(() => {
+    jest.useRealTimers();
+    jest.clearAllMocks();
   });
 
   describe('sendEmail()', () => {

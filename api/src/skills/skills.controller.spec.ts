@@ -7,7 +7,7 @@ describe('SkillsController', () => {
   let controller: SkillsController;
   let getAll: jest.Mock;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     jest.useFakeTimers();
     getAll = jest.fn(() => Promise.resolve(['']));
     module = await Test
@@ -22,14 +22,19 @@ describe('SkillsController', () => {
     controller = module.get(SkillsController);
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     jest.useRealTimers();
     await module.close();
   });
 
+  afterEach(() => {
+    jest.clearAllTimers();
+    jest.clearAllMocks();
+  });
+
   describe('list()', () => {
-    it('should call SkillsService.getAll()', () => {
-      controller.list();
+    it('should call SkillsService.getAll()', async () => {
+      await controller.list();
       expect(getAll).toBeCalledTimes(1);
     });
 

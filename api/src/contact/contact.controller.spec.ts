@@ -7,9 +7,8 @@ describe('ContactService', () => {
   let controller: ContactController;
   let sendMail: jest.Mock;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     jest.useFakeTimers();
-
     module = await Test
       .createTestingModule({
         controllers: [ContactController],
@@ -22,11 +21,10 @@ describe('ContactService', () => {
         return undefined;
       })
       .compile();
-
     controller = module.get(ContactController);
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     jest.useRealTimers();
     await module.close();
   });

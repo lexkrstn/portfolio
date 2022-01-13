@@ -27,7 +27,7 @@ describe('SkillsService', () => {
   let skillsService: SkillsService;
   let mockSkillModel: ReturnType<typeof mockMongooseModel>;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     mockSkillModel = mockMongooseModel(['']);
     module = await Test
       .createTestingModule({
@@ -43,8 +43,7 @@ describe('SkillsService', () => {
     skillsService = module.get(SkillsService);
   });
 
-  afterEach(async () => {
-    jest.restoreAllMocks();
+  afterAll(async () => {
     await module.close();
   });
 
