@@ -2,8 +2,7 @@ import request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { AppModule } from '../src/app.module';
-import { Skill } from '../src/skills/skill.schema';
-import { SkillsService } from '../src/skills';
+import { Skill, SkillsService } from '../src/skills';
 import { omitUnderscoredProps } from '../src/utils';
 
 const skillsFixture: Skill[] = [{
