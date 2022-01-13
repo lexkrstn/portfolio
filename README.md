@@ -84,3 +84,5 @@ NPM:
 
 Misc:
 - `migrate-mongo up` | `migrate-mongo down`
+- `migrate-mongo create`
+- `migrate-mongo status`
