@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 import about from './About/duck';
 import app from './App/duck';
 import home from './Home/duck/reducer';
-import portfolio from './Portfolio/duck/reducer';
+import portfolio from './Portfolio/duck';
 
 const createRootReducer = (history: History) => combineReducers({
   about,

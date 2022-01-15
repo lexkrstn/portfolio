@@ -7,33 +7,30 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import GradientBackground from '../widgets/GradientBackground';
 import RingSpinner from '../widgets/RingSpinner';
 import Card from './Card';
-import { actions, selectors } from './duck';
+import {
+  selectSelectedTag, selectTags, setTagSelected,
+  fetchTags, fetchWorks, selectTaggedWorks,
+} from './duck';
 import Appeal from './Appeal';
 import TagFilter from './TagFilter';
 import * as S from './styles';
 
 export default function Portfolio(): ReactElement {
   const dispatch = useDispatch();
-  const selectedTagId = useSelector(selectors.tags.getSelectedId);
-  const tags = useSelector(selectors.tags.getTags);
-  const selectedTag = tags ? tags.find(tag => tag.id === selectedTagId) : null;
-  const allWorks = useSelector(selectors.works.getWorks);
-
-  const works = useMemo(
-    () => !selectedTagId ? allWorks : allWorks?.filter(work => work.tagIds.includes(selectedTagId)),
-    [selectedTagId, allWorks],
-  );
+  const tags = useSelector(selectTags);
+  const selectedTag = useSelector(selectSelectedTag);
+  const works = useSelector(selectTaggedWorks);
 
   const onClickTag = useCallback((tagId: number) => {
-    dispatch(actions.tags.select(tagId));
+    dispatch(setTagSelected(tagId));
   }, []);
 
   useEffect(() => {
     if (!tags) {
-      dispatch(actions.tags.request());
+      dispatch(fetchTags());
     }
-    if (!allWorks) {
-      dispatch(actions.works.request());
+    if (!works) {
+      dispatch(fetchWorks());
     }
   });
 
@@ -50,19 +47,19 @@ export default function Portfolio(): ReactElement {
           <>
             <TagFilter />
             <S.ResultSummary>
-              {selectedTagId > 0 && (
+              {!!selectedTag && (
                 <>
                   Showing <b>{works ? works.length : '?'}</b> works
                   filtered by <b>{selectedTag.name}</b>
                 </>
               )}
-              {selectedTagId === 0 && (
+              {!selectedTag && (
                 <>Showing all works. Use the filter to list them by skill.</>
               )}
             </S.ResultSummary>
             {!!works && !!tags && (
               <SwitchTransition mode="out-in">
-                <CSSTransition key={selectedTagId} timeout={300} classNames="item">
+                <CSSTransition key={selectedTag?.id ?? 0} timeout={300} classNames="item">
                   <Grid container spacing={2}>
                     {works.map(work => (
                       <Grid item key={work.id} sm={6} lg={4}>

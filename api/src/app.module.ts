@@ -8,6 +8,7 @@ import { MailerService } from './mail';
 import config from './config';
 import { ContactModule } from './contact';
 import { SkillsModule } from './skills';
+import { PortfolioModule } from './portfolio';
 
 @Global()
 @Module({
@@ -27,6 +28,7 @@ import { SkillsModule } from './skills';
     }),
     ContactModule,
     SkillsModule,
+    PortfolioModule,
   ],
   controllers: [
     AppController,

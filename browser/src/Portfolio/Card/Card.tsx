@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import { useDispatch } from 'react-redux';
 import Chip, { ChipGroup } from '../../widgets/Chip';
-import Tag from '../duck/tags/Tag';
+import { Tag } from '../interfaces';
 import * as S from './styles';
 
 export interface CardProps {

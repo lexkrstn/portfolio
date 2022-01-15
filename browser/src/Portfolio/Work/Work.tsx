@@ -7,7 +7,7 @@ import GradientBackground from '../../widgets/GradientBackground';
 import Slider from '../../widgets/Slider';
 import Image from '../../widgets/Image';
 import Appeal from '../Appeal';
-import { actions, selectors } from '../duck';
+import { fetchWork, selectWork, selectWorkLoading } from '../duck';
 import * as S from './styles';
 import Loading from '../../widgets/Loading';
 
@@ -16,8 +16,8 @@ type WorkProps = RouteConfigComponentProps<{ id: string }>;
 export default function Work({ match }: WorkProps): ReactElement {
   const dispatch = useDispatch();
   const imageCache = useRef<Record<string, string>>({});
-  const work = useSelector(selectors.work.getWork);
-  const loading = useSelector(selectors.work.isLoading);
+  const work = useSelector(selectWork);
+  const loading = useSelector(selectWorkLoading);
   const about = useMemo(() => {
     if (!work) return [];
     return work.about
@@ -28,7 +28,7 @@ export default function Work({ match }: WorkProps): ReactElement {
 
   useEffect(() => {
     if (!work && !loading) {
-      dispatch(actions.work.request(parseInt(match.params.id, 10)));
+      dispatch(fetchWork(parseInt(match.params.id, 10)));
     }
   });
 

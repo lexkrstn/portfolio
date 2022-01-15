@@ -1,28 +1,19 @@
-import { Observable } from 'rxjs';
+import { Observable, filter } from 'rxjs';
 import { delay, mapTo } from 'rxjs/operators';
-import { combineEpics, ofType } from 'redux-observable';
-import { AllActions } from '../actions';
-import { receive } from './actions';
-import * as types from './types';
+import { combineEpics } from 'redux-observable';
+import {
+  fetchWorks, fulfillFetchWorks,
+  FetchWorksAction, FailFetchWorksAction, FulfillFetchWorksAction,
+} from './slice';
 
-const requestedEpic = (
-  action$: Observable<AllActions>,
-): Observable<AllActions> => action$.pipe(
-  ofType(types.REQUESTED),
-  // switchMap((): Observable<Types.PortfolioActionTypes> => {
-  //   const promise = fetch(`${CONFIG.apiUrl}/works`, {
-  //       headers: { 'Accept': 'application/json' },
-  //     })
-  //     .then(checkFetchResponseStatus)
-  //     .then(receive)
-  //     .catch(error => failRequest(
-  //       error.message || 'Connection error',
-  //       error.сode,
-  //     ));
-  //   return from(promise);
-  // }),
+export type Action = FetchWorksAction | FailFetchWorksAction | FulfillFetchWorksAction;
+
+const fetchWorksEpic = (
+  action$: Observable<Action>,
+): Observable<Action> => action$.pipe(
+  filter((action: FetchWorksAction) => action.type === fetchWorks.type),
   delay(1000),
-  mapTo(receive([
+  mapTo(fulfillFetchWorks([
     {
       id: 1,
       name: 'Thetre Management System',
@@ -69,5 +60,5 @@ const requestedEpic = (
 );
 
 export default combineEpics(
-  requestedEpic,
+  fetchWorksEpic,
 );
