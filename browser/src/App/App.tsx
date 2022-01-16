@@ -5,7 +5,7 @@ import React, { ReactElement, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { matchPath } from 'react-router';
 import { RouteConfigComponentProps } from 'react-router-config';
-import { getWalkMode } from '../Home/duck/selectors';
+import { selectWalkMode } from '../Home/duck';
 import theme from '../theme';
 import { isRootRoute } from '../utils/routes';
 import ParallaxScroll from '../widgets/ParallaxScroll';
@@ -21,7 +21,7 @@ type AppProps = RouteConfigComponentProps;
 
 export default function App({ location, route: { routes } }: AppProps): ReactElement {
   const dispatch = useDispatch();
-  const walkMode = useSelector(getWalkMode);
+  const walkMode = useSelector(selectWalkMode);
   const snackbar = useSelector(selectSnackbar);
   const parallaxHeight = (location.pathname === '/' && walkMode === 'scroll') ? 1 : 0;
   const activeRoute = routes.find(aRoute => matchPath(location.pathname, aRoute));

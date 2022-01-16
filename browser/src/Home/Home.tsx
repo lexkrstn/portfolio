@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ParallaxScrollContext } from '../widgets/ParallaxScroll';
 import ScrollButton from '../widgets/ScrollButton';
 import Canvas from './Canvas';
-import { getWalkMode } from './duck/selectors';
+import { selectWalkMode } from './duck';
 import * as S from './styles';
 
 export default function Home() {
   const { scroll, resetScroll } = useContext(ParallaxScrollContext);
-  const walkMode = useSelector(getWalkMode);
+  const walkMode = useSelector(selectWalkMode);
   const dispatch = useDispatch();
   const handleNavigateNext = useCallback(() => {
     resetScroll();
