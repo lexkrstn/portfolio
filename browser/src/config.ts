@@ -1,3 +1,6 @@
+// Note, all the process.env.* variables used below in this file must be
+// defined in the DefinePlugin in the weback.config.js.
+
 const https = !!parseInt(process.env.HTTPS, 10);
 const scheme = `http${https ? 's' : ''}`;
 const domain = process.env.DOMAIN || 'localhost';
