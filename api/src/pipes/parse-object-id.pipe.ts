@@ -6,9 +6,7 @@ const ID_REGEX = /^[0-9a-zA-Z]{24}$/;
 
 @Injectable()
 export class ParseObjectIdPipe implements PipeTransform {
-  constructor() {}
-
-  transform(value: any) {
+  transform(value: any) { // eslint-disable-line class-methods-use-this
     if (!isString(value) || !ID_REGEX.test(value)) {
       throw new BadRequestException('Not an mongo ObjectId');
     }

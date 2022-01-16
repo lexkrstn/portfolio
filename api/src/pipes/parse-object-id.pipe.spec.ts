@@ -1,6 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
-import { ParseObjectIdPipe } from "./parse-object-id.pipe";
+import { ParseObjectIdPipe } from './parse-object-id.pipe';
 
 describe('ParseObjectIdPipe.transform()', () => {
   let pipe: ParseObjectIdPipe;

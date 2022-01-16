@@ -34,5 +34,6 @@ module.exports = {
       exceptAfterSingleLine: true,
     }],
     'no-param-reassign': ['off', { props: false }],
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
   },
 };

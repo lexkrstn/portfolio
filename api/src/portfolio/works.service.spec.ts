@@ -1,7 +1,6 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { omit } from 'lodash';
-import { ObjectId } from 'mongodb';
 import { Schema } from 'mongoose';
 import { mockMongooseModel, mockObjectId } from '../utils/mock';
 import { Work } from './work.schema';

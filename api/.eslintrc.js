@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
+    'no-confusing-arrow': 'off',
     'object-curly-newline': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
