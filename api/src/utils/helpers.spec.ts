@@ -16,5 +16,10 @@ describe('helpers', () => {
       expect(omitUnderscoredProps([{ d: [{ a: 1, _b: 2 }], _e: 4 }]))
         .toEqual([{ d: [{ a: 1 }] }]);
     });
+
+    it('should handle strings in arrays', () => {
+      expect(omitUnderscoredProps([{ a: ['abc'] }]))
+        .toEqual([{ a: ['abc'] }]);
+    });
   });
 });
