@@ -1,3 +1,5 @@
+const { rules } = require('eslint-config-airbnb-base/rules/style');
+
 module.exports = {
   root: true,
   env: {
@@ -24,5 +26,16 @@ module.exports = {
     'object-curly-newline': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
+    '@typescript-eslint/indent': ['error', 2, {
+      ...rules.indent[2],
+      ignoredNodes: [
+        ...rules.indent[2].ignoredNodes,
+        // Ignore the decorators
+        'FunctionExpression > .params[decorators.length > 0]',
+        'FunctionExpression > .params > :matches(Decorator, :not(:first-child))',
+        'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key',
+      ],
+      MemberExpression: 1,
+    }],
   },
 };
