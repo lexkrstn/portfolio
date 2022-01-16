@@ -25,6 +25,7 @@ const config = {
       },
     ],
   },
+  // Do not bundle node_modules
   externals: [nodeExternals()],
   plugins: [],
 };
