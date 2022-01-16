@@ -1,7 +1,5 @@
 import Grid from '@mui/material/Grid';
-import React, {
-  ReactElement, useCallback, useEffect, useMemo,
-} from 'react';
+import React, { ReactElement, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import GradientBackground from '../widgets/GradientBackground';

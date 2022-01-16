@@ -46,6 +46,8 @@ const slice = createSlice({
   },
 });
 
-export const { fetchTags, failFetchTags, fulfillFetchTags, setTagSelected } = slice.actions;
+export const {
+  fetchTags, failFetchTags, fulfillFetchTags, setTagSelected,
+} = slice.actions;
 
 export default slice.reducer;

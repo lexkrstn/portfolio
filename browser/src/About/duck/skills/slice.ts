@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Skill } from '../interfaces';
+import { Skill } from '../../interfaces';
 
 const initialState = {
   skills: null as Skill[],

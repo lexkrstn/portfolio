@@ -21,7 +21,7 @@ export class TagsService {
    * Inserts new tag record into the database.
    */
   public async create(dto: TagDto) {
-    const tag = new this.TagModel({ ...dto, });
+    const tag = new this.TagModel({ ...dto });
     return tag.save();
   }
 

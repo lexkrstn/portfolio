@@ -43,7 +43,7 @@ describe('ContactService', () => {
 
   beforeEach(() => {
     jest.useFakeTimers();
-  })
+  });
 
   afterEach(() => {
     jest.useRealTimers();

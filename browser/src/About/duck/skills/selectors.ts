@@ -1,5 +1,5 @@
-import { RootState } from '../../rootReducer';
-import { Skill } from '../interfaces';
+import { RootState } from '../../../rootReducer';
+import { Skill } from '../../interfaces';
 
 export const getSkills = (state: RootState): Skill[] => state.about.skills.skills;
 export const haveRequestedSkills = (state: RootState): boolean => (

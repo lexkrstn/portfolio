@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Image from '../widgets/Image';
 import GradientBackground from '../widgets/GradientBackground';
 import RingSpinner from '../widgets/RingSpinner';
-import { haveRequestedSkills, getSkills } from './duck/selectors';
+import { haveRequestedSkills, getSkills } from './duck/skills/selectors';
 import SkillCard from './SkillCard';
 import * as S from './styles';
-import * as actions from './duck/skillsSlice';
+import * as actions from './duck/skills/slice';
 import { yearsFrom } from '../utils';
 import config from '../config';
 

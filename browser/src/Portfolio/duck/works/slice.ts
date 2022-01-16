@@ -46,6 +46,8 @@ const slice = createSlice({
   },
 });
 
-export const { fetchWorks, failFetchWorks, fulfillFetchWorks, setWorkSelected } = slice.actions;
+export const {
+  fetchWorks, failFetchWorks, fulfillFetchWorks, setWorkSelected,
+} = slice.actions;
 
 export default slice.reducer;

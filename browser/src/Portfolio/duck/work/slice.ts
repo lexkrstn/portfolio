@@ -22,6 +22,7 @@ const slice = createSlice({
   name: 'work',
   initialState,
   reducers: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fetchWork(state, action: FetchWorkAction) {
       state.loading = true;
       state.error = '';
