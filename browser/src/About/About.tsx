@@ -1,15 +1,17 @@
 import Grid from '@mui/material/Grid';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import config from '../config';
+import { yearsFrom } from '../utils';
 import Image from '../widgets/Image';
 import GradientBackground from '../widgets/GradientBackground';
 import RingSpinner from '../widgets/RingSpinner';
-import { haveRequestedSkills, getSkills } from './duck/skills/selectors';
+import {
+  selectSkills, selectBasicSkills, selectMiscSkills, selectLangSkills,
+  selectSkillsFetched, fetchSkills,
+} from './duck';
 import SkillCard from './SkillCard';
 import * as S from './styles';
-import * as actions from './duck/skills/slice';
-import { yearsFrom } from '../utils';
-import config from '../config';
 
 // Cache for images.
 // The Image doesn't load on server side, so it's safe to keep it here in SSR.
@@ -20,16 +22,15 @@ const imageCache = {};
  */
 export default function About() {
   const dispatch = useDispatch();
-  const skills = useSelector(getSkills);
-  const basicSkills = skills ? skills.filter(s => s.group === 'basic') : [];
-  const miscSkills = skills ? skills.filter(s => s.group === 'misc') : [];
-  const langSkills = skills ? skills.filter(s => s.group === 'lang') : [];
-  const skillsRequested = useSelector(haveRequestedSkills);
-  const { email } = config.contact;
+  const skills = useSelector(selectSkills);
+  const basicSkills = useSelector(selectBasicSkills);
+  const miscSkills = useSelector(selectMiscSkills);
+  const langSkills = useSelector(selectLangSkills);
+  const skillsFetched = useSelector(selectSkillsFetched);
 
   useEffect(() => {
-    if (!skillsRequested) {
-      dispatch(actions.request());
+    if (!skillsFetched) {
+      dispatch(fetchSkills());
     }
   });
 
@@ -76,7 +77,7 @@ export default function About() {
                   <S.Attribute>
                     <S.AttributeName>Email</S.AttributeName>
                     <S.AttributeValue>
-                      <a href={`mailto:${email}`}>{email}</a>
+                      <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>
                     </S.AttributeValue>
                   </S.Attribute>
                 </S.CharSheet>

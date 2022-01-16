@@ -1,43 +1,42 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Skill } from '../../interfaces';
 
-const initialState = {
-  skills: null as Skill[],
-  loading: false,
-  error: '',
-  errorCode: '',
-};
-
-export type RequestPayload = never;
-
-export type RequestSuccessPayload = Skill[];
-
-export type RequestErrorPayload = {
+export type FulfillFetchSkillsPayload = Skill[];
+export type FailFetchSkillsPayload = {
   code: string;
   message: string;
 };
 
-export const slice = createSlice({
+export type FetchSkillsAction = PayloadAction<void>;
+export type FailFetchSkillsAction = PayloadAction<FailFetchSkillsPayload>;
+export type FulfillFetchSkillsAction = PayloadAction<FulfillFetchSkillsPayload>;
+
+const slice = createSlice({
   name: 'skills',
-  initialState,
+  initialState: {
+    skills: null as Skill[],
+    loading: false,
+    error: '',
+    errorCode: '',
+  },
   reducers: {
-    request(state) {
+    fetchSkills(state) {
       state.loading = true;
       state.error = '';
       state.errorCode = '';
     },
-    requestError(state, action: PayloadAction<RequestErrorPayload>) {
+    failFetchSkills(state, action: FailFetchSkillsAction) {
       state.loading = false;
       state.error = action.payload.message;
       state.errorCode = action.payload.code;
     },
-    requestSuccess(state, action: PayloadAction<RequestSuccessPayload>) {
+    fulfillFetchSkills(state, action: FulfillFetchSkillsAction) {
       state.loading = false;
       state.skills = action.payload;
     },
   },
 });
 
-export const { request, requestError, requestSuccess } = slice.actions;
+export const { fetchSkills, failFetchSkills, fulfillFetchSkills } = slice.actions;
 
 export default slice.reducer;
