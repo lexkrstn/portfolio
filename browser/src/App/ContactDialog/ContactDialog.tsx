@@ -10,9 +10,10 @@ import React, { ReactElement, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import config from '../../config';
-import { contactDialog } from '../duck';
-import { getContactDialogOpen, getContactFormLoading } from '../duck/selectors';
-import { send } from '../duck/contactFormSlice';
+import {
+  closeContactDialog, selectContactDialogOpen, selectContactFormLoading,
+  sendContactForm,
+} from '../duck';
 import * as S from './styles';
 
 const EMAIL_RE = /^.+@.+\..+$/i;
@@ -24,24 +25,24 @@ interface Inputs {
 
 export default function ContactDialog(): ReactElement {
   const dispatch = useDispatch();
-  const open = useSelector(getContactDialogOpen);
-  const loading = useSelector(getContactFormLoading);
+  const open = useSelector(selectContactDialogOpen);
+  const loading = useSelector(selectContactFormLoading);
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
-  const handleClose = useCallback(() => {
+  const onDialogClosure = useCallback(() => {
     if (!loading) {
-      dispatch(contactDialog.close());
+      dispatch(closeContactDialog());
     }
   }, [loading]);
 
   const onSubmit = (formData: Inputs) => {
-    dispatch(send(formData));
+    dispatch(sendContactForm(formData));
   };
 
   return (
     <S.Dialog
       open={open}
-      onClose={handleClose}
+      onClose={onDialogClosure}
       aria-labelledby="contact-dialog-title"
       aria-describedby="contact-dialog-description"
       disableEscapeKeyDown={loading}
@@ -80,10 +81,7 @@ export default function ContactDialog(): ReactElement {
         </form>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={handleClose}
-          disabled={loading}
-        >
+        <Button onClick={onDialogClosure} disabled={loading}>
           Cancel
         </Button>
         <LoadingButton

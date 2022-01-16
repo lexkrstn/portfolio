@@ -1,14 +1,6 @@
-import { combineReducers } from 'redux';
-import contactDialog from './contactDialogSlice';
-import contactForm from './contactFormSlice';
-import snackbar from './snackbarSlice';
-
-export * as contactDialog from './contactDialogSlice';
-export * as contactForm from './contactFormSlice';
-export * as snackbar from './snackbarSlice';
-
-export default combineReducers({
-  contactDialog,
-  contactForm,
-  snackbar,
-});
+export * from './contactDialog/selectors';
+export * from './contactDialog/slice';
+export * from './contactForm/selectors';
+export * from './contactForm/slice';
+export * from './snackbar/selectors';
+export * from './snackbar/slice';

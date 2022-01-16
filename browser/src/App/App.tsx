@@ -11,8 +11,7 @@ import { isRootRoute } from '../utils/routes';
 import ParallaxScroll from '../widgets/ParallaxScroll';
 import RouteRiffler from '../widgets/RouteRiffler';
 import ContactDialog from './ContactDialog';
-import { getSnackbar } from './duck/selectors';
-import { snackbar as snackbarActions } from './duck';
+import { selectSnackbar, closeSnackbar } from './duck';
 import Navbar from './Navbar';
 import PageNav from './PageNav';
 import SocialNav from './SocialNav';
@@ -23,11 +22,11 @@ type AppProps = RouteConfigComponentProps;
 export default function App({ location, route: { routes } }: AppProps): ReactElement {
   const dispatch = useDispatch();
   const walkMode = useSelector(getWalkMode);
-  const snackbar = useSelector(getSnackbar);
+  const snackbar = useSelector(selectSnackbar);
   const parallaxHeight = (location.pathname === '/' && walkMode === 'scroll') ? 1 : 0;
   const activeRoute = routes.find(aRoute => matchPath(location.pathname, aRoute));
   const handleCloseSnackbar = useCallback(() => {
-    dispatch(snackbarActions.close());
+    dispatch(closeSnackbar());
   }, []);
   return (
     <ThemeProvider theme={theme}>

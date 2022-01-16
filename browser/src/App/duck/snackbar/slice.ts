@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Severity = 'error' | 'warning' | 'info' | 'success';
 
-type SnackbarPayload = {
+type ShowSnackbarPayload = {
   message: string;
   severity?: Severity;
   duration?: number;
@@ -15,21 +15,24 @@ const initialState = {
   duration: 6000,
 };
 
-export const slice = createSlice({
+export type ShowSnackbarAction = PayloadAction<ShowSnackbarPayload>;
+export type CloseSnackbarAction = PayloadAction<void>;
+
+const slice = createSlice({
   name: 'snackbar',
   initialState,
   reducers: {
-    show(state, action: PayloadAction<SnackbarPayload>) {
+    showSnackbar(state, action: ShowSnackbarAction) {
       state.open = true;
       state.message = action.payload.message;
       state.severity = action.payload.severity || 'success';
       state.duration = action.payload.duration || 6000;
     },
-    close(state) {
+    closeSnackbar(state) {
       state.open = false;
     },
   },
 });
 
-export const { close, show } = slice.actions;
+export const { closeSnackbar, showSnackbar } = slice.actions;
 export default slice.reducer;
