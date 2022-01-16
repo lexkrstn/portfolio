@@ -1,8 +1,9 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { omit } from 'lodash';
+import { ObjectId } from 'mongodb';
 import { Schema } from 'mongoose';
-import { mockMongooseModel } from '../utils/mock';
+import { mockMongooseModel, mockObjectId } from '../utils/mock';
 import { Work } from './work.schema';
 import { WorksService, CreateWorkDto } from './works.service';
 
@@ -29,7 +30,7 @@ describe('WorksService', () => {
   let mockWorkModel: ReturnType<typeof mockMongooseModel>;
 
   beforeAll(async () => {
-    mockWorkModel = mockMongooseModel(['']);
+    mockWorkModel = mockMongooseModel([{}]);
     module = await Test
       .createTestingModule({
         providers: [
@@ -57,6 +58,14 @@ describe('WorksService', () => {
       const works = await worksService.getAll();
       expect(works).toBeInstanceOf(Array);
       expect(works.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('getById()', () => {
+    it('should return a work', async () => {
+      const work = await worksService.getById(mockObjectId());
+      expect(work).toBeDefined();
+      expect(work).not.toBeNull();
     });
   });
 

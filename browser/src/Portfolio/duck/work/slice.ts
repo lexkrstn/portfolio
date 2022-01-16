@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Work } from '../../interfaces';
 
-export type FetchWorkPayload = number;
+export type FetchWorkPayload = string;
 export type FulfillFetchWorkPayload = Work;
 export type FailFetchWorkPayload = {
   code: string;

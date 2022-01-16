@@ -7,7 +7,7 @@ import RingSpinner from '../widgets/RingSpinner';
 import Card from './Card';
 import {
   selectSelectedTag, selectTags, setTagSelected,
-  fetchTags, fetchWorks, selectTaggedWorks,
+  fetchTags, fetchWorks, selectTaggedWorks, selectTaggedWorksTags,
 } from './duck';
 import Appeal from './Appeal';
 import TagFilter from './TagFilter';
@@ -18,8 +18,9 @@ export default function Portfolio(): ReactElement {
   const tags = useSelector(selectTags);
   const selectedTag = useSelector(selectSelectedTag);
   const works = useSelector(selectTaggedWorks);
+  const worksTags = useSelector(selectTaggedWorksTags);
 
-  const onClickTag = useCallback((tagId: number) => {
+  const onClickTag = useCallback((tagId: string) => {
     dispatch(setTagSelected(tagId));
   }, []);
 
@@ -57,15 +58,15 @@ export default function Portfolio(): ReactElement {
             </S.ResultSummary>
             {!!works && !!tags && (
               <SwitchTransition mode="out-in">
-                <CSSTransition key={selectedTag?.id ?? 0} timeout={300} classNames="item">
+                <CSSTransition key={selectedTag?._id ?? 0} timeout={300} classNames="item">
                   <Grid container spacing={2}>
-                    {works.map(work => (
-                      <Grid item key={work.id} sm={6} lg={4}>
+                    {works.map((work, i) => (
+                      <Grid item key={work._id} sm={6} lg={4}>
                         <Card
                           caption={work.name}
                           cover={work.thumbnail}
-                          route={`/portfolio/${work.id}`}
-                          tags={tags.filter(tag => work.tagIds.some(tagId => tagId === tag.id))}
+                          route={`/portfolio/${work._id}`}
+                          tags={worksTags[i]}
                           onClickTag={onClickTag}
                         />
                       </Grid>

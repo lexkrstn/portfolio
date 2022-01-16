@@ -1,25 +1,26 @@
 import React, { ReactElement, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Chip, { ChipGroup } from '../../widgets/Chip';
-import { selectSelectedTagId, selectTags, setTagSelected } from '../duck';
+import { selectSelectedTagId, selectSortedTags, setTagSelected } from '../duck';
+import { Tag } from '../interfaces';
 import * as S from './styles';
 
 export default function TagFilter(): ReactElement {
   const dispatch = useDispatch();
   const selectedTagId = useSelector(selectSelectedTagId);
-  const tags = useSelector(selectTags);
+  const tags = useSelector(selectSortedTags);
 
-  const sortedTags = useMemo(
+  const allTags = useMemo(
     () => !tags ? [] : [
-      { id: 0, name: 'All' },
-      ...tags.slice().sort((a, b) => a.name.localeCompare(b.name)),
+      { _id: '', name: 'All' } as Tag,
+      ...tags,
     ],
     [tags],
   );
 
   const clickCallbacks = useMemo(
-    () => sortedTags.map(tag => () => {
-      dispatch(setTagSelected(tag.id));
+    () => allTags.map(tag => () => {
+      dispatch(setTagSelected(tag._id));
     }),
     [tags],
   );
@@ -28,10 +29,10 @@ export default function TagFilter(): ReactElement {
     <S.TagFilter>
       {!!tags && (
         <ChipGroup>
-          {sortedTags.map((tag, i) => (
+          {allTags.map((tag, i) => (
             <Chip
-              key={tag.id}
-              active={tag.id === selectedTagId}
+              key={tag._id}
+              active={tag._id === selectedTagId}
               onClick={clickCallbacks[i]}
             >
               {tag.name}

@@ -7,7 +7,7 @@ import GradientBackground from '../../widgets/GradientBackground';
 import Slider from '../../widgets/Slider';
 import Image from '../../widgets/Image';
 import Appeal from '../Appeal';
-import { fetchWork, selectWork, selectWorkLoading } from '../duck';
+import { fetchWork, selectWork, selectWorkFetched } from '../duck';
 import * as S from './styles';
 import Loading from '../../widgets/Loading';
 
@@ -17,7 +17,7 @@ export default function Work({ match }: WorkProps): ReactElement {
   const dispatch = useDispatch();
   const imageCache = useRef<Record<string, string>>({});
   const work = useSelector(selectWork);
-  const loading = useSelector(selectWorkLoading);
+  const fetched = useSelector(selectWorkFetched);
   const about = useMemo(() => {
     if (!work) return [];
     return work.about
@@ -27,8 +27,8 @@ export default function Work({ match }: WorkProps): ReactElement {
   }, [work]);
 
   useEffect(() => {
-    if (!work && !loading) {
-      dispatch(fetchWork(parseInt(match.params.id, 10)));
+    if (!fetched) {
+      dispatch(fetchWork(match.params.id));
     }
   });
 

@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Work } from '../../interfaces';
 
-export type FetchWorksPayload = never;
+export type FetchWorksPayload = void;
 export type FulfillFetchWorksPayload = Work[];
 export type FailFetchWorksPayload = {
   code: string;
   message: string;
 };
-export type SetWorkSelectedPayload = number;
+export type SetWorkSelectedPayload = string;
 
 export type FetchWorksAction = PayloadAction<FetchWorksPayload>;
 export type FulfillFetchWorksAction = PayloadAction<FulfillFetchWorksPayload>;
@@ -19,7 +19,7 @@ const initialState = {
   loading: false,
   error: '',
   errorCode: '',
-  selectedId: 0,
+  selectedId: '',
 };
 
 const slice = createSlice({

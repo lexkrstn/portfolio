@@ -1,13 +1,17 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../../rootReducer';
-import { Tag } from '../../interfaces';
 
-export const selectTags = (state: RootState): Tag[] => state.portfolio.tags.tags;
-export const selectSelectedTagId = (state: RootState): number => state.portfolio.tags.selectedId;
-export const selectTagsLoading = (state: RootState): boolean => state.portfolio.tags.loading;
+export const selectTags = (state: RootState) => state.portfolio.tags.tags;
+export const selectSelectedTagId = (state: RootState) => state.portfolio.tags.selectedId;
+export const selectTagsLoading = (state: RootState) => state.portfolio.tags.loading;
+
+export const selectSortedTags = createSelector(
+  selectTags,
+  tags => tags ? tags.slice().sort((a, b) => a.name.localeCompare(b.name)) : null,
+);
 
 export const selectSelectedTag = createSelector(
   selectSelectedTagId,
   selectTags,
-  (tagId, tags) => tagId && tags ? tags.find(tag => tag.id === tagId) : null,
+  (tagId, tags) => tagId && tags ? tags.find(tag => tag._id === tagId) : null,
 );

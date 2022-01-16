@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ObjectId } from 'mongodb';
 import { Model, Schema } from 'mongoose';
 import { WorkLink } from './work-link.schema';
 import { Work, WorkDocument } from './work.schema';
@@ -23,11 +24,15 @@ export type CreateWorkDto = (
 export class WorksService {
   constructor(@InjectModel(Work.name) private WorkModel: Model<WorkDocument>) {}
 
-  async getAll(): Promise<Work[]> {
+  async getAll(): Promise<WorkDocument[]> {
     return this.WorkModel.find().exec();
   }
 
-  async create(dto: CreateWorkDto): Promise<Work> {
+  async getById(id: ObjectId): Promise<WorkDocument> {
+    return this.WorkModel.findById(id).exec();
+  }
+
+  async create(dto: CreateWorkDto): Promise<WorkDocument> {
     const model = new this.WorkModel(dto);
     return model.save();
   }

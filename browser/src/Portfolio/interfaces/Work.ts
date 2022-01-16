@@ -5,9 +5,9 @@ export interface WorkLink {
 }
 
 export interface Work {
-  id: number;
+  _id: string;
   name: string;
-  tagIds: number[];
+  tags: string[];
   thumbnail: string;
   screenshots: string[];
   description: string;

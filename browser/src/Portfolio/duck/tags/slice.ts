@@ -7,7 +7,7 @@ export type FailFetchTagsPayload = {
   code: string;
   message: string;
 };
-export type SetTagSelectedPayload = number;
+export type SetTagSelectedPayload = string;
 
 export type FetchTagsAction = PayloadAction<FetchTagsPayload>;
 export type FulfillFetchTagsAction = PayloadAction<FulfillFetchTagsPayload>;
@@ -19,7 +19,7 @@ const initialState = {
   loading: false,
   error: '',
   errorCode: '',
-  selectedId: 0,
+  selectedId: '',
 };
 
 const slice = createSlice({

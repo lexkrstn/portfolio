@@ -13,7 +13,7 @@ export interface CardProps {
   route: string;
   tags: Tag[];
   onClick?: () => void;
-  onClickTag?: (id: number) => void;
+  onClickTag?: (id: string) => void;
 }
 
 export default function Card({
@@ -39,7 +39,7 @@ export default function Card({
       event.stopPropagation();
       event.preventDefault();
       if (onClickTag) {
-        onClickTag(tag.id);
+        onClickTag(tag._id);
       }
     }),
     [tags],
@@ -60,7 +60,7 @@ export default function Card({
           <ChipGroup>
             {sortedTags.map((tag, i) => (
               <Chip
-                key={tag.id}
+                key={tag._id}
                 onClick={clickCallbacks[i]}
                 style={{ transitionDelay: `${200 + 150 * i}ms` }}
               >

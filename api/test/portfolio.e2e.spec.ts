@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { Schema } from 'mongoose';
 import { AppModule } from '../src/app.module';
-import { TagsService, Tag, CreateWorkDto, WorksService } from '../src/portfolio';
+import { TagsService, Tag, CreateWorkDto, WorksService, WorkDocument } from '../src/portfolio';
 import { omitUnderscoredProps } from '../src/utils';
 
 const tagsFixture: Tag[] = [{
@@ -25,7 +25,7 @@ const worksFixture: CreateWorkDto[] = [{
   }],
 }];
 
-describe('TagsController (e2e)', () => {
+describe('PortfolioModule (e2e)', () => {
   let app: INestApplication;
   let tagsService: TagsService;
   let worksService: WorksService;
@@ -83,6 +83,27 @@ describe('TagsController (e2e)', () => {
       expect(res.body).toBeInstanceOf(Array);
       expect(res.body.length).toEqual(worksFixture.length);
       expect(omitUnderscoredProps(res.body)).toEqual(worksFixture);
+    });
+  });
+
+  describe('/works/:id (GET)', () => {
+    let work: WorkDocument;
+
+    beforeEach(async () => {
+      work = await worksService.create(worksFixture[0]);
+    });
+
+    afterEach(async () => {
+      await worksService.deleteAll();
+    });
+
+    it('should return the work', async () => {
+      const res = await request(app.getHttpServer())
+        .get(`/api/v1/works/${work._id}`)
+        .expect(200);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(omitUnderscoredProps(res.body)).toEqual(worksFixture[0]);
+      expect(res.body._id).toEqual(work._id.toString());
     });
   });
 });
