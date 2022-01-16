@@ -13,9 +13,6 @@ module.exports = {
   testEnvironment: 'jsdom',
   globals: {
     NODE_ENV: 'test',
-    // 'ts-jest': {
-    //   tsConfig: 'tsconfig.test.json',
-    // },
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
   moduleDirectories: ['node_modules'],
