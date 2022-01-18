@@ -27,7 +27,7 @@ export const Ring = styled.div`
   border-color: #fff transparent transparent transparent;
   animation: ${rotate360} 1.5s cubic-bezier(0.5,0,0.5,1) infinite;
 
-  &:nth-child(2) { animation-delay: .185s; }
-  &:nth-child(3) { animation-delay: .375s; }
-  &:nth-child(4) { animation-delay: .555s; }
+  &:nth-of-type(2) { animation-delay: .185s; }
+  &:nth-of-type(3) { animation-delay: .375s; }
+  &:nth-of-type(4) { animation-delay: .555s; }
 `;

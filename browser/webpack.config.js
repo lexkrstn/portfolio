@@ -28,6 +28,7 @@ module.exports = (env, options) => {
         },
       }),
     ];
+    definitions['process.env.WEBPACK_DEV_SERVER'] = true;
   } else {
     plugins = [
       new BundleAnalyzerPlugin({

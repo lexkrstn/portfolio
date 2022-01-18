@@ -117,7 +117,7 @@ export default function About() {
               <S.SubHeading>Languages and frameworks</S.SubHeading>
               <Grid container spacing={4}>
                 {basicSkills.map(skill => (
-                  <Grid item key={skill.id} sm={6} md={4} lg={3}>
+                  <Grid item key={skill._id} sm={6} md={4} lg={3}>
                     <SkillCard skill={skill} />
                   </Grid>
                 ))}
@@ -125,7 +125,7 @@ export default function About() {
               <S.SubHeading>Miscellaneous</S.SubHeading>
               <Grid container spacing={4}>
                 {miscSkills.map(skill => (
-                  <Grid item key={skill.id} sm={6} md={4} lg={3}>
+                  <Grid item key={skill._id} sm={6} md={4} lg={3}>
                     <SkillCard skill={skill} />
                   </Grid>
                 ))}
@@ -133,7 +133,7 @@ export default function About() {
               <S.SubHeading>Languages</S.SubHeading>
               <Grid container spacing={4}>
                 {langSkills.map(skill => (
-                  <Grid item key={skill.id} sm={6} md={4}>
+                  <Grid item key={skill._id} sm={6} md={4}>
                     <SkillCard skill={skill} />
                   </Grid>
                 ))}

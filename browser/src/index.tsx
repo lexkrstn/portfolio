@@ -1,6 +1,6 @@
 import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import './polyfills';
@@ -17,4 +17,10 @@ const root = (
   </Provider>
 );
 
-hydrate(root, document.querySelector('#app-slot'));
+const container = document.querySelector('#app-slot');
+
+if (typeof process.env.WEBPACK_DEV_SERVER !== 'undefined') {
+  render(root, container); // No SSR
+} else {
+  hydrate(root, container); // SSR enabled
+}

@@ -11,7 +11,7 @@ export const LanguageLevels: Record<number, string> = {
 };
 
 export interface Skill {
-  id: number;
+  _id: string;
   name: string;
   icon: string;
   masteryYear: number;
