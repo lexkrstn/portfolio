@@ -25,6 +25,10 @@ export const GlobalStyle = css`
   #app-slot {
     display: block;
     height: 100%;
+    background-color: #a1e4e2;
+    background-image:
+      radial-gradient(ellipse at 41% 0%, #a5c6d0, transparent),
+      radial-gradient(ellipse at 30% 100%, #0c9f84, transparent);
   }
 `;
 

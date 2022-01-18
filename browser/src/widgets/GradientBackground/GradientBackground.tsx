@@ -12,6 +12,7 @@ export default function GradientBackground({ interactive }: GradientBackgroundPr
   useEffect(() => {
     if (!interactive) return undefined;
     const onMouseMove = throttle((e: MouseEvent) => {
+      if (!ref.current) return;
       const x = Math.round(lerp(0.2, 0.8, e.screenX / window.innerWidth) * 100);
       ref.current.style.backgroundImage = `
         radial-gradient(ellipse at ${x}% 0%, #e66465, transparent),

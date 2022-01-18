@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { GradientBackground } from '../widgets/GradientBackground/styles';
 import { containerMixin, containerWrapMixin } from '../widgets/mixins';
 import { Card } from './Card/styles';
 
@@ -7,10 +6,6 @@ export const Portfolio = styled.div`
   ${containerWrapMixin}
   position: relative;
   min-height: 100vh;
-
-  ${GradientBackground} {
-    position: fixed; // to look good in overscroll effect
-  }
 
   .item-enter ${Card} {
     transform: scale(0.2);

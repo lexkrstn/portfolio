@@ -12,7 +12,7 @@ export const Brand = styled.span`
   font-size: 2em;
   font-family: ${props => props.theme.font.family.heading};
   cursor: pointer;
-  transition: font-size .2s ease;
+  transition: font-size ${props => props.theme.routeRiffleDuration} ease;
 
   svg {
     display: block;
@@ -47,10 +47,12 @@ export const Navbar = styled.nav<{ fixed: boolean }>`
   background: linear-gradient(180deg, rgba(0,0,0,0.2),rgba(1,0,0,0));
   border-bottom: 1px solid rgba(255,255,255,0.5);
   font-size: 16px;
-  transition:
-    background-color .2s ease,
-    padding-top .2s ease,
-    padding-bottom .2s ease;
+  ${({ theme: { routeRiffleDuration: duration } }) => css`
+    transition:
+      background-color ${duration} ease,
+      padding-top ${duration} ease,
+      padding-bottom ${duration} ease;
+  `}
 
   ${props => !!props.fixed && fixedNavbarMixin}
 `;

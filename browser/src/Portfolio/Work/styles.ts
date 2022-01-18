@@ -1,15 +1,10 @@
 import styled from '@emotion/styled';
-import { GradientBackground } from '../../widgets/GradientBackground/styles';
 import { containerMixin, containerWrapMixin } from '../../widgets/mixins';
 
 export const Work = styled.div`
   ${containerWrapMixin}
   position: relative;
   min-height: 100vh;
-
-  ${GradientBackground} {
-    position: fixed; // to look good in overscroll effect
-  }
 `;
 
 export const Container = styled.div`
