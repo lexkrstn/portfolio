@@ -77,7 +77,7 @@ const skills = [
     masteryYear: 2015,
     note: 'Most of my own projects use it due to its abundance of features.',
     group: 'basic',
-    level: 5,
+    level: 4,
     weight: 8,
   },
   {
@@ -86,7 +86,7 @@ const skills = [
     masteryYear: 2013,
     note: 'I used to write a lot of PHP sites in the framework as a frelancer.',
     group: 'basic',
-    level: 5,
+    level: 4,
     weight: 9,
   },
   {
@@ -104,7 +104,7 @@ const skills = [
     masteryYear: 0,
     note: 'Theoretical knowledge. Never worked with it in real projects yet.',
     group: 'basic',
-    level: 5,
+    level: 2,
     weight: 11,
   },
   {
@@ -121,7 +121,7 @@ const skills = [
     name: 'Knex.js / Objection.js',
     icon: 'knexjs.svg',
     masteryYear: 2012,
-    note: 'My favorite Query Builder and ORM libraries for Node.js.',
+    note: 'My favorite Query Builder and ORM libraries for Node.js and plain JS.',
     group: 'misc',
     level: 5,
     weight: 0,
@@ -204,7 +204,7 @@ const skills = [
     masteryYear: 2016,
     note: 'Rarely does the project get tested in freelance, but my own ones do.',
     group: 'misc',
-    level: 5,
+    level: 4,
     weight: 10,
   },
   {
@@ -213,7 +213,7 @@ const skills = [
     masteryYear: 2015,
     note: 'I got to know RxJS from Angular and have been using it even in React apps.',
     group: 'misc',
-    level: 5,
+    level: 3,
     weight: 11,
   },
   {
@@ -222,7 +222,7 @@ const skills = [
     masteryYear: 2019,
     note: 'Basic knowledge. Built a few microservices wrapped in its containers.',
     group: 'misc',
-    level: 5,
+    level: 3,
     weight: 12,
   },
 

@@ -9,6 +9,7 @@ export interface SkillCardProps {
 }
 
 export default function SkillCard({ skill }: SkillCardProps): ReactElement {
+  const maxLevel = skill.group === 'lang' ? 9 : 5;
   return (
     <S.SkillCard>
       <S.Header>
@@ -26,6 +27,9 @@ export default function SkillCard({ skill }: SkillCardProps): ReactElement {
           <S.Experience>{LanguageLevels[skill.level]}</S.Experience>
         )}
       </S.Header>
+      <S.Level>
+        <S.LevelProgress style={{ width: `${(skill.level / maxLevel) * 100}%` }} />
+      </S.Level>
       <S.Note dangerouslySetInnerHTML={{ __html: skill.note }} />
     </S.SkillCard>
   );

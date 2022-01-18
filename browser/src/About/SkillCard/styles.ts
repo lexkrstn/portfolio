@@ -26,6 +26,28 @@ export const Experience = styled.div`
   font-weight: 300;
 `;
 
+export const Level = styled.div`
+  position: relative;
+  margin-top: 5px;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1px;
+    width: 100%;
+    background: rgb(255, 206, 0);
+    z-index: -1;
+  }
+`;
+
+export const LevelProgress = styled.div`
+  height: 2px;
+  background: rgb(191, 255, 178);
+`;
+
 export const Note = styled.div`
   margin-top: 10px;
   font-size: 0.875em;
