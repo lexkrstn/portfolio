@@ -1,31 +1,37 @@
 import { push } from 'connected-react-router';
-import { Location } from 'history';
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router';
 import { openContactDialog } from '../duck';
 import Logo from './Logo';
 import * as S from './styles';
 
-type RouteNav = { route: string, name: string };
+type RouteNav = { path: string, name: string };
 
-const routeNavs: RouteNav[] = [
-  { route: '/', name: 'Home' },
-  { route: '/portfolio', name: 'Portfolio' },
-  { route: '/about', name: 'About' },
+const menuItems: RouteNav[] = [
+  { path: '/', name: 'Home' },
+  { path: '/portfolio', name: 'Portfolio' },
+  { path: '/about', name: 'About' },
 ];
 
-interface NavbarProps {
-  location: Location;
-}
-
-export default function Navbar({ location }: NavbarProps): ReactElement {
+/**
+ * The main navigation bar at the top of the page.
+ */
+export default function Navbar(): ReactElement {
+  const location = useLocation();
   const dispatch = useDispatch();
   const handlers = useMemo(() => { // eslint-disable-line arrow-body-style
-    return routeNavs.map(({ route }) => { // eslint-disable-line arrow-body-style
-      return () => dispatch(push(route));
+    return menuItems.map(({ path }) => { // eslint-disable-line arrow-body-style
+      return () => dispatch(push(path));
     });
   }, []);
   const onContactClick = useCallback(() => dispatch(openContactDialog()), []);
+  const activePath = menuItems
+    .map(item => item.path)
+    .find(path => {
+      if (path === '/') return location.pathname === '/';
+      return location.pathname.startsWith(path);
+    });
   return (
     <S.Navbar fixed={location.pathname !== '/'}>
       <S.Container>
@@ -33,9 +39,10 @@ export default function Navbar({ location }: NavbarProps): ReactElement {
           <Logo />
         </S.Brand>
         <S.Nav>
-          {routeNavs.map(({ route, name }, i) => (
-            <S.NavItem key={route}>
+          {menuItems.map(({ path, name }, i) => (
+            <S.NavItem key={path}>
               <S.NavLink onClick={handlers[i]}>{name}</S.NavLink>
+              <S.NavItemUnderline active={path === activePath} />
             </S.NavItem>
           ))}
           <S.NavItem key="contact">

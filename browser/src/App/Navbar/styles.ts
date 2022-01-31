@@ -3,7 +3,8 @@ import { css } from '@emotion/react';
 import { containerMixin, containerWrapMixin } from '../../widgets/mixins';
 
 export const Brand = styled.span`
-  display: block;
+  display: flex;
+  align-items: center;
   margin-right: 20px;
   color: white;
   text-transform: uppercase;
@@ -20,20 +21,6 @@ export const Brand = styled.span`
   }
 `;
 
-const fixedNavbarMixin = css`
-  position: fixed;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  background: rgba(0, 0, 0, .25);
-  z-index: 1030;
-  box-shadow: 0 1px 10px rgba(0,0,0,.3);
-  border-color: rgba(255, 255, 255, 0.2);
-
-  ${Brand} {
-    font-size: 1.5em;
-  }
-`;
-
 export const Navbar = styled.nav<{ fixed: boolean }>`
   position: absolute;
   top: 0;
@@ -42,19 +29,28 @@ export const Navbar = styled.nav<{ fixed: boolean }>`
   z-index: 1000;
   display: block;
   ${containerWrapMixin}
-  padding-top: 25px;
-  padding-bottom: 25px;
+  height: 84px;
   background: linear-gradient(180deg, rgba(0,0,0,0.2),rgba(1,0,0,0));
   border-bottom: 1px solid rgba(255,255,255,0.5);
   font-size: 16px;
   ${({ theme: { routeRiffleDuration: duration } }) => css`
     transition:
       background-color ${duration} ease,
-      padding-top ${duration} ease,
-      padding-bottom ${duration} ease;
+      height ${duration} ease;
   `}
 
-  ${props => !!props.fixed && fixedNavbarMixin}
+  ${props => props.fixed && css`
+    position: fixed;
+    height: 54px;
+    background: rgba(0, 0, 0, .25);
+    z-index: 1030;
+    box-shadow: 0 1px 10px rgba(0,0,0,.3);
+    border-color: rgba(255, 255, 255, 0.2);
+
+    ${Brand} {
+      font-size: 1.5em;
+    }
+  `}
 `;
 
 export const Container = styled.div`
@@ -62,6 +58,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  height: 100%;
 `;
 
 export const Nav = styled.ul`
@@ -75,9 +72,48 @@ export const Nav = styled.ul`
 `;
 
 export const NavItem = styled.li`
+  position: relative;
   display: block;
   margin: 0;
   padding: 0;
+  transition: background-color .2s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, .08);
+  }
+`;
+
+export const NavItemUnderline = styled.div<{ active?: boolean }>`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  height: 2px;
+  background: transparent;
+  pointer-events: none;
+  transition: background-color ${props => props.theme.routeRiffleDuration} ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -4px;
+    display: block;
+    height: 0;
+    width: 0;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    transition: border-color ${props => props.theme.routeRiffleDuration} ease;
+  }
+
+  ${props => props.active && css`
+    background: white;
+
+    &::after { border-bottom-color: white; }
+  `}
 `;
 
 export const NavLink = styled.span`

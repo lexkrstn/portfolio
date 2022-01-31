@@ -15,7 +15,7 @@ interface PageNavProps {
 export default function PageNav({ location, routes }: PageNavProps): ReactElement {
   const dispatch = useDispatch();
   const { rootRoutes, clickHandlers } = useMemo(() => {
-    const filteredRoutes = routes.filter(isRootRoute);
+    const filteredRoutes = routes.filter(route => isRootRoute(route, routes));
     return {
       clickHandlers: filteredRoutes.map(route => () => {
         dispatch(push(Array.isArray(route.path) ? route.path[0] : route.path));

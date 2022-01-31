@@ -7,7 +7,7 @@ import { RouteConfig } from 'react-router-config';
  * The function is designed to use as a filter predicate, thus the index
  * parameter is required despite of not being used.
  */
-export function isRootRoute(route: RouteConfig, index: number, routes: RouteConfig[]): boolean {
+export function isRootRoute(route: RouteConfig, routes: RouteConfig[]): boolean {
   if (route.path === '/') {
     return true;
   }

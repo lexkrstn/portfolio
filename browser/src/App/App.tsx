@@ -33,8 +33,8 @@ export default function App({ location, route: { routes } }: AppProps): ReactEle
       <S.App>
         <ParallaxScroll height={parallaxHeight} resetOnChange={location.pathname}>
           <Global styles={S.GlobalStyle} />
-          <Navbar location={location} />
-          {isRootRoute(activeRoute, 0, routes) && (
+          <Navbar />
+          {isRootRoute(activeRoute, routes) && (
             <>
               <PageNav location={location} routes={routes} />
               <SocialNav />
