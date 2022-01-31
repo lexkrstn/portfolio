@@ -64,4 +64,42 @@ const getWorks = () => [
       },
     ],
   },
+  {
+    name: 'Theatre Management Media',
+    tags: [
+      'TypeScript', 'JavaScript', 'MySQL', 'Vue', 'Vuex', 'REST', 'ExpressJS',
+      'NodeJS', 'Stylus',
+    ],
+    thumbnail: '/images/portfolio/tmv/thumbnail.jpg',
+    screenshots: [
+      '/images/portfolio/tmv/schedule.jpg',
+      '/images/portfolio/tmv/dashboard.png',
+    ],
+    description: `
+      A software program for managing Android Smart TV advertising screens in cinemas.
+    `,
+    about: `
+      The NodeJS application running on a Raspberry Pi server to manage the
+      display of promotional video slides and other similar content on Android
+      Smart TV boxes connected to demo screens in cinemas.
+
+      I started writing the application on top of the developments that the
+      company already had since the days of io.js, and in the end there was not
+      a single line of legacy code left =)
+    `,
+    techniques: [
+      'NodeJS, ExpressJS, MySQL — server',
+      'Vue, Vuex, Stylus — admin panel frontend',
+      'REST',
+      'TypeScript',
+      'Pure JavaScript — templates for WebView on Android devices'
+    ],
+    links: [
+      {
+        label: 'Krisberg TMS',
+        url: 'https://krisberg.ru/services/development-of-blowers-tms/',
+        description: 'The product is part of',
+      },
+    ],
+  },
 ];

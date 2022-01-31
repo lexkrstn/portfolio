@@ -11,17 +11,16 @@ const tags = [
   { name: 'PHP', workCount: 0 },
   { name: 'Wordpress', workCount: 0 },
   { name: 'WooCommerce', workCount: 0 },
-  { name: 'Git', workCount: 0 },
   { name: 'Sass/Less', workCount: 0 },
   { name: 'MySQL', workCount: 0 },
   { name: 'jQuery', workCount: 0 },
-  { name: 'Bootstrap', workCount: 0 },
   { name: 'GraphQL', workCount: 0 },
   { name: 'REST', workCount: 0 },
   { name: 'Knex.js', workCount: 0 },
   { name: 'Objection.js', workCount: 0 },
   { name: 'From scratch', workCount: 0 },
   { name: 'Chai', workCount: 0 },
+  { name: 'Stylus', workCount: 0 },
 ];
 const tagNames = tags.map(t => t.name);
 
