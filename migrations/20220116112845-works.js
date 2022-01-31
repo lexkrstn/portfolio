@@ -17,43 +17,50 @@ module.exports = {
 
 const getWorks = () => [
   {
-    name: 'Thetre Management System',
+    name: 'Theatre Management System',
     tags: ['JavaScript', 'PHP', 'MySQL', 'jQuery', 'REST', 'ExpressJS', 'NodeJS'],
-    thumbnail: '/images/portfolio/tms.jpg',
+    thumbnail: '/images/portfolio/tms/thumbnail.png',
     screenshots: [
-      '/images/portfolio/tms.jpg',
+      '/images/portfolio/tms/schedule.png',
+      '/images/portfolio/tms/dashboard.png',
+      '/images/portfolio/tms/schedule-import.png',
+      '/images/portfolio/tms/schedule-shift.png',
+      '/images/portfolio/tms/servers.png',
+      '/images/portfolio/tms/spl.png',
     ],
     description: `
-      Open Source web chat platform developed as UI/UX Javascript Specialist
-      at Konecty → Rocket.Chat.
+      A software program for managing the essential operations of cinema theatres.
     `,
     about: `
-      On this Open Source project I was responsible for the initial UI/UX
-      architecture, structure, design and animations. The idea was to follow
-      the 3 column UX trend of webchats like skype, hipchat, gitter and slack.
-      Building upon that an Open Source alternative with similar functionalities.
+      Theater management system (TMS) is a centralized system for managing film
+      screenings in one application and from any device, be it a smartphone,
+      laptop or desktop computer. It maximises operating efficiency by providing
+      reliable centralised control and automation of multi-screen cinema
+      complexes. In addition to its principal functions of centralised monitoring
+      of the screening status of all auditoriums, schedule creation, and
+      centralised screening content management, TMS includes convenient
+      functions to synchronise schedules with ticketing (POS) systems.
 
-      The UI/UX was conceived with a mobile first approach. So it would be
-      possible to effortlessly launch it into any platform without making
-      any changes to the main application.
+      I was involved in the development of both the server side and the browser
+      side of the application as a freelancer. Some of the most important subsystems
+      (e.g. scheduling system) were created by myself from scratch.
+
+      The TMS application is one of the products of Krisberg, a Russian
+      distributor of cinema equipment based in St. Peterburg. It is now
+      available for order via the link below. Still, the app continues to evolve.
     `,
     techniques: [
-      'UI/UX Design',
-      'UI/UX Architecture',
-      'CSS3 – preprocessed with LESS + LESSHAT',
-      'Blaze',
-      'MongoDB',
+      'PHP — the old backend',
+      'NodeJS — the new backend',
+      'MySQL',
+      'ExpressJS',
+      'jQuery & Bootstrap',
     ],
     links: [
       {
-        label: 'https://rocket.chat',
-        url: '#',
-        description: 'The project is online at',
-      },
-      {
-        label: 'github',
-        url: '#',
-        description: 'Access the project\'s source on',
+        label: 'Krisberg services',
+        url: 'https://krisberg.ru/services/development-of-blowers-tms/',
+        description: 'The product is part of',
       },
     ],
   },

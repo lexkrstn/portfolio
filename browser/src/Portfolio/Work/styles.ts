@@ -35,8 +35,7 @@ export const Brief = styled.p`
   font-size: 1.3em;
   font-weight: 300;
   text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
-  text-indent: 2em;
-  text-align: justify;
+  text-align: center;
 
   &:last-child { margin-bottom: 0 }
 `;
