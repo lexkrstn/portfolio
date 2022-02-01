@@ -2,6 +2,7 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import express from 'express';
+import { pick } from 'lodash';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
@@ -12,6 +13,7 @@ import '../../browser/src/polyfills';
 import { RootState } from '../../browser/src/rootReducer';
 import routes from '../../browser/src/routes';
 import storeFactory from '../../browser/src/storeFactory';
+import config from './config';
 import logger from './logger';
 
 const router = express.Router();
@@ -126,7 +128,8 @@ router.get('*', async (req, res) => {
       initialState,
       markup,
       styleTags: styles,
-      title: 'Portfolio',
+      title: config.site.name,
+      config: pick(config, ...config.browser.usesConfigs),
     };
     res.render('index', vars, (err, html) => {
       if (err) {

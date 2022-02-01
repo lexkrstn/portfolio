@@ -7,16 +7,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 dotenv.config();
 
-const envVarsImporting = ['API_URL', 'HTTPS', 'PORT', 'DOMAIN'];
-const definitions = {};
-for (const name of envVarsImporting) {
-  definitions[`process.env.${name}`] = JSON.stringify(process.env[name]);
-}
-
 module.exports = (env, options) => {
   let plugins = [];
 
-  definitions['process.env.WEBPACK_DEV_SERVER'] = env.WEBPACK_SERVE ? 1 : 0;
+  const definitions = {
+    'process.env.WEBPACK_DEV_SERVER': env.WEBPACK_SERVE ? 1 : 0,
+  };
 
   if (env.WEBPACK_SERVE) {
     plugins = [
@@ -124,9 +120,10 @@ module.exports = (env, options) => {
           ...definitions,
           'process.env.NODE_ENV': JSON.stringify('production'),
         }),
-        new webpack.IgnorePlugin({
-          resourceRegExp: /^source-map-support\/register|redux\-devtools\-extension|remote-redux-devtools$/
-        }),
+        new webpack.NormalModuleReplacementPlugin(
+          /^(source-map-support\/register|redux-devtools-extension|remote-redux-devtools)$/,
+          'lodash/noop',
+        ),
       ],
     };
   }

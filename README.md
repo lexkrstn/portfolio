@@ -38,17 +38,33 @@ npm run start:prod
 ### Configuration
 
 The preferred way to configure the server is by setting environment variables:
-- `DATABASE_HOST` *default* = **localhost**
-- `DATABASE_PORT` *default* = **27017**
-- `DATABASE_USER` *default* = *empty (not enabled access control)*
-- `DATABASE_PASSWORD` *default* = *empty (not enabled access control)*
-- `DATABASE_NAME` *default* = **portfolio** or **portfolio_test**
+- `DB_HOST` *default* = **localhost**
+- `DB_PORT` *default* = **27017**
+- `DB_USER` *default* = *empty (not enabled access control)*
+- `DB_PASSWORD` *default* = *empty (not enabled access control)*
+- `DB_NAME` *default* = **portfolio** or **portfolio_test**
+- `API_HOST` *default* = **0.0.0.0**
 - `API_PORT` *default* = **3000**
+- `API_INTERNAL_URL` *default* = **https://localhost:3000**
+- `API_EXTERNAL_URL` *default* = **https://localhost:3000**
 - `MAIL_USER` (gmail) *default* = *not set*
 - `MAIL_PASSWORD` (gmail) *default* = *not set*
+- `SSR_HOST` *default* = **0.0.0.0**
+- `SSR_PORT` *default* = **8080**
+- `SSL_KEY` *default* = *empty (do not use https)*
+- `SSL_CERT` *default* = *empty (do not use https)*
 
 An alternative way is to create a file named `.env` in the root of the project
 and put all the environment variables there (one per line).
+
+## Generating SSL keys (optional)
+
+```bash
+openssl genrsa -out key.pem
+openssl req -new -key key.pem -out csr.pem
+openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+rm csr.pem
+```
 
 ## Commands cheatsheet
 
@@ -87,11 +103,11 @@ Docker:
 # Build the image
 docker build . -t lexkrstn/portfolio
 # Run the container first time (with migrations)
-docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DATABASE_HOST=host.docker.internal -e DEV_MODE=1  --name portfolio lexkrstn/portfolio
+docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal -e DEV_MODE=1  --name portfolio lexkrstn/portfolio
 # Run the container regularly
-docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DATABASE_HOST=host.docker.internal --name portfolio lexkrstn/portfolio
+docker run -p 80:8080 -p 3000:3000 -d --name portfolio lexkrstn/portfolio
 # Run the container mounting the volume
-docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DATABASE_HOST=host.docker.internal --name portfolio --mount source=portfolio-public,target=./public lexkrstn/portfolio
+docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal --name portfolio --mount source=portfolio-public,target=./public lexkrstn/portfolio
 # List images
 docker images
 docker rmi $(docker images -a -q)
@@ -99,9 +115,9 @@ docker rmi $(docker images -a -q)
 docker ps
 docker kill $(docker ps -q)
 # Print app output
-docker logs lexkrstn/portfolio
+docker logs portfolio
 # Enter the container
-docker exec -it lexkrstn/portfolio /bin/bash
+docker exec -it portfolio /bin/sh
 docker run -it --entrypoint /bin/sh ${IMAGEID} -s
 ```
 

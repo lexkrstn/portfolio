@@ -2,7 +2,8 @@ extends layout
 
 block headScripts
 	script(type='text/javascript').
-		window.__INITIAL_STATE__ = !{JSON.stringify(initialState)}
+		window.__INITIAL_STATE__ = !{JSON.stringify(initialState)};
+		window.__CONFIG__ = !{JSON.stringify(config)};
 
 block content
 	div#app-slot!= markup

@@ -12,6 +12,10 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
   }));
   app.enableCors();
-  await app.listen((await app.resolve(ConfigService)).get<number>('port'));
+  const configService = await app.resolve(ConfigService);
+  await app.listen(
+    configService.get<number>('port'),
+    configService.get<string>('host'),
+  );
 }
 bootstrap();

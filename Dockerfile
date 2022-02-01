@@ -16,7 +16,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.9/main' >> /etc/apk/repositori
     npm i --production && \
     npm i -g migrate-mongo
 COPY --from=0 /opt/portfolio/dist ./dist
-COPY --from=0 /opt/portfolio/public/js ./dist/public/js
+COPY --from=0 /opt/portfolio/public/js ./public/js
 
 EXPOSE 8080 3000
 

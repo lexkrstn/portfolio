@@ -1,20 +1,31 @@
-// Note, all the process.env.* variables used below in this file must be
-// defined in the DefinePlugin in the weback.config.js.
+interface GlobalConfig {
+  api: {
+    internalUrl: string,
+    externalUrl: string,
+  },
+}
 
-const https = !!parseInt(process.env.HTTPS, 10);
-const scheme = `http${https ? 's' : ''}`;
-const domain = process.env.DOMAIN || 'localhost';
-const port = parseInt(process.env.PORT, 10);
+function getSsrConfig(): GlobalConfig {
+  const sslEnabled = process.env.SSL_KEY && process.env.SSL_CERT;
+  const schema = `http${sslEnabled ? 's' : ''}://`;
+  return {
+    api: {
+      internalUrl: process.env.API_INTERNAL_URL || `${schema}localhost:3000`,
+      externalUrl: process.env.API_EXTERNAL_URL || `${schema}localhost:3000`,
+    },
+  };
+}
+
+const isBrowser = typeof window !== 'undefined';
+
+const globalConfig = isBrowser
+  ? (window as any).__CONFIG__ as GlobalConfig // eslint-disable-line no-underscore-dangle
+  : getSsrConfig();
 
 export default {
-  accessTokenLife: 7 * 24 * 60 * 60,
-  accessTokenName: 'accessToken',
-  apiUrl: `${process.env.API_URL || 'http://localhost:3000'}/api/v1`,
+  apiUrl: `${globalConfig.api[isBrowser ? 'externalUrl' : 'internalUrl']}/api/v1`,
   basePath: '/',
   contact: {
     email: 'lexkrstn@gmail.com',
   },
-  debug: ['dev', 'development'].includes(process.env.NODE_ENV),
-  prefetchTimeout: 5000,
-  url: `${scheme}://${domain}${port === 80 || port === 443 ? '' : `:${port}`}`,
 };

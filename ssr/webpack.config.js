@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = (env, options) => {
@@ -6,7 +7,7 @@ module.exports = (env, options) => {
     mode: options.mode,
     devtool: 'source-map',
     target: 'node',
-    entry: './ssr/src/server.ts',
+    entry: './ssr/src/main.ts',
     output: {
       libraryTarget: 'commonjs2',
       filename: 'ssr.js',
@@ -28,6 +29,11 @@ module.exports = (env, options) => {
     externals: [nodeExternals({
       allowlist: ['three/examples/jsm/loaders/SVGLoader'],
     })],
-    plugins: [],
+    plugins: [
+      new webpack.NormalModuleReplacementPlugin(
+        /^(source-map-support\/register|redux-devtools-extension|remote-redux-devtools)$/,
+        'lodash/noop',
+      ),
+    ],
   };
 };

@@ -4,14 +4,14 @@ dotenv.config();
 
 const TEST = process.env.NODE_ENV === 'test';
 const defaultPort = 27017;
-const host = process.env.DATABASE_HOST || 'localhost';
-const port = parseInt(process.env.DATABASE_PORT, 10) || defaultPort;
-const user = process.env.DATABASE_USER || '';
-const password = process.env.DATABASE_PASSWORD || '';
+const host = process.env.DB_HOST || 'localhost';
+const port = parseInt(process.env.DB_PORT, 10) || defaultPort;
+const user = process.env.DB_USER || '';
+const password = process.env.DB_PASSWORD || '';
 const userPassword = user && password ? `${user}:${password}@` : '';
 const portPostfix = port !== defaultPort ? `:${port}` : '';
 const url = `mongodb://${userPassword}${host}${portPostfix}`;
-const databaseName = process.env.DATABASE_NAME || (TEST ? 'portfolio_test' : 'portfolio');
+const databaseName = process.env.DB_NAME || (TEST ? 'portfolio_test' : 'portfolio');
 
 const config = {
   mongodb: {
