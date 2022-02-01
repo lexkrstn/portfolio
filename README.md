@@ -87,11 +87,11 @@ Docker:
 # Build the image
 docker build . -t lexkrstn/portfolio
 # Run the container first time (with migrations)
-docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal -e DEV_MODE=1  --name portfolio lexkrstn/portfolio
+docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DATABASE_HOST=host.docker.internal -e DEV_MODE=1  --name portfolio lexkrstn/portfolio
 # Run the container regularly
-docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal --name portfolio lexkrstn/portfolio
+docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DATABASE_HOST=host.docker.internal --name portfolio lexkrstn/portfolio
 # Run the container mounting the volume
-docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal --name portfolio --mount source=portfolio-public,target=./public lexkrstn/portfolio
+docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DATABASE_HOST=host.docker.internal --name portfolio --mount source=portfolio-public,target=./public lexkrstn/portfolio
 # List images
 docker images
 docker rmi $(docker images -a -q)
