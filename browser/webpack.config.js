@@ -15,6 +15,9 @@ for (const name of envVarsImporting) {
 
 module.exports = (env, options) => {
   let plugins = [];
+
+  definitions['process.env.WEBPACK_DEV_SERVER'] = env.WEBPACK_SERVE ? 1 : 0;
+
   if (env.WEBPACK_SERVE) {
     plugins = [
       new HtmlWebpackPlugin({
@@ -28,7 +31,6 @@ module.exports = (env, options) => {
         },
       }),
     ];
-    definitions['process.env.WEBPACK_DEV_SERVER'] = 1;
   } else {
     plugins = [
       new BundleAnalyzerPlugin({
@@ -37,8 +39,8 @@ module.exports = (env, options) => {
         reportFilename: path.join(__dirname, 'reports', 'bundle-size.html'),
       }),
     ];
-    definitions['process.env.WEBPACK_DEV_SERVER'] = 0;
   }
+
   const config = {
     entry: {
       'app': './browser/src/index.tsx',
@@ -110,6 +112,7 @@ module.exports = (env, options) => {
     },
     plugins,
   };
+
   if (options.mode === 'production') {
     return {
       ...config,
@@ -127,6 +130,7 @@ module.exports = (env, options) => {
       ],
     };
   }
+
   return {
     ...config,
     mode: 'development',

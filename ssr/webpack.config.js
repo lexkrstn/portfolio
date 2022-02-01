@@ -1,65 +1,33 @@
 const path = require('path');
-const webpack = require('webpack');
-const nodeFlag = require('node-flag');
 const nodeExternals = require('webpack-node-externals');
 
-const DEBUG = nodeFlag.get('mode') !== 'production';
-
-const config = {
-  target: 'node',
-  entry: './ssr/src/server.ts',
-  output: {
-    libraryTarget: 'commonjs2',
-    filename: 'ssr.js',
-    path: path.join(__dirname, '..', 'dist'),
-  },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json', '.tsx', '.ts'],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  // Do not bundle node_modules
-  externals: [nodeExternals({
-    allowlist: ['three/examples/jsm/loaders/SVGLoader'],
-  })],
-  plugins: [],
+module.exports = (env, options) => {
+  return {
+    mode: options.mode,
+    devtool: 'source-map',
+    target: 'node',
+    entry: './ssr/src/server.ts',
+    output: {
+      libraryTarget: 'commonjs2',
+      filename: 'ssr.js',
+      path: path.join(__dirname, '..', 'dist'),
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.json', '.tsx', '.ts'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: 'babel-loader',
+          exclude: /node_modules/,
+        },
+      ],
+    },
+    // Do not bundle node_modules in debug builds
+    externals: [nodeExternals({
+      allowlist: ['three/examples/jsm/loaders/SVGLoader'],
+    })],
+    plugins: [],
+  };
 };
-
-if (DEBUG) {
-  module.exports = {
-    ...config,
-    mode: 'development',
-    devtool: 'source-map',
-    plugins: [
-      ...config.plugins,
-      // Source map support for stack traces in node
-      new webpack.BannerPlugin({
-        // The banner as string, it will be wrapped in a comment
-        banner: 'require("source-map-support").install();',
-        // Prepend the text as it is, not wrapping it in a comment
-        raw: true,
-        // Adds the text to all generated files, which you might have multiple
-        entryOnly: false,
-      }),
-    ],
-  };
-} else {
-  module.exports = {
-    ...config,
-    mode: 'production',
-    devtool: 'source-map',
-    plugins: [
-      ...config.plugins,
-      new webpack.IgnorePlugin({
-        resourceRegExp: /^source-map-support\/register|redux\-devtools\-extension|remote-redux-devtools$/
-      }),
-    ],
-  };
-}

@@ -102,6 +102,7 @@ docker kill $(docker ps -q)
 docker logs lexkrstn/portfolio
 # Enter the container
 docker exec -it lexkrstn/portfolio /bin/bash
+docker run -it --entrypoint /bin/sh ${IMAGEID} -s
 ```
 
 Misc:
