@@ -8,11 +8,10 @@ import { Provider } from 'react-redux';
 import { MatchedRoute, matchRoutes, renderRoutes } from 'react-router-config';
 import { StaticRouter } from 'react-router-dom';
 import { Store } from 'redux';
-import { ReadyState } from '../browser/constants';
-import '../browser/polyfills';
-import { RootState } from '../browser/rootReducer';
-import routes from '../browser/routes';
-import storeFactory from '../browser/storeFactory';
+import '../../browser/src/polyfills';
+import { RootState } from '../../browser/src/rootReducer';
+import routes from '../../browser/src/routes';
+import storeFactory from '../../browser/src/storeFactory';
 import logger from './logger';
 
 const router = express.Router();
@@ -22,7 +21,7 @@ interface KeyValueObj {
   [key: string]: string;
 }
 
-type ReadyStateSelector = (state: RootState) => ReadyState;
+type ReadyStateSelector = (state: RootState) => boolean;
 
 function getWrappedComponent(component: any): any {
   return component.WrappedComponent ?
@@ -51,17 +50,13 @@ function fetchComponentData(
     cookies, params: batch.match.params, search, store,
   });
   return readyStateSelectors.map(readyStateSelector => {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       const unsubscribe = store.subscribe(() => {
         const readyState = readyStateSelector(store.getState());
-        if (readyState === ReadyState.Done || readyState === ReadyState.Fail) {
+        if (readyState) {
           clearTimeout(timeoutId);
           unsubscribe();
-          if (readyState === ReadyState.Done) {
-            resolve();
-          } else {
-            reject(new Error(`Failed to fetch SSR data for ${component.displayName}`));
-          }
+          resolve();
         }
       });
       const timeoutId = setTimeout(() => {
@@ -137,7 +132,6 @@ router.get('*', async (req, res) => {
       if (err) {
         return res.status(500).send(err);
       }
-      // html = appendUniversalPortals(html);
       res.send(html);
     });
   }

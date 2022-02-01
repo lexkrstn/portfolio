@@ -1,3 +1,5 @@
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
 import { hydrate, render } from 'react-dom';
@@ -19,8 +21,16 @@ const root = (
 
 const container = document.querySelector('#app-slot');
 
-if (typeof process.env.WEBPACK_DEV_SERVER !== 'undefined') {
-  render(root, container); // No SSR
+if (parseInt(process.env.WEBPACK_DEV_SERVER, 10)) {
+  // No SSR
+  render(root, container);
 } else {
-  hydrate(root, container); // SSR enabled
+  // SSR enabled
+  const cache = createCache({ key: 'custom' });
+  hydrate(
+    <CacheProvider value={cache}>
+      { root }
+    </CacheProvider>,
+    container,
+  );
 }

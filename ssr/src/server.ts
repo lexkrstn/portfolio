@@ -1,6 +1,5 @@
 import 'source-map-support/register';
-
-import bodyParser from 'body-parser';
+import path from 'path';
 import cookieParser from 'cookie-parser';
 import express, { Request, Response } from 'express';
 import http from 'http';
@@ -14,14 +13,14 @@ export const app = express();
 app.set('port', parseInt(process.env.PORT, 10) || 8080);
 // view engine setup
 app.disable('x-powered-by');
-app.set('views', 'views');
+app.set('views', path.join(__dirname, '..', 'ssr', 'views'));
 app.set('view engine', 'pug');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Request logger (which outputs to console)
 if (process.env.NODE_ENV === 'development') {

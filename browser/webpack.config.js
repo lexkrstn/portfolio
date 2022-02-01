@@ -28,7 +28,7 @@ module.exports = (env, options) => {
         },
       }),
     ];
-    definitions['process.env.WEBPACK_DEV_SERVER'] = true;
+    definitions['process.env.WEBPACK_DEV_SERVER'] = 1;
   } else {
     plugins = [
       new BundleAnalyzerPlugin({
@@ -37,6 +37,7 @@ module.exports = (env, options) => {
         reportFilename: path.join(__dirname, 'reports', 'bundle-size.html'),
       }),
     ];
+    definitions['process.env.WEBPACK_DEV_SERVER'] = 0;
   }
   const config = {
     entry: {

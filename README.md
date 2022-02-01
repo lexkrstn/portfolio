@@ -82,6 +82,28 @@ NPM:
 - `npm run test:browser:coverage` - runs tests and generates coverage report
 - `npm run test:browser:watch` - runs browser app unit tests in watch mode
 
+Docker:
+```bash
+# Build the image
+docker build . -t lexkrstn/portfolio
+# Run the container first time (with migrations)
+docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal -e DEV_MODE=1  --name portfolio lexkrstn/portfolio
+# Run the container regularly
+docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal --name portfolio lexkrstn/portfolio
+# Run the container mounting the volume
+docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal --name portfolio --mount source=portfolio-public,target=./public lexkrstn/portfolio
+# List images
+docker images
+docker rmi $(docker images -a -q)
+# Get container ID
+docker ps
+docker kill $(docker ps -q)
+# Print app output
+docker logs lexkrstn/portfolio
+# Enter the container
+docker exec -it lexkrstn/portfolio /bin/bash
+```
+
 Misc:
 - `migrate-mongo up` | `migrate-mongo down`
 - `migrate-mongo create`

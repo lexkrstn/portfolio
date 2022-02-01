@@ -11,22 +11,24 @@ const config = {
   output: {
     libraryTarget: 'commonjs2',
     filename: 'ssr.js',
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '..', 'dist'),
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.tsx', '.ts'],
+    extensions: ['.js', '.jsx', '.json', '.tsx', '.ts'],
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
     ],
   },
   // Do not bundle node_modules
-  externals: [nodeExternals()],
+  externals: [nodeExternals({
+    allowlist: ['three/examples/jsm/loaders/SVGLoader'],
+  })],
   plugins: [],
 };
 
