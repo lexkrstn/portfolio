@@ -43,7 +43,7 @@ export async function request<P>(method: RequestMethod, uri: string, payload?: P
       }
       throw new RequestError('http', `Server error: ${response.statusText} (${response.status})`);
     }
-    return await response.json();
+    return response.status !== 204 ? await response.json() : undefined;
   } catch (err) {
     throw new RequestError(err.code ?? 'internal', err.message ?? err);
   }
