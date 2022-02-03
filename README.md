@@ -105,7 +105,7 @@ docker build . -t lexkrstn/portfolio
 # Run the container
 docker run -p 80:80 -p 3000:3000 -d  -e SSR_PORT=80 -e 'API_EXTERNAL_URL=http://3.145.156.98:3000' --name portfolio lexkrstn/portfolio
 # Run the stack
-docker stack deploy -c stack.yml mongo
+docker-compose up -d
 # List images
 docker images
 docker rmi $(docker images -a -q)

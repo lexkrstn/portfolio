@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  portfolio:
+    image: lexkrstn/portfolio
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - "443:443"
+      - "3000:3000"
+    volumes:
+      - /opt/portfolio/tls:/opt/portfolio/tls
+    environment:
+      DB_USER: root
+      DB_PASSWORD: example
+      DB_HOST: mongo
+      SSR_PORT: 443
+      API_EXTERNAL_URL: https://lexkrstn.com:3000
+      SSL_KEY: /opt/portfolio/tls/private.key
+      SSL_CERT: /opt/portfolio/tls/certificate.crt
+      MAIL_USER:
+      MAIL_PASSWORD:

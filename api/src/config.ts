@@ -16,11 +16,14 @@ export interface DatabaseConfig {
 
 export interface MailerConfig {
   host: string,
-  port: number,
+  port?: number,
   secure: boolean,
   auth: {
     user: string,
     pass: string,
+  },
+  tls?: {
+    ciphers: string,
   },
 }
 
@@ -54,12 +57,14 @@ export default (): Config => ({
   },
   database: makeDatabaseConfig(),
   mailer: {
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: 'smtp.gmail.com',
     secure: false, // true for 465, false for 587
     auth: {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASSWORD,
+    },
+    tls: {
+      ciphers: 'SSLv3',
     },
   },
 });

@@ -1,4 +1,4 @@
-const sslEnabled = process.env.SSL_KEY && process.env.SSL_CERT;
+const sslEnabled = !!(process.env.SSL_KEY && process.env.SSL_CERT);
 const schema = `http${sslEnabled ? 's' : ''}://`;
 
 export default {
