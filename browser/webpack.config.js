@@ -1,3 +1,4 @@
+const ThreeMinifierPlugin = require("@yushijinhun/three-minifier-webpack");
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
@@ -6,6 +7,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 dotenv.config();
+
+const threeMinifier = new ThreeMinifierPlugin();
 
 module.exports = (env, options) => {
   let plugins = [];
@@ -57,6 +60,7 @@ module.exports = (env, options) => {
     },
     optimization: {
       minimize: options.mode === 'production',
+      usedExports: options.mode === 'production',
       minimizer: [ new TerserPlugin() ],
       splitChunks: {
         cacheGroups: {
@@ -114,8 +118,15 @@ module.exports = (env, options) => {
       ...config,
       mode: 'production',
       devtool: 'source-map',
+      resolve: {
+        ...config.resolve,
+        plugins: [
+          threeMinifier.resolver,
+        ],
+      },
       plugins: [
         ...config.plugins,
+        threeMinifier,
         new webpack.DefinePlugin({
           ...definitions,
           'process.env.NODE_ENV': JSON.stringify('production'),

@@ -109,6 +109,7 @@
     "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
+    "@yushijinhun/three-minifier-webpack": "^0.3.1",
     "babel-loader": "^8.2.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
@@ -140,5 +141,6 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-node-externals": "^3.0.0"
-  }
+  },
+  "sideEffects": false
 }
