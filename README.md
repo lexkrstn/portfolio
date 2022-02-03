@@ -102,12 +102,10 @@ Docker:
 ```bash
 # Build the image
 docker build . -t lexkrstn/portfolio
-# Run the container first time (with migrations)
-docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal -e DEV_MODE=1  --name portfolio lexkrstn/portfolio
-# Run the container regularly
-docker run -p 80:8080 -p 3000:3000 -d --name portfolio lexkrstn/portfolio
-# Run the container mounting the volume
-docker run -p 8080:8080 -p 3000:3000 -d --add-host host.docker.internal:host-gateway -e DB_HOST=host.docker.internal --name portfolio --mount source=portfolio-public,target=./public lexkrstn/portfolio
+# Run the container
+docker run -p 80:80 -p 3000:3000 -d  -e SSR_PORT=80 -e 'API_EXTERNAL_URL=http://3.145.156.98:3000' --name portfolio lexkrstn/portfolio
+# Run the stack
+docker stack deploy -c stack.yml mongo
 # List images
 docker images
 docker rmi $(docker images -a -q)

@@ -1,8 +1,5 @@
 #!/bin/sh
 
-if ! pgrep -x "mongod" > /dev/null; then
-    mongod --fork --logpath /var/log/mongodb/mongod.log
-fi
 migrate-mongo up
 
 node ./dist/api.js &
