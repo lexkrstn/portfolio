@@ -68,7 +68,7 @@ const getWorks = () => [
     name: 'Theatre Management Media',
     tags: [
       'TypeScript', 'JavaScript', 'MySQL', 'Vue', 'Vuex', 'REST', 'ExpressJS',
-      'NodeJS', 'Stylus',
+      'NodeJS', 'Stylus', 'Knex.js', 'Objection.js',
     ],
     thumbnail: '/images/portfolio/tmv/thumbnail.jpg',
     screenshots: [

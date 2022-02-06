@@ -18,8 +18,6 @@ const tags = [
   { name: 'REST', workCount: 0 },
   { name: 'Knex.js', workCount: 0 },
   { name: 'Objection.js', workCount: 0 },
-  { name: 'From scratch', workCount: 0 },
-  { name: 'Chai', workCount: 0 },
   { name: 'Stylus', workCount: 0 },
 ];
 const tagNames = tags.map(t => t.name);
