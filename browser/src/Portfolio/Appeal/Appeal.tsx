@@ -16,7 +16,7 @@ export default function Appeal(): ReactElement {
       </S.Para>
       <S.Para>
         or drop a line in
-        the <a href="javascript:;" onClick={onContactClick}>contact form</a>
+        the <S.Link onClick={onContactClick}>contact form</S.Link>
       </S.Para>
     </S.Appeal>
   );

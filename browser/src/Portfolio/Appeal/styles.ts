@@ -23,3 +23,10 @@ export const Heading = styled.h5`
 export const Para = styled.p`
   margin: 0;
 `;
+
+export const Link = styled.span`
+  color: inherit;
+  text-decoration: none;
+  font-weight: 400;
+  cursor: pointer;
+`;
