@@ -27,6 +27,12 @@ module.exports = (env, options) => {
           initialState: {},
           markup: '',
           serve: true,
+          config: {
+            api: {
+              internalUrl: 'http://localhost:3000',
+              externalUrl: 'http://localhost:3000',
+            },
+          },
         },
       }),
     ];
