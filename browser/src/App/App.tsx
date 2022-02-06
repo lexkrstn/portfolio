@@ -8,10 +8,14 @@ import { RouteConfigComponentProps } from 'react-router-config';
 import { selectWalkMode } from '../Home/duck';
 import theme from '../theme';
 import { isRootRoute } from '../utils/routes';
+import MobileDrawer from '../widgets/MobileDrawer';
 import ParallaxScroll from '../widgets/ParallaxScroll';
 import RouteRiffler from '../widgets/RouteRiffler';
 import ContactDialog from './ContactDialog';
-import { selectSnackbar, closeSnackbar } from './duck';
+import {
+  selectSnackbar, closeSnackbar, selectMobileMenuOpen, closeMobileMenu,
+} from './duck';
+import MobileMenu from './MobileMenu';
 import Navbar from './Navbar';
 import PageNav from './PageNav';
 import SocialNav from './SocialNav';
@@ -23,25 +27,35 @@ export default function App({ location, route: { routes } }: AppProps): ReactEle
   const dispatch = useDispatch();
   const walkMode = useSelector(selectWalkMode);
   const snackbar = useSelector(selectSnackbar);
+  const mobileMenuOpen = useSelector(selectMobileMenuOpen);
   const parallaxHeight = (location.pathname === '/' && walkMode === 'scroll') ? 1 : 0;
   const activeRoute = routes.find(aRoute => matchPath(location.pathname, aRoute));
   const handleCloseSnackbar = useCallback(() => {
     dispatch(closeSnackbar());
   }, []);
+  const handleCloseMobileMenu = useCallback(() => {
+    dispatch(closeMobileMenu());
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <S.App>
-        <ParallaxScroll height={parallaxHeight} resetOnChange={location.pathname}>
-          <Global styles={S.GlobalStyle} />
-          <Navbar />
-          {isRootRoute(activeRoute, routes) && (
-            <>
-              <PageNav location={location} routes={routes} />
-              <SocialNav />
-            </>
-          )}
-          <RouteRiffler location={location} routes={routes} />
-        </ParallaxScroll>
+        <MobileDrawer
+          open={mobileMenuOpen ? 'right' : false}
+          rightMenu={<MobileMenu />}
+          onClose={handleCloseMobileMenu}
+        >
+          <ParallaxScroll height={parallaxHeight} resetOnChange={location.pathname}>
+            <Global styles={S.GlobalStyle} />
+            <Navbar />
+            {isRootRoute(activeRoute, routes) && (
+              <>
+                <PageNav location={location} routes={routes} />
+                <SocialNav />
+              </>
+            )}
+            <RouteRiffler location={location} routes={routes} />
+          </ParallaxScroll>
+        </MobileDrawer>
         <ContactDialog />
         <Snackbar
           open={snackbar.open}

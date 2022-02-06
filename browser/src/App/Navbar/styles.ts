@@ -61,7 +61,39 @@ export const Container = styled.div`
   height: 100%;
 `;
 
+export const Hamburger = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+
+
+  @media (min-width: ${props => props.theme.bp.sm}) {
+    display: none;
+  }
+`;
+
+export const HamburgerBars = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 30px;
+  transition: height .2s ease;
+
+  ${Hamburger}:hover & {
+    height: 34px;
+  }
+`;
+
+export const HamburgerBar = styled.div`
+  height: 3px;
+  border-radius: 2px;
+  background: #fff;
+`;
+
 export const Nav = styled.ul`
+  display: none;
   list-style: none;
   margin: 0;
   padding: 0;

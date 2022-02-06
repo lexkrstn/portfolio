@@ -59,9 +59,9 @@ export default function Portfolio(): ReactElement {
             {!!works && !!tags && (
               <SwitchTransition mode="out-in">
                 <CSSTransition key={selectedTag?._id ?? 0} timeout={300} classNames="item">
-                  <Grid container spacing={2}>
+                  <Grid container spacing={{ xs: 3, md: 2 }}>
                     {works.map((work, i) => (
-                      <Grid item key={work._id} sm={6} lg={4}>
+                      <Grid item key={work._id} xs={12} md={6} lg={4}>
                         <Card
                           caption={work.name}
                           cover={work.thumbnail}

@@ -2,17 +2,10 @@ import { push } from 'connected-react-router';
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
-import { openContactDialog } from '../duck';
+import { openContactDialog, toggleMobileMenu } from '../duck';
+import menuItems from '../menu';
 import Logo from './Logo';
 import * as S from './styles';
-
-type RouteNav = { path: string, name: string };
-
-const menuItems: RouteNav[] = [
-  { path: '/', name: 'Home' },
-  { path: '/portfolio', name: 'Portfolio' },
-  { path: '/about', name: 'About' },
-];
 
 /**
  * The main navigation bar at the top of the page.
@@ -26,6 +19,7 @@ export default function Navbar(): ReactElement {
     });
   }, []);
   const onContactClick = useCallback(() => dispatch(openContactDialog()), []);
+  const onHamburgerClick = useCallback(() => dispatch(toggleMobileMenu()), []);
   const activePath = menuItems
     .map(item => item.path)
     .find(path => {
@@ -49,6 +43,13 @@ export default function Navbar(): ReactElement {
             <S.NavLink onClick={onContactClick}>Contact</S.NavLink>
           </S.NavItem>
         </S.Nav>
+        <S.Hamburger>
+          <S.HamburgerBars onClick={onHamburgerClick}>
+            <S.HamburgerBar />
+            <S.HamburgerBar />
+            <S.HamburgerBar />
+          </S.HamburgerBars>
+        </S.Hamburger>
       </S.Container>
     </S.Navbar>
   );
