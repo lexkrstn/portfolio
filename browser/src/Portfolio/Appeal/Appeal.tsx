@@ -1,8 +1,11 @@
-import React, { ReactElement } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { ReactElement, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { openContactDialog } from '../../App/duck';
 import * as S from './styles';
 
 export default function Appeal(): ReactElement {
+  const dispatch = useDispatch();
+  const onContactClick = useCallback(() => dispatch(openContactDialog()), []);
   return (
     <S.Appeal>
       <S.Heading>Let&apos;s talk</S.Heading>
@@ -12,8 +15,8 @@ export default function Appeal(): ReactElement {
         at <a href="mailto:lexkrstn@gmail.com">lexkrstn@gmail.com</a>
       </S.Para>
       <S.Para>
-        or drop a line in the form at
-        the <NavLink to="/contact">contact page</NavLink>
+        or drop a line in
+        the <a href="javascript:;" onClick={onContactClick}>contact form</a>
       </S.Para>
     </S.Appeal>
   );
