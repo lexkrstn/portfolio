@@ -20,6 +20,7 @@ services:
     volumes:
       - /opt/portfolio/tls:/opt/portfolio/tls
     environment:
+      NODE_ENV: production
       DB_USER: root
       DB_PASSWORD: example
       DB_HOST: mongo

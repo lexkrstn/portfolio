@@ -1,4 +1,5 @@
 import path from 'path';
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import express, { Request, Response, Express } from 'express';
 import morgan from 'morgan';
@@ -19,6 +20,7 @@ export function createExpressApp(): Express {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+  app.use(compression());
 
   // Request logger (which outputs to console)
   if (app.get('env') === 'development') {

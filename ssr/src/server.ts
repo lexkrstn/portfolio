@@ -53,5 +53,12 @@ export function createServer(app: Express): http.Server | https.Server {
     logger.info(`Server-Side-Renderer is listening on ${config.host}:${config.port}`);
   });
 
+  process.on('SIGTERM', () => {
+    logger.debug('SIGTERM signal received: closing SSR server');
+    server.close(() => {
+      logger.info('SSR server closed');
+    });
+  });
+
   return server;
 }
