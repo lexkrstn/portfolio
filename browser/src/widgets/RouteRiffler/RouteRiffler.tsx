@@ -26,9 +26,11 @@ export default function RouteRiffler({ location, routes }: RouteRifflerProps): R
   oldRouteIdx.current = routeIdx;
 
   const transitionEndListener = useCallback((node: HTMLElement, done: () => void) => {
-    const listener = () => {
-      node.removeEventListener('transitionend', listener, false);
-      done();
+    const listener = (event: TransitionEvent) => {
+      if (node === event.target) {
+        node.removeEventListener('transitionend', listener, false);
+        done();
+      }
     };
     node.addEventListener('transitionend', listener, false);
   }, []);
