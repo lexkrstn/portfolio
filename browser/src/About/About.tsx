@@ -39,15 +39,15 @@ export default function About() {
       <GradientBackground />
       <S.Container>
         <Grid container spacing={4}>
-          <Grid item lg={4} />
-          <Grid item lg={8}>
+          <Grid item lg={4} sx={{ display: { xs: 'none', lg: 'flex' } }} />
+          <Grid item xs={12} lg={8}>
             <S.Title>About me</S.Title>
           </Grid>
         </Grid>
         <Grid container spacing={4}>
-          <Grid item lg={4}>
+          <Grid item xs={12} lg={4}>
             <Grid container spacing={4}>
-              <Grid item md={6} lg={12}>
+              <Grid item xs={12} md={6} lg={12}>
                 <S.PhotoAndName>
                   <S.Photo>
                     <Image
@@ -60,7 +60,7 @@ export default function About() {
                   <S.Name>Alexander Korostin</S.Name>
                 </S.PhotoAndName>
               </Grid>
-              <Grid item md={6} lg={12}>
+              <Grid item xs={12} md={6} lg={12}>
                 <S.CharSheet>
                   <S.Attribute>
                     <S.AttributeName>Age</S.AttributeName>

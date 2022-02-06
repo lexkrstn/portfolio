@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const PageNav = styled.div`
+  display: none;
   position: fixed;
   z-index: 1000;
   top: 50%;
@@ -9,6 +10,10 @@ export const PageNav = styled.div`
   padding: 7px 5px;
   border-radius: 4px;
   background: rgba(0, 0, 0, .13);
+
+  @media (min-width: 1320px) {
+    display: block;
+  }
 `;
 
 export const PageButton = styled.div<{ active: boolean }>`
