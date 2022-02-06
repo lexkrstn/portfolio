@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Link from '@mui/icons-material/Link';
 import { Chip, ChipGroup, chipMixin } from '../../widgets/Chip/styles';
+import { Image } from '../../widgets/Image/styles';
 
 export const Card = styled(NavLink)`
   display: block;
@@ -12,9 +13,39 @@ export const Card = styled(NavLink)`
   box-shadow: 9px 9px 0 rgba(0, 0, 0, 0.25);
   transition: box-shadow 0.2s ease-in-out;
   cursor: pointer;
+  background: #333;
 
   &:hover {
     box-shadow: 11px 11px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  ${Image} {
+    border-radius: 0 0 4px 4px;
+
+    img {
+      border-radius: 0 0 4px 4px;
+    }
+  }
+
+  &:hover ${Image} {
+    filter: blur(7px);
+    transition: filter 0.2s ease;
+  }
+
+  ${ChipGroup} {
+    text-align: center;
+  }
+
+  ${Chip} {
+    opacity: 0;
+    transform: translateY(-40px);
+    pointer-events: none;
+  }
+
+  &:hover ${Chip} {
+    transition: opacity .2s ease, transform .2s ease;
+    opacity: 1;
+    transform: translateY(0px);
   }
 `;
 
@@ -86,38 +117,13 @@ export const Overlay = styled.div`
   ${Card}:hover & {
     opacity: 1;
   }
-
-  ${ChipGroup} {
-    text-align: center;
-  }
-
-  ${Chip} {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-
-  ${Card}:hover & ${Chip} {
-    transition: opacity .2s ease, transform .2s ease;
-    opacity: 1;
-    transform: translateY(0px);
-  }
 `;
 
 export const Cover = styled.div`
   position: relative;
   z-index: 1;
   overflow: hidden;
-`;
-
-export const Image = styled.img`
-  display: block;
-  width: 100%;
   border-radius: 0 0 4px 4px;
-
-  ${Card}:hover & {
-    filter: blur(7px);
-    transition: filter 0.2s ease;
-  }
 `;
 
 export const Button = styled.span`

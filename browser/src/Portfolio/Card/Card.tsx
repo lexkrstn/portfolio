@@ -4,8 +4,15 @@ import React, {
 } from 'react';
 import { useDispatch } from 'react-redux';
 import Chip, { ChipGroup } from '../../widgets/Chip';
+import Image from '../../widgets/Image';
 import { Tag } from '../interfaces';
 import * as S from './styles';
+
+/**
+ * Used by Image components to store image cache data in it.
+ * Note, it's ok to put it here since loading images doesn't perform in SSR.
+ */
+const imageCache = {};
 
 export interface CardProps {
   caption: string;
@@ -16,6 +23,9 @@ export interface CardProps {
   onClickTag?: (id: string) => void;
 }
 
+/**
+ * Portfolio item card.
+ */
 export default function Card({
   caption, cover, onClickTag, route, tags,
 }: CardProps): ReactElement {
@@ -45,6 +55,8 @@ export default function Card({
     [tags],
   );
 
+  const oneDelay = 300 / tags.length;
+
   return (
     <S.Card to={route} onClick={onHostClick}>
       <S.Caption>
@@ -62,19 +74,19 @@ export default function Card({
               <Chip
                 key={tag._id}
                 onClick={clickCallbacks[i]}
-                style={{ transitionDelay: `${200 + 150 * i}ms` }}
+                style={{ transitionDelay: `${oneDelay * i}ms` }}
               >
                 {tag.name}
               </Chip>
             ))}
           </ChipGroup>
-          <S.Button style={{ transitionDelay: `${200 + 150 * sortedTags.length}ms` }}>
+          <S.Button style={{ transitionDelay: `${oneDelay * sortedTags.length}ms` }}>
             Open
             <S.ButtonLinkIcon />
           </S.Button>
         </S.Overlay>
         <S.Cover>
-          <S.Image src={cover} alt={caption} />
+          <Image aspect={2} alt={caption} src={cover} cache={imageCache} />
         </S.Cover>
       </S.Content>
     </S.Card>
