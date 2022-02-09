@@ -29,7 +29,7 @@ export default function Work({ match }: WorkProps): ReactElement {
   }, [work]);
 
   useEffect(() => {
-    if (!fetched) {
+    if (!fetched || work?._id !== match.params.id) {
       dispatch(fetchWork(match.params.id));
     }
   });
@@ -55,7 +55,7 @@ export default function Work({ match }: WorkProps): ReactElement {
                         cache={imageCache.current}
                       />
                     )}
-                    {isVideoUrl(src) && <Video src={src}/>}
+                    {isVideoUrl(src) && <Video src={src} />}
                   </React.Fragment>
                 ))}
               </Slider>
