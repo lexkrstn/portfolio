@@ -253,8 +253,7 @@ const skills = [
     level: 8,
     weight: 0,
   },
-]
-const skillNames = skills.map(s => s.name);
+];
 
 module.exports = {
   async up(db) {
@@ -262,6 +261,6 @@ module.exports = {
   },
 
   async down(db) {
-    await db.collection('skills').deleteMany({ name: { $in: skillNames } });
+    await db.collection('skills').deleteMany();
   },
 };

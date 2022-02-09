@@ -20,7 +20,6 @@ const tags = [
   { name: 'Objection.js', workCount: 0 },
   { name: 'Stylus', workCount: 0 },
 ];
-const tagNames = tags.map(t => t.name);
 
 module.exports = {
   async up(db) {
@@ -28,6 +27,6 @@ module.exports = {
   },
 
   async down(db) {
-    await db.collection('tags').deleteMany({ name: { $in: tagNames } });
+    await db.collection('tags').deleteMany();
   },
 };

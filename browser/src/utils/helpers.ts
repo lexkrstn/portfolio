@@ -32,3 +32,7 @@ export function loadImage(url: string, onProgress: (percents: number) => void): 
     request.send();
   });
 }
+
+export function isVideoUrl(url: string): boolean {
+  return /https:\/\/(www\.)?youtube.com/.test(url);
+}

@@ -4,12 +4,14 @@ import React, {
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteConfigComponentProps } from 'react-router-config';
 import GradientBackground from '../../widgets/GradientBackground';
+import { isVideoUrl } from '../../utils';
 import Slider from '../../widgets/Slider';
 import Image from '../../widgets/Image';
 import Appeal from '../Appeal';
 import { fetchWork, selectWork, selectWorkFetched } from '../duck';
 import * as S from './styles';
 import Loading from '../../widgets/Loading';
+import Video from '../../widgets/Video';
 
 type WorkProps = RouteConfigComponentProps<{ id: string }>;
 
@@ -44,13 +46,17 @@ export default function Work({ match }: WorkProps): ReactElement {
               <S.Brief>{work.description}</S.Brief>
               <Slider>
                 {work.screenshots.map((src: string, i: number) => (
-                  <Image
-                    key={src}
-                    src={src}
-                    alt={`${work.name} ${i + 1}`}
-                    aspect={2}
-                    cache={imageCache.current}
-                  />
+                  <React.Fragment key={src}>
+                    {!isVideoUrl(src) && (
+                      <Image
+                        src={src}
+                        alt={`${work.name} ${i + 1}`}
+                        aspect={2}
+                        cache={imageCache.current}
+                      />
+                    )}
+                    {isVideoUrl(src) && <Video src={src}/>}
+                  </React.Fragment>
                 ))}
               </Slider>
               <S.Section>
