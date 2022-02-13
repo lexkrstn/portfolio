@@ -373,7 +373,46 @@ const getWorks = () => [
       {
         label: 'GitHub',
         url: 'https://github.com/lexkrstn/hall-plan',
-        description: 'The sources is available on',
+        description: 'The sources are available on',
+      },
+    ],
+  },
+  {
+    name: 'React Styled Modal',
+    tags: [
+      'TypeScript', 'React', 'Styled Components',
+    ],
+    thumbnail: '/images/portfolio/react-styled-modal/thumbnail.png',
+    screenshots: [
+      '/images/portfolio/react-styled-modal/demo.png',
+      '/images/portfolio/react-styled-modal/demo2.png',
+    ],
+    description: `
+      A React library that allows you to display popup modals and dialogs.
+    `,
+    about: `
+      React Styled Modal is a library that gives you the ability to display
+      popup modals and dialogs in your React application using Styled Components.
+
+      The component is fully customizable via styled-components themes and/or
+      subcomponent style overriding. It's responsive, supports stacking and
+      does NOT depend on any external library like jQuery or Bootstrap.
+    `,
+    techniques: [
+      'React',
+      'TypeScript',
+      'Styled Components',
+    ],
+    links: [
+      {
+        label: 'DEMO',
+        url: 'https://lexkrstn.github.io/react-styled-modal/',
+        description: 'Checkout the',
+      },
+      {
+        label: 'GitHub',
+        url: 'https://github.com/lexkrstn/react-styled-modal',
+        description: 'The sources are available on',
       },
     ],
   },
