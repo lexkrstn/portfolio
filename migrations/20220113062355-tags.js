@@ -9,7 +9,7 @@ const tags = [
   { name: 'Vue', workCount: 0 },
   { name: 'Vuex', workCount: 0 },
   { name: 'PHP', workCount: 0 },
-  { name: 'Wordpress', workCount: 0 },
+  { name: 'WordPress', workCount: 0 },
   { name: 'WooCommerce', workCount: 0 },
   { name: 'Sass/Less', workCount: 0 },
   { name: 'MySQL', workCount: 0 },

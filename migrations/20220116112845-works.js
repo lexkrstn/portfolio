@@ -539,4 +539,37 @@ const getWorks = () => [
       },
     ],
   },
+  {
+    name: 'Mari store',
+    tags: [
+      'PHP', 'WordPress', 'MySQL', 'jQuery',
+    ],
+    thumbnail: '/images/portfolio/old/mari/thumbnail.jpg',
+    screenshots: [
+      '/images/portfolio/old/mari/main.jpg',
+      'https://www.youtube.com/embed/5XmdxfKMaYk',
+      '/images/portfolio/old/mari/events.jpg',
+      '/images/portfolio/old/mari/about.png',
+    ],
+    description: `
+      A WordPress website for a shopping and entertainment center in Moscow.
+    `,
+    about: `
+      A WordPress website for a shopping and entertainment center in Moscow.
+      Please note, that this is not my design, I was responsible for coding only.
+    `,
+    techniques: [
+      'PHP',
+      'MySQL',
+      'WordPress',
+      'JavaScript / jQuery',
+    ],
+    links: [
+      {
+        label: 'trk-mari.ru',
+        url: 'https://trk-mari.ru',
+        description: 'Check it out on',
+      },
+    ],
+  },
 ];
