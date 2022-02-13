@@ -680,4 +680,40 @@ const getWorks = () => [
       },
     ],
   },
+  {
+    name: 'LogoShar store',
+    tags: [
+      'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
+    ],
+    thumbnail: '/images/portfolio/old/logoshar/thumbnail.png',
+    screenshots: [
+      '/images/portfolio/old/logoshar/main.png',
+      '/images/portfolio/old/logoshar/products.png',
+      '/images/portfolio/old/logoshar/price.png',
+    ],
+    description: `
+      Online store of helium balloons.
+    `,
+    about: `
+      Online store of helium balloons. The e-commerce part is
+      based on WooCommerce, an open-source plugin for WordPress.
+
+      Please note, that this is not my design, I was responsible for coding only.
+    `,
+    techniques: [
+      'PHP',
+      'MySQL',
+      'WordPress',
+      'WooCommerce',
+      'JavaScript / jQuery',
+      'Sass',
+    ],
+    links: [
+      {
+        label: 'logoshar.ru',
+        url: 'https://logoshar.ru',
+        description: 'Check it out on',
+      },
+    ],
+  },
 ];
