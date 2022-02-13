@@ -19,6 +19,8 @@ const tags = [
   { name: 'Knex.js', workCount: 0 },
   { name: 'Objection.js', workCount: 0 },
   { name: 'Stylus', workCount: 0 },
+  { name: 'Mongo', workCount: 0 },
+  { name: 'NestJS', workCount: 0 },
 ];
 
 module.exports = {

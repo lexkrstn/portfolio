@@ -323,7 +323,7 @@ const getWorks = () => [
     techniques: [
       'Vue / Vuex — SPA frontend',
       'Vuetify — GUI components library',
-      'GraphQL — browser-server communicatoin',
+      'GraphQL — browser-server communication',
       'Node / ExpressJS — server framework',
       'MySQL — persistence',
       'Knex.js — SQL query builder',
@@ -334,6 +334,47 @@ const getWorks = () => [
         label: 'Krisberg.ru',
         url: 'https://krisberg.ru',
         description: 'The product has been developed for',
+      },
+    ],
+  },
+  {
+    name: 'Portfolio',
+    tags: [
+      'TypeScript', 'NodeJS', 'Mongo', 'NestJS', 'ExpressJS',
+      'React', 'Redux', 'Styled Components', 'REST',
+    ],
+    thumbnail: '/images/portfolio/portfolio/thumbnail.jpg',
+    screenshots: [
+      '/images/portfolio/portfolio/home.jpg',
+      '/images/portfolio/portfolio/works.jpg',
+      '/images/portfolio/portfolio/about.jpg',
+    ],
+    description: `
+      My personal webpage describing my professional skills, the services I
+      provide and showing examples of my work.
+    `,
+    about: `
+      The latest version of my personal webpage describing my professional
+      skills, the services I provide and showing examples of my work.
+      The software consists of 3 TypeScript applications: API server, SSR server
+      and SPA.
+    `,
+    techniques: [
+      'TypeScript — both server and browser side',
+      'React / Redux — SPA frontend',
+      'Emotion — styled components',
+      'Mui — GUI components library',
+      'NestJS — API server framework',
+      'ExpressJS — SSR server framework',
+      'Mongo — persistence',
+      'Docker — simplifies deployment to AWS EC2',
+      'REST — browser-server communication',
+    ],
+    links: [
+      {
+        label: 'GitHub',
+        url: 'https://github.com/lexkrstn/portfolio',
+        description: 'The sources are available on',
       },
     ],
   },
