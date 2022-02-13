@@ -576,7 +576,7 @@ const getWorks = () => [
   {
     name: 'Interma store',
     tags: [
-      'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less'
+      'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
     ],
     thumbnail: '/images/portfolio/old/interma/thumbnail.jpg',
     screenshots: [
@@ -614,7 +614,7 @@ const getWorks = () => [
   {
     name: 'BaseRelief store',
     tags: [
-      'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less'
+      'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
     ],
     thumbnail: '/images/portfolio/old/baserelief/thumbnail.jpg',
     screenshots: [
@@ -643,6 +643,39 @@ const getWorks = () => [
       {
         label: 'baserelief.ru',
         url: 'https://baserelief.ru/',
+        description: 'Check it out on',
+      },
+    ],
+  },
+  {
+    name: 'Beauty of lake',
+    tags: [
+      'PHP', 'WordPress', 'MySQL', 'jQuery', 'Sass/Less',
+    ],
+    thumbnail: '/images/portfolio/old/beauty-of-lake/thumbnail.jpg',
+    screenshots: [
+      '/images/portfolio/old/beauty-of-lake/main.jpg',
+      '/images/portfolio/old/beauty-of-lake/main2.jpg',
+    ],
+    description: `
+      Website for a beauty saloon.
+    `,
+    about: `
+      One of my old WordPress jobs, a beauty salon website.
+
+      Please note, that this is not my design, I was responsible for coding only.
+    `,
+    techniques: [
+      'PHP',
+      'MySQL',
+      'WordPress',
+      'JavaScript / jQuery',
+      'Sass',
+    ],
+    links: [
+      {
+        label: 'beautyoflake.ru',
+        url: 'https://beautyoflake.ru/',
         description: 'Check it out on',
       },
     ],
