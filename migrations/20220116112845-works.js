@@ -137,7 +137,7 @@ const getWorks = () => [
       {
         label: 'Krisberg.ru',
         url: 'https://krisberg.ru',
-        description: 'The product is developed for',
+        description: 'The product has been developed for',
       },
     ],
   },
@@ -177,12 +177,60 @@ const getWorks = () => [
       {
         label: 'Krisberg.ru',
         url: 'https://krisberg.ru',
-        description: 'The product is developed for',
+        description: 'The product has been developed for',
       },
       {
         label: 'Kernelchip.ru',
         url: 'https://kernelchip.ru/Laurent-5.php',
         description: 'Check out what Laurent-5 is on',
+      },
+    ],
+  },
+  {
+    name: 'Sound Processors Proxy',
+    tags: [
+      'JavaScript', 'NodeJS', 'jQuery', 'REST',
+    ],
+    thumbnail: '/images/portfolio/sp-proxy/thumbnail.png',
+    screenshots: [
+      '/images/portfolio/sp-proxy/dashboard.png',
+      'https://www.youtube.com/embed/hNJ3R1kJLFk',
+    ],
+    description: `
+      A reverse proxy server enabling communication over multiple connections
+      to sound processors that do not support it.
+    `,
+    about: `
+      Some cinema sound processors, such as Dolby CP650 and USL JSD80, are
+      limited to communicating over TCP/IP channel with only one client at a time.
+      This is not enough if you want to control a sound processor
+      with a third-party Theatre Management Systems such as Krisberg TMS.
+
+      This reverse proxy is designed to overcome this limitation by listening for
+      incoming connections on specific ports and passing commands to the
+      appropriate processors in the correct order. The proxy knows which
+      commands can be executed in parallel and which only in sequential order
+      to execute them as fast as possible. To determine which instruction the
+      processor's response belongs to, the proxy server keeps a record of the
+      instructions in vendor-specific pipelines.
+
+      The proxy is represented by a NodeJS service which connects to
+      sound processors and listens for incoming connections on pre-configured
+      ports. It has also a simple web interface that allows system administrators
+      to make sure everything is working properly. All proxy server configuration
+      is managed by the Theater Management System application through a REST
+      API running on a service TCP port.
+    `,
+    techniques: [
+      'NodeJS — TCP/IP sockets',
+      'ExpressJS — maintenance web interface and REST API',
+      'Bootstrap — some UI elements',
+    ],
+    links: [
+      {
+        label: 'Krisberg.ru',
+        url: 'https://krisberg.ru',
+        description: 'The product has been developed for',
       },
     ],
   },
