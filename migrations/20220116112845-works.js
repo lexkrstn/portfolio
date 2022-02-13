@@ -457,6 +457,48 @@ const getWorks = () => [
     ],
   },
   {
+    name: 'jQuery.skedTape',
+    tags: [
+      'JavaScript', 'jQuery', 'Sass/Less',
+    ],
+    thumbnail: '/images/portfolio/jquery-sked-tape/thumbnail.png',
+    screenshots: [
+      '/images/portfolio/jquery-sked-tape/demo.png',
+      '/images/portfolio/jquery-sked-tape/modal.png',
+    ],
+    description: `
+      A jQuery library that allows you to display an interactive schedule component.
+    `,
+    about: `
+      jQuery.skedTape is a library that gives you the ability to display
+      interactive schedule widget in your JavaScript application using jQuery.
+
+      The library provides custom date/time formatting and internalization.
+      You can change the HTML layout of the sidebar and timeline events
+      using hooks. It's also possible to programmatically turn
+      drag-and-drop mode on and off. While the mode is on you can prohibit
+      the event from being dropped into a particular row by using the
+      appropriate callback.
+    `,
+    techniques: [
+      'JavaScript',
+      'jQuery',
+      'Sass',
+    ],
+    links: [
+      {
+        label: 'DEMO',
+        url: 'https://lexkrstn.github.io/jquery-sked-tape/',
+        description: 'Check out the',
+      },
+      {
+        label: 'GitHub',
+        url: 'https://github.com/lexkrstn/jquery-sked-tape',
+        description: 'The sources are available on',
+      },
+    ],
+  },
+  {
     name: 'Portfolio',
     tags: [
       'TypeScript', 'NodeJS', 'Mongo', 'NestJS', 'ExpressJS',
