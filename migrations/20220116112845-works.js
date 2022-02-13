@@ -587,10 +587,10 @@ const getWorks = () => [
       '/images/portfolio/old/interma/academy.jpg',
     ],
     description: `
-      Website for an online store of heating systems.
+      Online store of heating systems.
     `,
     about: `
-      Website for an online store of heating systems. The e-commerce part is
+      Online store of heating systems. The e-commerce part is
       based on WooCommerce, an open-source plugin for WordPress.
 
       Please note, that this is not my design, I was responsible for coding only.
@@ -607,6 +607,42 @@ const getWorks = () => [
       {
         label: 'interma.ru',
         url: 'https://interma.ru',
+        description: 'Check it out on',
+      },
+    ],
+  },
+  {
+    name: 'BaseRelief store',
+    tags: [
+      'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less'
+    ],
+    thumbnail: '/images/portfolio/old/baserelief/thumbnail.jpg',
+    screenshots: [
+      '/images/portfolio/old/baserelief/main.jpg',
+      '/images/portfolio/old/baserelief/products.jpg',
+      '/images/portfolio/old/baserelief/portfolio.jpg',
+    ],
+    description: `
+      Online store for a landscape design studio.
+    `,
+    about: `
+      Online store for a landscape design studio. The e-commerce part is
+      based on WooCommerce, an open-source plugin for WordPress.
+
+      Please note, that this is not my design, I was responsible for coding only.
+    `,
+    techniques: [
+      'PHP',
+      'MySQL',
+      'WordPress',
+      'WooCommerce',
+      'JavaScript / jQuery',
+      'Sass',
+    ],
+    links: [
+      {
+        label: 'baserelief.ru',
+        url: 'https://baserelief.ru/',
         description: 'Check it out on',
       },
     ],
