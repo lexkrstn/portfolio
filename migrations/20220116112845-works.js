@@ -234,4 +234,52 @@ const getWorks = () => [
       },
     ],
   },
+  {
+    name: 'Release Aggregator',
+    tags: [
+      'JavaScript', 'NodeJS', 'MySQL', 'jQuery', 'REST', 'Knex.js', 'Objection.js',
+    ],
+    thumbnail: '/images/portfolio/aggregator/thumbnail.png',
+    screenshots: [
+      '/images/portfolio/aggregator/dashboard.png',
+      '/images/portfolio/aggregator/release.png',
+      '/images/portfolio/aggregator/distributor.png',
+      '/images/portfolio/aggregator/release-edit.png',
+      '/images/portfolio/aggregator/releases.png',
+    ],
+    description: `
+      A grabber service that collects movie release information and provides
+      a REST API for clients.
+    `,
+    about: `
+      The Release Aggregator service is part of Krisberg application ecosystem.
+      It collects film distribution and licensing data from official sources,
+      such as the website of ministry of culture, and stores it in the database.
+      Its clients (other applications in the ecosystem) can then use the service's
+      REST API to get additional information about releases, such as alternative
+      names, licenses, available distributors, show formats, genres, etc. One of
+      its greatest features is the use of a large number of heuristics to decide
+      which data of which data source is the best fit.
+
+      The software itself is represented by a NodeJS application with web UI
+      written with the help of ExpressJS templates. The GUI can be used to
+      modify the release data manually, or configure the application.
+    `,
+    techniques: [
+      'ExpressJS — admin panel and REST API',
+      'MySQL — storing release information',
+      'Knex.js — SQL query builder',
+      'Objection.js — ORM library',
+      'Bootstrap / jQuery — some UI elements',
+      'REST — API for getting releases, distributors and other info',
+      'Pug — template engine',
+    ],
+    links: [
+      {
+        label: 'Krisberg.ru',
+        url: 'https://krisberg.ru',
+        description: 'The product has been developed for',
+      },
+    ],
+  },
 ];
