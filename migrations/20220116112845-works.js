@@ -189,7 +189,7 @@ const getWorks = () => [
   {
     name: 'Sound Processors Proxy',
     tags: [
-      'JavaScript', 'NodeJS', 'jQuery', 'REST',
+      'JavaScript', 'NodeJS', 'ExpressJS', 'jQuery', 'REST',
     ],
     thumbnail: '/images/portfolio/sp-proxy/thumbnail.png',
     screenshots: [
@@ -238,6 +238,7 @@ const getWorks = () => [
     name: 'Release Aggregator',
     tags: [
       'JavaScript', 'NodeJS', 'MySQL', 'jQuery', 'REST', 'Knex.js', 'Objection.js',
+      'ExpressJS',
     ],
     thumbnail: '/images/portfolio/aggregator/thumbnail.png',
     screenshots: [
@@ -273,6 +274,60 @@ const getWorks = () => [
       'Bootstrap / jQuery — some UI elements',
       'REST — API for getting releases, distributors and other info',
       'Pug — template engine',
+    ],
+    links: [
+      {
+        label: 'Krisberg.ru',
+        url: 'https://krisberg.ru',
+        description: 'The product has been developed for',
+      },
+    ],
+  },
+  {
+    name: 'Repertory Planner',
+    tags: [
+      'JavaScript', 'NodeJS', 'MySQL', 'Knex.js', 'Objection.js',
+      'Vue', 'Vuex', 'Stylus', 'GraphQL', 'ExpressJS',
+    ],
+    thumbnail: '/images/portfolio/replanner/thumbnail.png',
+    screenshots: [
+      '/images/portfolio/replanner/schedule.png',
+      '/images/portfolio/replanner/release-dialog.png',
+      '/images/portfolio/replanner/dashboard.png',
+    ],
+    description: `
+      A service that allows bookers (cinema employees) to make a repertory
+      booking plan.
+    `,
+    about: `
+      The Repertory Planner allows the booker (special cinema employee)
+      to create repertoire plans.
+
+      A cinema repertoire plan provides information on booking film releases.
+      The thing is, the cinemas can show only those films, the licenses for
+      which they have rented for a certain period of time. Moreover, film
+      releases come in a variaty of audio and video formats, subtitles and
+      support of cinema features like 4DX, which incorporates on-screen
+      visuals with synchronized motion seats and environmental effects. And
+      each of these effects or formats can be rented separately and used only
+      a certain number of times. So the repertoire plan is an essential part of
+      the cinema's workflow since it keeps records of film release formats
+      that need to be rented in advance.
+
+      The Repertory Planner service is part of Krisberg application ecosystem.
+      It's represented as a NodeJS server application with an in-browser SPA
+      front-end. The application uses other Krisberg services, such as
+      Release Aggregator and Authorizer (both also developed by me), to get
+      the information about available releases and authenticate in the system.
+    `,
+    techniques: [
+      'Vue / Vuex — SPA frontend',
+      'Vuetify — GUI components library',
+      'GraphQL — browser-server communicatoin',
+      'Node / ExpressJS — server framework',
+      'MySQL — persistence',
+      'Knex.js — SQL query builder',
+      'Objection.js — ORM library',
     ],
     links: [
       {
