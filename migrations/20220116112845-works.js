@@ -563,11 +563,50 @@ const getWorks = () => [
       'MySQL',
       'WordPress',
       'JavaScript / jQuery',
+      'Sass',
     ],
     links: [
       {
         label: 'trk-mari.ru',
         url: 'https://trk-mari.ru',
+        description: 'Check it out on',
+      },
+    ],
+  },
+  {
+    name: 'Interma store',
+    tags: [
+      'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less'
+    ],
+    thumbnail: '/images/portfolio/old/interma/thumbnail.jpg',
+    screenshots: [
+      '/images/portfolio/old/interma/main.jpg',
+      '/images/portfolio/old/interma/products.jpg',
+      '/images/portfolio/old/interma/product.jpg',
+      '/images/portfolio/old/interma/objects.jpg',
+      '/images/portfolio/old/interma/academy.jpg',
+    ],
+    description: `
+      Website for an online store of heating systems.
+    `,
+    about: `
+      Website for an online store of heating systems. The e-commerce part is
+      based on WooCommerce, an open-source plugin for WordPress.
+
+      Please note, that this is not my design, I was responsible for coding only.
+    `,
+    techniques: [
+      'PHP',
+      'MySQL',
+      'WordPress',
+      'WooCommerce',
+      'JavaScript / jQuery',
+      'Sass',
+    ],
+    links: [
+      {
+        label: 'interma.ru',
+        url: 'https://interma.ru',
         description: 'Check it out on',
       },
     ],
