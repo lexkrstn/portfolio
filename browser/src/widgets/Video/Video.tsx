@@ -18,13 +18,14 @@ export default function Video({ src }: VideoProps): ReactElement {
     rel: 0,
     showinfo: 0,
     iv_load_policy: 3,
+    modestbranding: 1,
     playlist: getVideoIdFromUrl(src),
   };
   const paramsString = Object.keys(params)
     .map(key => `${key}=${params[key]}`)
     .join('&');
   const allow: string[] = [
-    'accelerometer', 'autoplay', 'modestbranding', 'clipboard-write',
+    'accelerometer', 'autoplay', 'clipboard-write',
     'encrypted-media', 'gyroscope', 'picture-in-picture',
   ];
   return (
