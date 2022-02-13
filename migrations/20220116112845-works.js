@@ -338,6 +338,46 @@ const getWorks = () => [
     ],
   },
   {
+    name: 'HallPlan Widget',
+    tags: [
+      'TypeScript', 'JavaScript', 'Sass/Less',
+    ],
+    thumbnail: '/images/portfolio/hallplan/thumbnail.png',
+    screenshots: [
+      '/images/portfolio/hallplan/demo.png',
+      '/images/portfolio/hallplan/demo2.png',
+    ],
+    description: `
+      An interactive TypeScript widget that represents the cinema's seating layout.
+    `,
+    about: `
+      HallPlan is an interactive TypeScript / JavaScript component that
+      represents the seating layout in the cinema.
+      The seating arrangement is fully customizable via JSON schema. With this
+      component it's also possible to control the state of seats, e.g. by
+      marking some of them as reserved or vip.
+      The component is designed to be used with Vue / React frameworks as well
+      as the traditional jQuery frontend, so it doesn't depend on any
+      third-party library.
+    `,
+    techniques: [
+      'TypeScript — widget component',
+      'Sass — styling',
+    ],
+    links: [
+      {
+        label: 'DEMO',
+        url: 'https://lexkrstn.github.io/hall-plan/media/demo.html',
+        description: 'Checkout the',
+      },
+      {
+        label: 'GitHub',
+        url: 'https://github.com/lexkrstn/hall-plan',
+        description: 'The sources is available on',
+      },
+    ],
+  },
+  {
     name: 'Portfolio',
     tags: [
       'TypeScript', 'NodeJS', 'Mongo', 'NestJS', 'ExpressJS',
