@@ -368,7 +368,7 @@ const getWorks = () => [
       {
         label: 'DEMO',
         url: 'https://lexkrstn.github.io/hall-plan/media/demo.html',
-        description: 'Checkout the',
+        description: 'Check out the',
       },
       {
         label: 'GitHub',
@@ -407,11 +407,51 @@ const getWorks = () => [
       {
         label: 'DEMO',
         url: 'https://lexkrstn.github.io/react-styled-modal/',
-        description: 'Checkout the',
+        description: 'Check out the',
       },
       {
         label: 'GitHub',
         url: 'https://github.com/lexkrstn/react-styled-modal',
+        description: 'The sources are available on',
+      },
+    ],
+  },
+  {
+    name: 'React Styled Collapser',
+    tags: [
+      'JavaScript', 'React', 'Styled Components',
+    ],
+    thumbnail: '/images/portfolio/react-styled-collapser/thumbnail.png',
+    screenshots: [
+      '/images/portfolio/react-styled-collapser/demo.png',
+      '/images/portfolio/react-styled-collapser/demo2.png',
+    ],
+    description: `
+      A React library that allows you to display collapsable content.
+    `,
+    about: `
+      React Styled Modal is a library that gives you the ability to display
+      "collapsable" content in your React application using Styled Components.
+
+      The effect is similar to jQuery's slideUp() / slideDown() but the library
+      DOES NOT use any external dependency like jQuery for this purpose.
+      Instead, it make use of React's built-in means and CSS3 transitions to
+      create similar effect. Because of this, the animation runs smoothly and fast.
+    `,
+    techniques: [
+      'React',
+      'JavaScript',
+      'Styled Components',
+    ],
+    links: [
+      {
+        label: 'DEMO',
+        url: 'https://lexkrstn.github.io/react-styled-collapser/',
+        description: 'Check out the',
+      },
+      {
+        label: 'GitHub',
+        url: 'https://github.com/lexkrstn/react-styled-collapser',
         description: 'The sources are available on',
       },
     ],
