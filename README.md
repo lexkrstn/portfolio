@@ -1,9 +1,9 @@
 # Portfolio
 
-> My personal web page describing short bio, professional skills, services I
-> provide and containing portfolio section with some examples of works.
+> My personal web page with a short bio, professional skills, services
+> I provide and a portfolio section with some examples of work.
 
-Stack:
+Technology stack:
 - Browser: TypeScript, React / Redux, Styled Components, RxJS
 - Server: TypeScript, NestJS, MongoDB
 
@@ -56,15 +56,6 @@ The preferred way to configure the server is by setting environment variables:
 
 An alternative way is to create a file named `.env` in the root of the project
 and put all the environment variables there (one per line).
-
-## Generating SSL keys (optional)
-
-```bash
-openssl genrsa -out key.pem
-openssl req -new -key key.pem -out csr.pem
-openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
-rm csr.pem
-```
 
 ## Commands cheatsheet
 
