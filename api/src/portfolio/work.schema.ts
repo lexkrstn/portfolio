@@ -15,6 +15,12 @@ export class Work {
   name: string;
 
   /**
+   * Unique identifier that is used to make permalinks.
+   */
+  @Prop({ required: true, unique: true })
+  slug: string;
+
+  /**
    * IDs of the tags associated with the work.
    */
   @Prop({

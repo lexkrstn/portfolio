@@ -7,6 +7,7 @@ export interface WorkLink {
 export interface Work {
   _id: string;
   name: string;
+  slug: string;
   tags: string[];
   thumbnail: string;
   screenshots: string[];

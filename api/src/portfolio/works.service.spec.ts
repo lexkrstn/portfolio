@@ -1,6 +1,5 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
-import { omit } from 'lodash';
 import { Schema } from 'mongoose';
 import { mockMongooseModel, mockObjectId } from '../utils/mock';
 import { Work } from './work.schema';
@@ -8,6 +7,7 @@ import { WorksService, CreateWorkDto } from './works.service';
 
 const dto: CreateWorkDto = {
   name: 'test name',
+  slug: 'test-slug',
   tags: [] as Schema.Types.ObjectId[],
   thumbnail: '/images/portfolio/t.jpg',
   screenshots: ['/images/portfolio/1.jpg'],
@@ -20,8 +20,6 @@ const dto: CreateWorkDto = {
     description: 'label description',
   }],
 };
-const dtoDefaults: Partial<CreateWorkDto> = {};
-const minDto = omit(dto, Object.keys(dtoDefaults)) as CreateWorkDto;
 
 describe('WorksService', () => {
   let module: TestingModule;
@@ -29,7 +27,7 @@ describe('WorksService', () => {
   let mockWorkModel: ReturnType<typeof mockMongooseModel>;
 
   beforeAll(async () => {
-    mockWorkModel = mockMongooseModel([{}]);
+    mockWorkModel = mockMongooseModel([dto]);
     module = await Test
       .createTestingModule({
         providers: [
@@ -53,30 +51,40 @@ describe('WorksService', () => {
   });
 
   describe('getAll()', () => {
-    it('should return non-empty list of works', async () => {
-      const works = await worksService.getAll();
-      expect(works).toBeInstanceOf(Array);
-      expect(works.length).toBeGreaterThan(0);
+    it('should call WorkModel.find() and exec()', async () => {
+      const result = await worksService.getAll();
+      expect(mockWorkModel.find).toBeCalled();
+      expect(mockWorkModel.exec).toBeCalled();
+      expect(result).toStrictEqual(await mockWorkModel.exec.mock.results[0].value);
     });
   });
 
   describe('getById()', () => {
-    it('should return a work', async () => {
-      const work = await worksService.getById(mockObjectId());
-      expect(work).toBeDefined();
-      expect(work).not.toBeNull();
+    it('should call WorkModel.findById() and exec()', async () => {
+      const id = mockObjectId();
+      const result = await worksService.getById(id);
+      expect(mockWorkModel.findById).toBeCalledWith(id);
+      expect(mockWorkModel.exec).toBeCalled();
+      expect(result).toStrictEqual(await mockWorkModel.exec.mock.results[0].value);
+    });
+  });
+
+  describe('getBySlug()', () => {
+    it('should call WorkModel.findBySlug() and exec()', async () => {
+      const slug = 'test-slug';
+      const result = await worksService.getBySlug(slug);
+      expect(mockWorkModel.findOne).toBeCalledWith({ slug });
+      expect(mockWorkModel.exec).toBeCalled();
+      expect(result).toStrictEqual(await mockWorkModel.exec.mock.results[0].value);
     });
   });
 
   describe('create()', () => {
-    it('should return the work with an _id', async () => {
-      const doc = await worksService.create(dto);
-      expect(omit(doc, '_id')).toMatchObject(dto);
-    });
-
-    it('should add default props', async () => {
-      const doc = await worksService.create(minDto);
-      expect(omit(doc, '_id')).toMatchObject({ ...minDto, ...dtoDefaults });
+    it('should instantiate a new model and call save()', async () => {
+      const spy = jest.spyOn(mockWorkModel.prototype, 'save');
+      const result = await worksService.create(dto);
+      expect(spy).toBeCalled();
+      expect(result).toStrictEqual(await spy.mock.results[0].value);
     });
   });
 

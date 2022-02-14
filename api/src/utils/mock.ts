@@ -15,20 +15,27 @@ export function mockMongooseModel<T>(fixture: T[]) {
   return class MockModel {
     constructor(private dto: any) {}
 
-    static find = () => {
+    static find = jest.fn(() => {
       many = true;
       return MockModel;
-    };
+    });
 
-    static findById = () => {
+    static findOne = jest.fn(() => {
       many = false;
       return MockModel;
-    };
+    });
 
-    static exec = async () => many ? fixture : fixture[0];
+    static findById = jest.fn(() => {
+      many = false;
+      return MockModel;
+    });
 
-    static deleteMany = async () => {};
+    static exec = jest.fn(async () => many ? fixture : fixture[0]);
 
-    async save() { return { ...this.dto, _id: mockObjectId() }; }
+    static deleteMany = jest.fn(async () => {});
+
+    async save() {
+      return { ...this.dto, _id: mockObjectId() };
+    }
   };
 }

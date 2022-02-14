@@ -1,6 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
-import { ParseObjectIdPipe } from '../pipes';
+import { isObjectId } from '../utils';
 import { WorkDocument } from './work.schema';
 import { WorksService } from './works.service';
 
@@ -13,8 +13,14 @@ export class WorksController {
     return this.worksService.getAll();
   }
 
-  @Get('api/v1/works/:id')
-  public async get(@Param('id', ParseObjectIdPipe) id: string): Promise<WorkDocument> {
-    return this.worksService.getById(new ObjectId(id));
+  @Get('api/v1/works/:slugOrId')
+  public async get(@Param('slugOrId') slugOrId: string): Promise<WorkDocument> {
+    const work = isObjectId(slugOrId)
+      ? await this.worksService.getById(new ObjectId(slugOrId))
+      : await this.worksService.getBySlug(slugOrId);
+    if (!work) {
+      throw new NotFoundException(`Work ${slugOrId} not found`);
+    }
+    return work;
   }
 }

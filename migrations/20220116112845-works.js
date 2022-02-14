@@ -17,6 +17,7 @@ module.exports = {
 const getWorks = () => [
   {
     name: 'Theatre Management System',
+    slug: 'tms',
     tags: ['JavaScript', 'PHP', 'MySQL', 'jQuery', 'REST', 'ExpressJS', 'NodeJS'],
     thumbnail: '/images/portfolio/tms/thumbnail.png',
     screenshots: [
@@ -65,6 +66,7 @@ const getWorks = () => [
   },
   {
     name: 'Theatre Management Media',
+    slug: 'tmv',
     tags: [
       'TypeScript', 'JavaScript', 'MySQL', 'Vue', 'Vuex', 'REST', 'ExpressJS',
       'NodeJS', 'Stylus', 'Knex.js', 'Objection.js',
@@ -103,6 +105,7 @@ const getWorks = () => [
   },
   {
     name: 'WireGuard VPN Manager',
+    slug: 'vpnmgr',
     tags: [
       'JavaScript', 'Vue', 'Vuex', 'REST', 'ExpressJS',
       'NodeJS', 'Stylus', 'Knex.js', 'Objection.js', 'MySQL',
@@ -143,6 +146,7 @@ const getWorks = () => [
   },
   {
     name: 'Smart Socket Dashboard',
+    slug: 'socket',
     tags: [
       'TypeScript', 'Vue', 'Vuex', 'Stylus',
     ],
@@ -188,6 +192,7 @@ const getWorks = () => [
   },
   {
     name: 'Sound Processors Proxy',
+    slug: 'sp-proxy',
     tags: [
       'JavaScript', 'NodeJS', 'ExpressJS', 'jQuery', 'REST',
     ],
@@ -236,6 +241,7 @@ const getWorks = () => [
   },
   {
     name: 'Release Aggregator',
+    slug: 'aggregator',
     tags: [
       'JavaScript', 'NodeJS', 'MySQL', 'jQuery', 'REST', 'Knex.js', 'Objection.js',
       'ExpressJS',
@@ -285,6 +291,7 @@ const getWorks = () => [
   },
   {
     name: 'Repertory Planner',
+    slug: 'replanner',
     tags: [
       'JavaScript', 'NodeJS', 'MySQL', 'Knex.js', 'Objection.js',
       'Vue', 'Vuex', 'Stylus', 'GraphQL', 'ExpressJS',
@@ -339,6 +346,7 @@ const getWorks = () => [
   },
   {
     name: 'HallPlan Widget',
+    slug: 'hallplan',
     tags: [
       'TypeScript', 'JavaScript', 'Sass/Less',
     ],
@@ -379,6 +387,7 @@ const getWorks = () => [
   },
   {
     name: 'React Styled Modal',
+    slug: 'react-styled-modal',
     tags: [
       'TypeScript', 'React', 'Styled Components',
     ],
@@ -418,6 +427,7 @@ const getWorks = () => [
   },
   {
     name: 'React Styled Collapser',
+    slug: 'react-styled-collapser',
     tags: [
       'JavaScript', 'React', 'Styled Components',
     ],
@@ -458,6 +468,7 @@ const getWorks = () => [
   },
   {
     name: 'jQuery.skedTape',
+    slug: 'jquery-sked-tape',
     tags: [
       'JavaScript', 'jQuery', 'Sass/Less',
     ],
@@ -500,6 +511,7 @@ const getWorks = () => [
   },
   {
     name: 'Portfolio',
+    slug: 'portfolio',
     tags: [
       'TypeScript', 'NodeJS', 'Mongo', 'NestJS', 'ExpressJS',
       'React', 'Redux', 'Styled Components', 'REST',
@@ -541,6 +553,7 @@ const getWorks = () => [
   },
   {
     name: 'Mari store',
+    slug: 'mari',
     tags: [
       'PHP', 'WordPress', 'MySQL', 'jQuery',
     ],
@@ -575,6 +588,7 @@ const getWorks = () => [
   },
   {
     name: 'Interma store',
+    slug: 'interma',
     tags: [
       'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
     ],
@@ -613,6 +627,7 @@ const getWorks = () => [
   },
   {
     name: 'BaseRelief store',
+    slug: 'baserelief',
     tags: [
       'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
     ],
@@ -649,6 +664,7 @@ const getWorks = () => [
   },
   {
     name: 'Beauty of lake',
+    slug: 'beauty-of-lake',
     tags: [
       'PHP', 'WordPress', 'MySQL', 'jQuery', 'Sass/Less',
     ],
@@ -682,6 +698,7 @@ const getWorks = () => [
   },
   {
     name: 'LogoShar store',
+    slug: 'logoshar',
     tags: [
       'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
     ],
@@ -718,6 +735,7 @@ const getWorks = () => [
   },
   {
     name: 'MedConsulting',
+    slug: 'ur-kons',
     tags: [
       'PHP', 'WordPress', 'MySQL', 'jQuery', 'Sass/Less',
     ],

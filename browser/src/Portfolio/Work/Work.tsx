@@ -15,6 +15,9 @@ import Video from '../../widgets/Video';
 
 type WorkProps = RouteConfigComponentProps<{ id: string }>;
 
+/**
+ * Portfolio work page.
+ */
 export default function Work({ match }: WorkProps): ReactElement {
   const dispatch = useDispatch();
   const imageCache = useRef<Record<string, string>>({});
@@ -29,7 +32,7 @@ export default function Work({ match }: WorkProps): ReactElement {
   }, [work]);
 
   useEffect(() => {
-    if (!fetched || work?._id !== match.params.id) {
+    if (!fetched || (work?._id !== match.params.id && work?.slug !== match.params.id)) {
       dispatch(fetchWork(match.params.id));
     }
   });

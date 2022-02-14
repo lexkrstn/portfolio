@@ -32,6 +32,10 @@ export class WorksService {
     return this.WorkModel.findById(id).exec();
   }
 
+  async getBySlug(slug: string): Promise<WorkDocument> {
+    return this.WorkModel.findOne({ slug }).exec();
+  }
+
   async create(dto: CreateWorkDto): Promise<WorkDocument> {
     const model = new this.WorkModel(dto);
     return model.save();

@@ -5,6 +5,9 @@ import { selectSelectedTagId, selectSortedTags, setTagSelected } from '../duck';
 import { Tag } from '../interfaces';
 import * as S from './styles';
 
+/**
+ * The filter section allowing to choose a tag to filter the works by.
+ */
 export default function TagFilter(): ReactElement {
   const dispatch = useDispatch();
   const selectedTagId = useSelector(selectSelectedTagId);

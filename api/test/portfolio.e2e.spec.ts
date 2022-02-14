@@ -12,6 +12,7 @@ const tagsFixture: Tag[] = [{
 
 const worksFixture: CreateWorkDto[] = [{
   name: 'test name',
+  slug: 'test-slug',
   tags: [] as Schema.Types.ObjectId[],
   thumbnail: '/images/portfolio/t.jpg',
   screenshots: ['/images/portfolio/1.jpg'],
@@ -97,13 +98,32 @@ describe('PortfolioModule (e2e)', () => {
       await worksService.deleteAll();
     });
 
-    it('should return the work', async () => {
+    it('should return the work by id', async () => {
       const res = await request(app.getHttpServer())
         .get(`/api/v1/works/${work._id}`)
         .expect(200);
       expect(res.body).toBeInstanceOf(Object);
       expect(omitUnderscoredProps(res.body)).toEqual(worksFixture[0]);
       expect(res.body._id).toEqual(work._id.toString());
+    });
+
+    it('should return the work by slug', async () => {
+      const res = await request(app.getHttpServer())
+        .get(`/api/v1/works/${work.slug}`)
+        .expect(200);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(omitUnderscoredProps(res.body)).toEqual(worksFixture[0]);
+      expect(res.body.slug).toEqual(work.slug.toString());
+    });
+
+    it('should return 404 error', async () => {
+      const res = await request(app.getHttpServer())
+        .get(`/api/v1/works/unexistent`)
+        .expect(404);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty('error', 'Not Found');
+      expect(res.body).toHaveProperty('message');
+      expect(res.body).toHaveProperty('statusCode', 404);
     });
   });
 });

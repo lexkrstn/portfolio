@@ -13,6 +13,9 @@ import Appeal from './Appeal';
 import TagFilter from './TagFilter';
 import * as S from './styles';
 
+/**
+ * Portfolio page.
+ */
 export default function Portfolio(): ReactElement {
   const dispatch = useDispatch();
   const tags = useSelector(selectTags);
@@ -65,7 +68,7 @@ export default function Portfolio(): ReactElement {
                         <Card
                           caption={work.name}
                           cover={work.thumbnail}
-                          route={`/portfolio/${work._id}`}
+                          route={`/portfolio/${work.slug}`}
                           tags={worksTags[i]}
                           onClickTag={onClickTag}
                         />
