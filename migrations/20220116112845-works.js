@@ -716,4 +716,37 @@ const getWorks = () => [
       },
     ],
   },
+  {
+    name: 'MedConsulting',
+    tags: [
+      'PHP', 'WordPress', 'MySQL', 'jQuery', 'Sass/Less',
+    ],
+    thumbnail: '/images/portfolio/old/ur-kons/thumbnail.jpg',
+    screenshots: [
+      '/images/portfolio/old/ur-kons/main.jpg',
+      '/images/portfolio/old/ur-kons/article.jpg',
+    ],
+    description: `
+      Website for a medical activities licensing center.
+    `,
+    about: `
+      One of my old WordPress jobs, a website for a medical activities licensing center.
+
+      Please note, that this is not my design, I was responsible for coding only.
+    `,
+    techniques: [
+      'PHP',
+      'MySQL',
+      'WordPress',
+      'JavaScript / jQuery',
+      'Sass',
+    ],
+    links: [
+      {
+        label: 'ur-kons.ru',
+        url: 'https://ur-kons.ru/',
+        description: 'Check it out on',
+      },
+    ],
+  },
 ];
