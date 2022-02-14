@@ -23,6 +23,7 @@ export default function Work({ match }: WorkProps): ReactElement {
   const imageCache = useRef<Record<string, string>>({});
   const work = useSelector(selectWork);
   const fetched = useSelector(selectWorkFetched);
+  const fetchedRight = fetched && (work?._id === match.params.id || work?.slug === match.params.id);
   const about = useMemo(() => {
     if (!work) return [];
     return work.about
@@ -32,18 +33,18 @@ export default function Work({ match }: WorkProps): ReactElement {
   }, [work]);
 
   useEffect(() => {
-    if (!fetched || (work?._id !== match.params.id && work?.slug !== match.params.id)) {
+    if (!fetchedRight) {
       dispatch(fetchWork(match.params.id));
     }
-  });
+  }, [fetchedRight]);
 
   return (
     <S.Work>
       <GradientBackground />
       <S.Container>
         <S.Box>
-          {!work && <Loading aspect={2} />}
-          {!!work && (
+          {!fetchedRight && <Loading aspect={2} />}
+          {fetchedRight && (
             <>
               <S.Title>{work.name}</S.Title>
               <S.Brief>{work.description}</S.Brief>
