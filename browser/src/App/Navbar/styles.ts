@@ -21,6 +21,15 @@ export const Brand = styled.span`
   }
 `;
 
+export const Name = styled.span`
+  display: block;
+  margin-left: 0.8em;
+  font-size: 0.7em;
+  white-space: pre;
+  line-height: 1.2;
+  font-weight: 300;
+`;
+
 export const Navbar = styled.nav<{ fixed: boolean }>`
   position: absolute;
   top: 0;
@@ -28,6 +37,7 @@ export const Navbar = styled.nav<{ fixed: boolean }>`
   right: 0;
   z-index: 1000;
   display: block;
+  transform: translate3d(0,0,0);
   ${containerWrapMixin}
   height: 84px;
   background: linear-gradient(180deg, rgba(0,0,0,0.2),rgba(1,0,0,0));

@@ -2,6 +2,7 @@ import { push } from 'connected-react-router';
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
+import Typewriter from '../../widgets/Typewriter';
 import { openContactDialog, toggleMobileMenu } from '../duck';
 import menuItems from '../menu';
 import Logo from './Logo';
@@ -31,6 +32,17 @@ export default function Navbar(): ReactElement {
       <S.Container>
         <S.Brand onClick={handlers[0]}>
           <Logo />
+          <S.Name>
+            <Typewriter
+              keyframes={[
+                { text: 'Alexander' },
+                { text: '\nKorostin' },
+                { clear: 18, delay: 3000 },
+                { text: 'Fullstack\nProgrammer' },
+                { clear: 33, delay: 3000 },
+              ]}
+            />
+          </S.Name>
         </S.Brand>
         <S.Nav>
           {menuItems.map(({ path, name }, i) => (
