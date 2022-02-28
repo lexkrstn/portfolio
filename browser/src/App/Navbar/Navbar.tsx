@@ -32,17 +32,17 @@ export default function Navbar(): ReactElement {
       <S.Container>
         <S.Brand onClick={handlers[0]}>
           <Logo />
-          <S.Name>
-            <Typewriter
-              keyframes={[
-                { text: 'Alexander' },
-                { text: '\nKorostin' },
-                { clear: 18, delay: 3000 },
-                { text: 'Fullstack\nProgrammer' },
-                { clear: 33, delay: 3000 },
-              ]}
-            />
-          </S.Name>
+          {location.pathname === '/portfolio' && (
+            <S.Name>
+              <Typewriter
+                keyframes={[
+                  { text: 'Alexander' },
+                  { text: '\nKorostin' },
+                  { clear: 18, delay: 10000 },
+                ]}
+              />
+            </S.Name>
+          )}
         </S.Brand>
         <S.Nav>
           {menuItems.map(({ path, name }, i) => (

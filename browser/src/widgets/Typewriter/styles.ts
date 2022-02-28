@@ -10,6 +10,8 @@ export const Typewriter = styled.div<{ fontSize: string }>`
   font-size: ${props => props.fontSize || 'inherit'};
 `;
 
+export const Character = styled.span``;
+
 export const Caret = styled.span`
   display: inline-block;
   width: 2px;
