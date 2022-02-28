@@ -56,9 +56,10 @@ describe('ContactService', () => {
       text: 'test message',
     };
     const mailFixture: Mail = {
-      ...contactFixture,
+      from: 'test@host.com',
       to: mockConfig.contact.email,
       subject: mockConfig.contact.subject,
+      text: 'test message\n\nFrom: test@host.com',
     };
 
     it('should call MailerService.sendMail()', async () => {
