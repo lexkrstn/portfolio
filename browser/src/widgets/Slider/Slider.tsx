@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, { MouseEvent, ReactElement, useCallback, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -17,28 +17,37 @@ function createChildFactory(classNames: string) {
 export default function Slider({ children }: SliderProps): ReactElement {
   const childrenArray = React.Children.toArray(children) as ReactElement[];
   const slideCount = childrenArray.length;
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState('right');
-  const slidePrev = useCallback(() => {
-    setActiveIndex(index => index === 0 ? slideCount - 1 : index - 1);
-    setDirection('left');
-  }, []);
-  const slideNext = useCallback(() => {
-    setActiveIndex(index => (index + 1) % slideCount);
-    setDirection('right');
-  }, []);
-  const clickHandlers: (() => void)[] = [];
-  for (let i = 0; i < slideCount; i++) {
-    clickHandlers.push(() => {
-      if (i !== activeIndex) {
-        setActiveIndex(i);
-        setDirection(i > activeIndex ? 'right' : 'left');
-      }
-    });
-  }
+  const [{ activeIndex, direction }, setSlideState] = useState({
+    activeIndex: 0,
+    direction: 'right' as 'right'|'left',
+  });
   const effect = `slide-${direction}`;
+  // This is required for the cases when child count decreases
   const correctedIndex = activeIndex % slideCount;
   const activeChild = childrenArray[correctedIndex];
+
+  const slidePrev = useCallback(() => {
+    setSlideState(({ activeIndex: index }) => ({
+      activeIndex: index <= 0 ? slideCount - 1 : index - 1,
+      direction: 'left',
+    }));
+  }, [slideCount]);
+
+  const slideNext = useCallback(() => {
+    setSlideState(({ activeIndex: index }) => ({
+      activeIndex: index >= slideCount - 1 ? 0 : index + 1,
+      direction: 'right',
+    }));
+  }, [slideCount]);
+
+  const onPillClick = useCallback((event: MouseEvent<HTMLLIElement>) => {
+    const nextIndex = parseInt(event.currentTarget.dataset.index ?? '0', 10);
+    setSlideState(({ activeIndex }) => ({
+      activeIndex: nextIndex,
+      direction: nextIndex > activeIndex ? 'right' : 'left',
+    }));
+  }, []);
+
   return (
     <S.Slider>
       <S.Frame>
@@ -61,7 +70,7 @@ export default function Slider({ children }: SliderProps): ReactElement {
           <S.Pill
             key={child.key}
             active={i === correctedIndex}
-            onClick={clickHandlers[i]}
+            onClick={onPillClick}
           />
         ))}
       </S.Pills>
