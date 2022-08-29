@@ -99,6 +99,15 @@ const skills = [
     weight: 12,
   },
   {
+    name: 'NextJS',
+    icon: 'nextjs.svg',
+    masteryYear: 2022,
+    note: 'One of my pet project (wallpaper gallery) is written in it.',
+    group: 'basic',
+    level: 4,
+    weight: 12,
+  },
+  {
     name: 'MongoDB',
     icon: 'mongo.svg',
     masteryYear: 0,
@@ -143,6 +152,15 @@ const skills = [
     level: 5,
     weight: 15,
   },
+  {
+    name: 'Java',
+    icon: 'java.svg',
+    masteryYear: 0,
+    note: 'Theoretical knowledge, since created only a few microservices with Spring.',
+    group: 'basic',
+    level: 2,
+    weight: 16,
+  },
 
   {
     name: 'Knex.js / Objection.js',
@@ -157,7 +175,7 @@ const skills = [
     name: 'Styled Components',
     icon: 'styled-components.svg',
     masteryYear: 2017,
-    note: 'Most of my NodeJS apps are written in it and MySQL / PostgreSQL.',
+    note: 'Used it (as well as CSS Modules) in several projects.',
     group: 'misc',
     level: 5,
     weight: 1,
