@@ -1,6 +1,10 @@
 import React, {
   FC, ReactNode, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
+import {
+  ContextData, ParallaxScrollContext, ScrollListener,
+} from './ParallaxScrollContext';
+import ScrollBar from './ScrollBar';
 import * as S from './styles';
 
 interface ParallaxScrollProps {
@@ -15,40 +19,15 @@ interface ParallaxScrollProps {
    * value changes. The value has no meaning, only the fact of its change matters.
    */
   resetOnChange?: string | number;
-}
-
-type ScrollListener = (scrollRatio: number, scrollerElement: HTMLElement) => void;
-
-interface ContextData {
   /**
-   * Resets the scroller position (sets scrollTop 0).
+   * Since the page is rendered below the navbar too, the height of the navbar
+   * must be specified explicitly.
    */
-  resetScroll: () => void;
-  /**
-   * Scroller position that gradually changes from 0 to 1 when the user scrolls.
-   *
-   * Take in mind, that some browsers in some operation systems (e.g. iOS)
-   * may support the overscroll effect. In that case the scroll value may go
-   * beyond the [0, 1] range during the animation.
-   */
-  getScrollRatio: () => number;
-  addScrollListener: (listener: ScrollListener) => void;
-  removeScrollListener: (listener: ScrollListener) => void;
+  bigNavbar?: boolean;
 }
-
-export const ParallaxScrollContext = React.createContext<ContextData>({
-  resetScroll: () => {}, // eslint-disable-line no-empty
-  getScrollRatio: () => 0,
-  addScrollListener: () => {
-    throw new Error('Cannot add a scroll listener without a context provider');
-  },
-  removeScrollListener: () => {
-    throw new Error('Cannot remove a scroll listener without a context provider');
-  },
-});
 
 const ParallaxScroll: FC<ParallaxScrollProps> = ({
-  children, height, resetOnChange,
+  children, height, resetOnChange, bigNavbar,
 }) => {
   const [scrollerElement, setScrollerElement] = useState<HTMLDivElement | null>(null);
   const scrollListeners = useRef<ScrollListener[]>([]);
@@ -57,6 +36,15 @@ const ParallaxScroll: FC<ParallaxScrollProps> = ({
     resetScroll: () => {
       if (!scrollerElement) return;
       scrollerElement.scrollTop = 0;
+    },
+    scrollTo: (scrollRatio: number, instantly = false) => {
+      const maxScroll = scrollerElement.scrollHeight - scrollerElement.clientHeight;
+      const top = Math.round(maxScroll * scrollRatio);
+      if (instantly) {
+        scrollerElement.scrollTop = top;
+      } else {
+        scrollerElement.scrollTo({ top, behavior: 'smooth' });
+      }
     },
     getScrollRatio: () => {
       if (!scrollerElement) return 0;
@@ -93,23 +81,24 @@ const ParallaxScroll: FC<ParallaxScrollProps> = ({
 
   return (
     <S.ParallaxScroll>
-      <S.Scroller
-        onScroll={handleScroll}
-        ref={setScrollerElement}
-        // Fix for Safari bug when max scroll height isn't updated during the
-        // scrolling animation that leads to the animation ending up overscrolled
-        // when the new content height is less than the one before the scrolling
-        // had started.
-        style={{ overflow: height === 0 ? 'auto' : '' }}
-      >
-        <S.Expander style={{ height: `${Math.round((1 + (height ?? 1)) * 100)}%` }}>
-          <S.Content>
-            <ParallaxScrollContext.Provider value={contextValue}>
+      <ParallaxScrollContext.Provider value={contextValue}>
+        <S.Scroller
+          onScroll={handleScroll}
+          ref={setScrollerElement}
+          // Fix for Safari bug when max scroll height isn't updated during the
+          // scrolling animation that leads to the animation ending up overscrolled
+          // when the new content height is less than the one before the scrolling
+          // had started.
+          style={{ overflow: height === 0 ? 'auto' : '' }}
+        >
+          <S.Expander style={{ height: `${Math.round((1 + (height ?? 1)) * 100)}%` }}>
+            <S.Content>
               {children}
-            </ParallaxScrollContext.Provider>
-          </S.Content>
-        </S.Expander>
-      </S.Scroller>
+            </S.Content>
+          </S.Expander>
+        </S.Scroller>
+        <ScrollBar bigNavbar={bigNavbar} />
+      </ParallaxScrollContext.Provider>
     </S.ParallaxScroll>
   );
 }

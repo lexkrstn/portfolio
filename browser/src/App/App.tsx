@@ -44,7 +44,11 @@ export default function App({ location, route: { routes } }: AppProps): ReactEle
           rightMenu={<MobileMenu />}
           onClose={handleCloseMobileMenu}
         >
-          <ParallaxScroll height={parallaxHeight} resetOnChange={location.pathname}>
+          <ParallaxScroll
+            height={parallaxHeight}
+            resetOnChange={location.pathname}
+            bigNavbar={location.pathname === '/'}
+          >
             <Global styles={S.GlobalStyle} />
             <Navbar />
             {isRootRoute(activeRoute, routes) && (

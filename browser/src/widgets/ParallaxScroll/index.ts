@@ -1,2 +1,2 @@
 export { default } from './ParallaxScroll';
-export * from './ParallaxScroll';
+export * from './ParallaxScrollContext';
