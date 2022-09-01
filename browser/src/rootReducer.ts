@@ -1,10 +1,10 @@
 import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
 import { combineReducers } from 'redux';
-import about from './About/duck/reducer';
-import app from './App/duck/reducer';
-import home from './Home/duck/reducer';
-import portfolio from './Portfolio/duck/reducer';
+import about from './pages/About/duck/reducer';
+import app from './pages/_App/duck/reducer';
+import home from './pages/Home/duck/reducer';
+import portfolio from './pages/Portfolio/duck/reducer';
 
 const createRootReducer = (history: History) => combineReducers({
   about,
