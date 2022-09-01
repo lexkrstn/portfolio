@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
+import React, { FC } from 'react';
 import * as S from './styles';
 
-interface VideoProps {
+interface Props {
   src: string;
 }
 
@@ -10,7 +10,7 @@ function getVideoIdFromUrl(src: string): string {
   return chunks[chunks.length - 1];
 }
 
-export default function Video({ src }: VideoProps): ReactElement {
+const Video: FC<Props> = ({ src }) => {
   const params: Record<string, string | number> = {
     autoplay: 1,
     controls: 0,
@@ -38,4 +38,8 @@ export default function Video({ src }: VideoProps): ReactElement {
       />
     </S.Video>
   );
-}
+};
+
+Video.displayName = 'Video';
+
+export default Video;

@@ -1,7 +1,7 @@
-import React, { ReactElement, ReactChild } from 'react';
+import React, { FC, ReactChild } from 'react';
 import * as S from './styles';
 
-interface DrawerProps {
+interface Props {
   open: 'left' | 'right' | false;
   children: ReactChild;
   leftMenu?: ReactChild;
@@ -12,9 +12,7 @@ interface DrawerProps {
 /**
  * The main navigation drawer for mobile menu.
  */
-export default function MobileDrawer({
-  children, open, leftMenu, rightMenu, onClose,
-}: DrawerProps): ReactElement {
+const MobileDrawer: FC<Props> = ({ children, open, leftMenu, rightMenu, onClose }) => {
   const classes: string[] = [];
   if (open !== false) {
     classes.push('open', open);
@@ -27,9 +25,13 @@ export default function MobileDrawer({
       <S.Backdrop onClick={onClose} />
     </S.MobileDrawer>
   );
-}
+};
 
 MobileDrawer.defaultProps = {
   leftMenu: null,
   rightMenu: null,
 };
+
+MobileDrawer.displayName = 'MobileDrawer';
+
+export default MobileDrawer;

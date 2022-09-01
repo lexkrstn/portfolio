@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router';
-import React, { ReactElement, useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import Logo from '../Navbar/Logo';
@@ -11,7 +11,7 @@ import * as S from './styles';
 /**
  * The mobile menu in the navigation drawer.
  */
-export default function MobileMenu(): ReactElement {
+const MobileMenu: FC = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const handlers = useMemo(() => { // eslint-disable-line arrow-body-style
@@ -47,4 +47,8 @@ export default function MobileMenu(): ReactElement {
       <SocialNav />
     </S.MobileMenu>
   );
-}
+};
+
+MobileMenu.displayName = 'MobileMenu';
+
+export default MobileMenu;

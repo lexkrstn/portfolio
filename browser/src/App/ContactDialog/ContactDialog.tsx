@@ -6,7 +6,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import React, { ReactElement, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import config from '../../config';
@@ -23,7 +23,7 @@ interface Inputs {
   message: string;
 }
 
-export default function ContactDialog(): ReactElement {
+const ContactDialog: FC = () => {
   const dispatch = useDispatch();
   const open = useSelector(selectContactDialogOpen);
   const loading = useSelector(selectContactFormLoading);
@@ -94,4 +94,8 @@ export default function ContactDialog(): ReactElement {
       </DialogActions>
     </S.Dialog>
   );
-}
+};
+
+ContactDialog.displayName = 'ContactDialog';
+
+export default ContactDialog;

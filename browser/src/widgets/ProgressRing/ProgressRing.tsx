@@ -1,12 +1,12 @@
-import React, { ReactElement } from 'react';
+import React, { FC } from 'react';
 
-interface ProgressRingProps {
+interface Props {
   progress?: number;
   size?: number;
   stroke?: number;
 }
 
-export default function ProgressRing({ progress, size, stroke }: ProgressRingProps): ReactElement {
+const ProgressRing: FC<Props> = ({ progress, size, stroke }) => {
   const radius = (size - stroke) / 2;
   const circumference = radius * 2 * Math.PI;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
@@ -24,10 +24,14 @@ export default function ProgressRing({ progress, size, stroke }: ProgressRingPro
       />
     </svg>
   );
-}
+};
 
 ProgressRing.defaultProps = {
   progress: 20,
   size: 16,
   stroke: 2,
 };
+
+ProgressRing.displayName = 'ProgressRing';
+
+export default ProgressRing;

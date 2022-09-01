@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Chip, { ChipGroup } from '../../widgets/Chip';
 import { selectSelectedTagId, selectSortedTags, setTagSelected } from '../duck';
@@ -8,7 +8,7 @@ import * as S from './styles';
 /**
  * The filter section allowing to choose a tag to filter the works by.
  */
-export default function TagFilter(): ReactElement {
+const TagFilter: FC = () => {
   const dispatch = useDispatch();
   const selectedTagId = useSelector(selectSelectedTagId);
   const tags = useSelector(selectSortedTags);
@@ -45,4 +45,8 @@ export default function TagFilter(): ReactElement {
       )}
     </S.TagFilter>
   );
-}
+};
+
+TagFilter.displayName = 'TagFilter';
+
+export default TagFilter;

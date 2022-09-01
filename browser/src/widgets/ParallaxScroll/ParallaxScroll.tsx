@@ -101,11 +101,12 @@ const ParallaxScroll: FC<ParallaxScrollProps> = ({
       </ParallaxScrollContext.Provider>
     </S.ParallaxScroll>
   );
-}
+};
 
 ParallaxScroll.displayName = 'ParallaxScroll';
 
 ParallaxScroll.defaultProps = {
+  bigNavbar: false,
   height: undefined,
   resetOnChange: '',
 };

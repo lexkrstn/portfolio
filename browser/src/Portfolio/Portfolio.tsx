@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid';
-import React, { ReactElement, useCallback, useEffect } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import GradientBackground from '../widgets/GradientBackground';
@@ -16,7 +16,7 @@ import * as S from './styles';
 /**
  * Portfolio page.
  */
-export default function Portfolio(): ReactElement {
+const Portfolio: FC = () => {
   const dispatch = useDispatch();
   const tags = useSelector(selectTags);
   const selectedTag = useSelector(selectSelectedTag);
@@ -89,4 +89,8 @@ export default function Portfolio(): ReactElement {
       </S.Container>
     </S.Portfolio>
   );
-}
+};
+
+Portfolio.displayName = 'Portfolio';
+
+export default Portfolio;

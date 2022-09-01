@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router';
-import React, { useCallback, useContext } from 'react';
+import React, { FC, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ParallaxScrollContext } from '../widgets/ParallaxScroll';
 import ScrollButton from '../widgets/ScrollButton';
@@ -7,7 +7,7 @@ import Canvas from './Canvas';
 import { selectWalkMode } from './duck';
 import * as S from './styles';
 
-export default function Home() {
+const Home: FC = () => {
   const {
     resetScroll, addScrollListener, removeScrollListener,
   } = useContext(ParallaxScrollContext);
@@ -34,4 +34,8 @@ export default function Home() {
       </S.Container>
     </S.Home>
   );
-}
+};
+
+Home.displayName = 'Home';
+
+export default Home;

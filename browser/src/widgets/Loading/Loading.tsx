@@ -1,8 +1,8 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import ProgressRing from '../ProgressRing';
 import * as S from './styles';
 
-interface LoadingProps {
+interface Props {
   /**
    * The ratio between width and height that affects the height. It should be
    * specified either this or the height.
@@ -24,12 +24,7 @@ interface LoadingProps {
   duration?: number;
 }
 
-export default function Loading({
-  aspect,
-  duration,
-  height,
-  progress,
-}: LoadingProps): ReactElement {
+const Loading: FC<Props> = ({ aspect, duration, height, progress }) => {
   const fake = progress === null || progress === undefined;
   const [fakeProgress, setFakeProgress] = useState(0);
   useEffect(() => {
@@ -67,7 +62,7 @@ export default function Loading({
       </S.Content>
     </S.Loading>
   );
-}
+};
 
 Loading.defaultProps = {
   aspect: 0,
@@ -75,3 +70,7 @@ Loading.defaultProps = {
   progress: null,
   duration: 5,
 };
+
+Loading.displayName = 'Loading';
+
+export default Loading;

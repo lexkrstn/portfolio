@@ -1,13 +1,13 @@
 import throttle from 'lodash/throttle';
-import React, { ReactElement, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { lerp } from '../../utils';
 import * as S from './styles';
 
-interface GradientBackgroundProps {
+interface Props {
   interactive?: boolean;
 }
 
-export default function GradientBackground({ interactive }: GradientBackgroundProps): ReactElement {
+const GradientBackground: FC<Props> = ({ interactive }) => {
   const ref = useRef<HTMLDivElement>();
   useEffect(() => {
     if (!interactive) return undefined;
@@ -25,8 +25,12 @@ export default function GradientBackground({ interactive }: GradientBackgroundPr
     };
   });
   return <S.GradientBackground ref={ref} />;
-}
+};
 
 GradientBackground.defaultProps = {
   interactive: true,
 };
+
+GradientBackground.displayName = 'GradientBackground';
+
+export default GradientBackground;

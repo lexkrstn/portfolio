@@ -1,10 +1,12 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import * as S from './styles';
 
-export interface ChipGroupProps {
+export interface Props {
   children: ReactNode;
 }
 
-export default function ChipGroup(props: ChipGroupProps): ReactElement {
-  return <S.ChipGroup {...props} />;
-}
+const ChipGroup: FC<Props> = props => <S.ChipGroup {...props} />;
+
+ChipGroup.displayName = 'ChipGroup';
+
+export default ChipGroup;

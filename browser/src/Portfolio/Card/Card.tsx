@@ -1,7 +1,5 @@
 import { push } from 'connected-react-router';
-import React, {
-  MouseEvent, ReactElement, useCallback, useMemo,
-} from 'react';
+import React, { MouseEvent, FC, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import Chip, { ChipGroup } from '../../widgets/Chip';
 import Image from '../../widgets/Image';
@@ -14,7 +12,7 @@ import * as S from './styles';
  */
 const imageCache = {};
 
-export interface CardProps {
+export interface Props {
   caption: string;
   cover: string;
   route: string;
@@ -26,9 +24,7 @@ export interface CardProps {
 /**
  * Portfolio item card.
  */
-export default function Card({
-  caption, cover, onClickTag, route, tags,
-}: CardProps): ReactElement {
+const Card: FC<Props> = ({ caption, cover, onClickTag, route, tags }) => {
   const dispatch = useDispatch();
 
   const onHostClick = useCallback(
@@ -91,4 +87,8 @@ export default function Card({
       </S.Content>
     </S.Card>
   );
-}
+};
+
+Card.displayName = 'Card';
+
+export default Card;

@@ -1,18 +1,18 @@
 import { push } from 'connected-react-router';
 import { Location } from 'history';
-import React, { ReactElement, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { matchPath } from 'react-router';
 import { RouteConfig } from 'react-router-config';
 import { isRootRoute } from '../../utils/routes';
 import * as S from './styles';
 
-interface PageNavProps {
+interface Props {
   routes: RouteConfig[];
   location: Location;
 }
 
-export default function PageNav({ location, routes }: PageNavProps): ReactElement {
+const PageNav: FC<Props> = ({ location, routes }) => {
   const dispatch = useDispatch();
   const { rootRoutes, clickHandlers } = useMemo(() => {
     const filteredRoutes = routes.filter(route => isRootRoute(route, routes));
@@ -35,4 +35,8 @@ export default function PageNav({ location, routes }: PageNavProps): ReactElemen
       ))}
     </S.PageNav>
   );
-}
+};
+
+PageNav.displayName = 'PageNav';
+
+export default PageNav;

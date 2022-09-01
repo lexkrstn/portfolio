@@ -1,9 +1,13 @@
-import React, { ReactElement, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Global, useTheme } from '@emotion/react';
 import { makeGlobalStyles } from './styles';
 
-export default function GlobalStyles(): ReactElement {
+const GlobalStyles: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => makeGlobalStyles(theme), []);
   return <Global styles={styles} />;
-}
+};
+
+GlobalStyles.displayName = 'GlobalStyles';
+
+export default GlobalStyles;

@@ -1,14 +1,14 @@
-import React, { ReactElement } from 'react';
+import React, { FC } from 'react';
 import config from '../../config';
 import { yearsFrom } from '../../utils/filters';
 import { LanguageLevels, Skill } from '../interfaces';
 import * as S from './styles';
 
-export interface SkillCardProps {
+export interface Props {
   skill: Skill;
 }
 
-export default function SkillCard({ skill }: SkillCardProps): ReactElement {
+const SkillCard: FC<Props> = ({ skill }) => {
   const maxLevel = skill.group === 'lang' ? 9 : 5;
   return (
     <S.SkillCard>
@@ -33,4 +33,8 @@ export default function SkillCard({ skill }: SkillCardProps): ReactElement {
       <S.Note dangerouslySetInnerHTML={{ __html: skill.note }} />
     </S.SkillCard>
   );
-}
+};
+
+SkillCard.displayName = 'SkillCard';
+
+export default SkillCard;

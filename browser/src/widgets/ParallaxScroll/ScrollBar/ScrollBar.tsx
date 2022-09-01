@@ -1,4 +1,6 @@
-import React, { FC, PointerEvent, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  FC, PointerEvent, useCallback, useContext, useEffect, useRef, useState,
+} from 'react';
 import { ParallaxScrollContext } from '../ParallaxScrollContext';
 import * as S from './styles';
 
@@ -36,7 +38,7 @@ const ScrollBar: FC<Props> = ({ bigNavbar, hideTimeout }) => {
     }
     hideTimeoutIdRef.current = setTimeout(() => {
       clearTimeout(hideTimeoutIdRef.current);
-      hideTimeoutIdRef.current = null
+      hideTimeoutIdRef.current = null;
       setHidden(true);
     }, hideTimeout);
   };

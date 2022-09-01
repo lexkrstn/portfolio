@@ -1,10 +1,10 @@
-import React, { MouseEvent, ReactElement, useCallback, useState } from 'react';
+import React, { MouseEvent, FC, ReactElement, useCallback, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import * as S from './styles';
 
-export interface SliderProps {
+export interface Props {
   children: ReactElement[];
 }
 
@@ -14,12 +14,12 @@ function createChildFactory(classNames: string) {
   };
 }
 
-export default function Slider({ children }: SliderProps): ReactElement {
+const Slider: FC<Props> = ({ children }) => {
   const childrenArray = React.Children.toArray(children) as ReactElement[];
   const slideCount = childrenArray.length;
   const [{ activeIndex, direction }, setSlideState] = useState({
     activeIndex: 0,
-    direction: 'right' as 'right'|'left',
+    direction: 'right' as 'right' | 'left',
   });
   const effect = `slide-${direction}`;
   // This is required for the cases when child count decreases
@@ -42,9 +42,9 @@ export default function Slider({ children }: SliderProps): ReactElement {
 
   const onPillClick = useCallback((event: MouseEvent<HTMLLIElement>) => {
     const nextIndex = parseInt(event.currentTarget.dataset.index ?? '0', 10);
-    setSlideState(({ activeIndex }) => ({
+    setSlideState(({ activeIndex: index }) => ({
       activeIndex: nextIndex,
-      direction: nextIndex > activeIndex ? 'right' : 'left',
+      direction: nextIndex > index ? 'right' : 'left',
     }));
   }, []);
 
@@ -76,4 +76,8 @@ export default function Slider({ children }: SliderProps): ReactElement {
       </S.Pills>
     </S.Slider>
   );
-}
+};
+
+Slider.displayName = 'Slider';
+
+export default Slider;

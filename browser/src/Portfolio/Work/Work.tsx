@@ -1,6 +1,4 @@
-import React, {
-  ReactElement, useEffect, useMemo, useRef,
-} from 'react';
+import React, { FC, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteConfigComponentProps } from 'react-router-config';
 import GradientBackground from '../../widgets/GradientBackground';
@@ -13,12 +11,12 @@ import * as S from './styles';
 import Loading from '../../widgets/Loading';
 import Video from '../../widgets/Video';
 
-type WorkProps = RouteConfigComponentProps<{ id: string }>;
+type Props = RouteConfigComponentProps<{ id: string }>;
 
 /**
  * Portfolio work page.
  */
-export default function Work({ match }: WorkProps): ReactElement {
+const Work: FC<Props> = ({ match }) => {
   const dispatch = useDispatch();
   const imageCache = useRef<Record<string, string>>({});
   const work = useSelector(selectWork);
@@ -97,4 +95,8 @@ export default function Work({ match }: WorkProps): ReactElement {
       </S.Container>
     </S.Work>
   );
-}
+};
+
+Work.displayName = 'Work';
+
+export default Work;

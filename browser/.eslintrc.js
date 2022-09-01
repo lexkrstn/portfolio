@@ -35,5 +35,14 @@ module.exports = {
     }],
     'no-param-reassign': ['off', { props: false }],
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
+    'no-restricted-exports': 'off',
+    'react/state-in-constructor': 'off',
+    'react/func': 'off',
+    'object-curly-newline': 'off',
+    'react/function-component-definition': ['error', {
+      'namedComponents': 'arrow-function',
+      'unnamedComponents': 'arrow-function',
+    }],
+    'react/default-props-match-prop-types': 'off',
   },
 };

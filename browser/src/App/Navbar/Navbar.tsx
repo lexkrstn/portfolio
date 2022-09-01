@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router';
-import React, { ReactElement, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import Typewriter from '../../widgets/Typewriter';
@@ -11,7 +11,7 @@ import * as S from './styles';
 /**
  * The main navigation bar at the top of the page.
  */
-export default function Navbar(): ReactElement {
+const Navbar: FC = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const handlers = useMemo(() => { // eslint-disable-line arrow-body-style
@@ -65,4 +65,8 @@ export default function Navbar(): ReactElement {
       </S.Container>
     </S.Navbar>
   );
-}
+};
+
+Navbar.displayName = 'Navbar';
+
+export default Navbar;

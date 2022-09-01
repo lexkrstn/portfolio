@@ -1,7 +1,7 @@
 import { ThemeProvider, Global } from '@emotion/react';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import React, { ReactElement, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { matchPath } from 'react-router';
 import { RouteConfigComponentProps } from 'react-router-config';
@@ -21,9 +21,9 @@ import PageNav from './PageNav';
 import SocialNav from './SocialNav';
 import * as S from './styles';
 
-type AppProps = RouteConfigComponentProps;
+type Props = RouteConfigComponentProps;
 
-export default function App({ location, route: { routes } }: AppProps): ReactElement {
+const App: FC<Props> = ({ location, route: { routes } }) => {
   const dispatch = useDispatch();
   const walkMode = useSelector(selectWalkMode);
   const snackbar = useSelector(selectSnackbar);
@@ -77,4 +77,8 @@ export default function App({ location, route: { routes } }: AppProps): ReactEle
       </S.App>
     </ThemeProvider>
   );
-}
+};
+
+App.displayName = 'App';
+
+export default App;

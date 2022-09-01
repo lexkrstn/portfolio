@@ -1,12 +1,12 @@
 import { Location } from 'history';
-import React, { ReactElement, useCallback, useRef } from 'react';
+import React, { FC, ReactElement, useCallback, useRef } from 'react';
 import { matchPath } from 'react-router';
 import { renderRoutes, RouteConfig } from 'react-router-config';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import * as S from './styles';
 import GlobalStyles from './GlobalStyles';
 
-interface RouteRifflerProps {
+interface Props {
   routes: RouteConfig[];
   location: Location;
 }
@@ -17,7 +17,7 @@ function createChildFactory(classNames: string) {
   };
 }
 
-export default function RouteRiffler({ location, routes }: RouteRifflerProps): ReactElement {
+const RouteRiffler: FC<Props> = ({ location, routes }) => {
   const routeIdx = routes.findIndex(route => matchPath(location.pathname, route));
   const oldRouteIdx = useRef(routeIdx);
   const cube = useRef<HTMLDivElement>();
@@ -67,4 +67,8 @@ export default function RouteRiffler({ location, routes }: RouteRifflerProps): R
       </S.Cube>
     </S.RouteRiffler>
   );
-}
+};
+
+RouteRiffler.displayName = 'RouteRiffler';
+
+export default RouteRiffler;

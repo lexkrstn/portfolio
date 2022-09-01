@@ -1,10 +1,10 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { loadImage } from '../../utils/helpers';
 import Loading from '../Loading';
 import * as S from './styles';
 
-export interface ImageProps {
+export interface Props {
   alt?: string;
   aspect?: number;
   cache?: Record<string, string>;
@@ -12,9 +12,7 @@ export interface ImageProps {
   src: string;
 }
 
-export default function Image({
-  alt, aspect, cache, height, src,
-}: ImageProps): ReactElement {
+const Image: FC<Props> = ({ alt, aspect, cache, height, src }) => {
   const [url, setUrl] = useState((cache && cache[src]) || '');
   const [progress, setProgress] = useState(0);
   useEffect(() => {
@@ -45,4 +43,8 @@ export default function Image({
       </SwitchTransition>
     </S.Image>
   );
-}
+};
+
+Image.displayName = 'Image';
+
+export default Image;

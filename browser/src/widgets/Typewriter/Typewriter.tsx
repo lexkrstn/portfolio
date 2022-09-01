@@ -1,10 +1,10 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import TextwriterKeyframe from './TypewriterKeyframe';
 import * as S from './styles';
 import KeyframeAnimator from './KeyframeAnimator';
 import Timeout from './Timeout';
 
-interface TypewriterProps {
+interface Props {
   /**
    * Default delay before printing next portion of the text.
    */
@@ -34,9 +34,9 @@ interface TypewriterProps {
 /**
  * Displays series of text blocks character by character.
  */
-export default function Typewriter({
+const Typewriter: FC<Props> = ({
   delay, printDuration, fontSize, clearDuration, keyframes, caretTimeout,
-}: TypewriterProps): ReactElement {
+}) => {
   const [text, setText] = useState('');
   const [textSize, setTextSize] = useState('');
   const [caretVisible, setCaretVisible] = useState(true);
@@ -69,7 +69,7 @@ export default function Typewriter({
       {caretVisible && <S.Caret />}
     </S.Typewriter>
   );
-}
+};
 
 Typewriter.defaultProps = {
   caretTimeout: 2000,
@@ -77,4 +77,8 @@ Typewriter.defaultProps = {
   printDuration: 70,
   clearDuration: 15,
   fontSize: '1em',
-} as TypewriterProps;
+};
+
+Typewriter.displayName = 'Typewriter';
+
+export default Typewriter;

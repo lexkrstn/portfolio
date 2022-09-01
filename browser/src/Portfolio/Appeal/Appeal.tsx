@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { openContactDialog } from '../../App/duck';
 import * as S from './styles';
@@ -6,7 +6,7 @@ import * as S from './styles';
 /**
  * The call to conversation shown in the footer of some portfolio pages.
  */
-export default function Appeal(): ReactElement {
+const Appeal: FC = () => {
   const dispatch = useDispatch();
   const onContactClick = useCallback(() => dispatch(openContactDialog()), []);
   return (
@@ -23,4 +23,8 @@ export default function Appeal(): ReactElement {
       </S.Para>
     </S.Appeal>
   );
-}
+};
+
+Appeal.displayName = 'Appeal';
+
+export default Appeal;
