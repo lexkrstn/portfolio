@@ -8,21 +8,26 @@ import { selectWalkMode } from './duck';
 import * as S from './styles';
 
 export default function Home() {
-  const { scroll, resetScroll } = useContext(ParallaxScrollContext);
+  const {
+    resetScroll, addScrollListener, removeScrollListener,
+  } = useContext(ParallaxScrollContext);
   const walkMode = useSelector(selectWalkMode);
   const dispatch = useDispatch();
-  const handleNavigateNext = useCallback(() => {
+
+  const navigatePortfolio = useCallback(() => {
     resetScroll();
     setTimeout(() => {
       dispatch(push('/portfolio'));
     }, 0);
-  }, []);
+  }, [resetScroll]);
+
   return (
     <S.Home>
       <Canvas
-        scroll={scroll}
         walkMode={walkMode}
-        onNavigateNext={handleNavigateNext}
+        onReachedEnd={navigatePortfolio}
+        addScrollListener={addScrollListener}
+        removeScrollListener={removeScrollListener}
       />
       <S.Container>
         <ScrollButton />

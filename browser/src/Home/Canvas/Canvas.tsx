@@ -14,13 +14,46 @@ const PLANE_SIZE = 500;
 const CELL_SIZE = 3;
 const NUM_CELLS = PLANE_SIZE / CELL_SIZE;
 
+type ScrollListener = (scrollRatio: number, scrollerElement: HTMLElement) => void;
+
 interface CanvasProps {
-  scroll: number;
+  /**
+   * User interaction and animation mode. Cannot be updated dynamically.
+   */
   walkMode: WalkMode;
-  onNavigateNext: () => void;
+  /**
+   * The callback that is called when the user scrolls to the end.
+   */
+  onReachedEnd: () => void;
+  /**
+   * The callback that must register a given scroll listener.
+   */
+  addScrollListener: (listener: ScrollListener) => void;
+  /**
+   * The callback paired to addScrollListener(), which does the opposite thing.
+   */
+  removeScrollListener: (listener: ScrollListener) => void;
 }
 
-interface CanvasState {}
+interface CanvasState {
+  /**
+   * Window scroll position in the [0..1]
+   */
+  scrollRatio: number;
+  /**
+   * A read only reference to the scroll listener that is bound to a Canvas
+   * instance. The reference is put here to be able to reach it from the static
+   * getDerivedStateFromProps().
+   * Despite some degree of akwardness this approch is required here for
+   * rendering optimization.
+   */
+  scrollListener: ScrollListener;
+  /**
+   * The instance of the listener remover that is paired with the listener
+   * adder that was used in previous getDerivedStateFromProps() call.
+   */
+  removeScrollListener?: (listener: ScrollListener) => void;
+}
 
 /**
  * The component that renders WebGL canvas on the Home screen.
@@ -52,6 +85,30 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
     { text: 'Scroll down to see\n  my latest works', position: 0.9, size: 5 },
   ];
 
+  public state: CanvasState = {
+    scrollRatio: 0,
+    scrollListener: (scrollRatio: number) => {
+      this.setState({ scrollRatio });
+    },
+  };
+
+  public static getDerivedStateFromProps(
+    { addScrollListener, removeScrollListener }: CanvasProps,
+    prevState: CanvasState,
+  ): Partial<CanvasState> | null {
+    if (prevState.removeScrollListener !== removeScrollListener) {
+      // Remove the scroll listener from the previous event dispatcher
+      if (prevState.removeScrollListener) {
+        prevState.removeScrollListener(prevState.scrollListener);
+      }
+      // Add the scroll listener to the current event dispatcher
+      addScrollListener(prevState.scrollListener);
+      // Update the dispatcher's function in the state
+      return { removeScrollListener };
+    }
+    return null;
+  }
+
   public componentDidMount(): void {
     this.initializeRenderer();
     this.setUpScene();
@@ -63,17 +120,22 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
   }
 
   public componentDidUpdate(): void {
-    const { scroll, walkMode, onNavigateNext } = this.props;
+    const { walkMode, onReachedEnd } = this.props;
+    const { scrollRatio } = this.state;
     if (walkMode === 'scroll') {
       this.renderSceneAtScrollPosition();
 
-      if (scroll > 0.99) {
-        onNavigateNext();
+      if (scrollRatio > 0.99) {
+        onReachedEnd();
       }
     }
   }
 
   public componentWillUnmount(): void {
+    const { removeScrollListener, scrollListener } = this.state;
+    if (removeScrollListener) {
+      removeScrollListener(scrollListener);
+    }
     if (this.animationFrameId !== null) {
       cancelAnimationFrame(this.animationFrameId);
     }
@@ -232,12 +294,11 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState> {
   };
 
   private renderSceneAtScrollPosition(): void {
-    // Clamp overscroll
-    const { scroll } = this.props;
+    const { scrollRatio } = this.state;
     // Map [0, 1] -> [startPosition, endPosition] and render
     const from = this.stopPoints[0];
     const to = this.stopPoints[this.stopPoints.length - 1];
-    this.renderSceneAtPoint(lerp(from, to, clamp(scroll, 0, 1)));
+    this.renderSceneAtPoint(lerp(from, to, clamp(scrollRatio, 0, 1)));
   }
 
   /**
