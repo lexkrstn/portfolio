@@ -6,7 +6,7 @@ export const PageNav = styled.div`
   z-index: 1000;
   top: 50%;
   right: 15px;
-  transform: translateY(-50%);
+  transform: translate3d(0, -50%, 0);
   padding: 7px 5px;
   border-radius: 4px;
   background: rgba(0, 0, 0, .13);

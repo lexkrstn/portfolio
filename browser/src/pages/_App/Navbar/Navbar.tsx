@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router';
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, MouseEvent, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import Typewriter from '../../../components/Typewriter';
@@ -14,13 +14,12 @@ import * as S from './styles';
 const Navbar: FC = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const handlers = useMemo(() => { // eslint-disable-line arrow-body-style
-    return menuItems.map(({ path }) => { // eslint-disable-line arrow-body-style
-      return () => dispatch(push(path));
-    });
+  const handleClickNavItem = useCallback((event: MouseEvent<HTMLDivElement>) => {
+    const itemIndex = parseInt(event.currentTarget.dataset.itemIndex, 10);
+    dispatch(push(menuItems[itemIndex].path));
   }, []);
-  const onContactClick = useCallback(() => dispatch(openContactDialog()), []);
-  const onHamburgerClick = useCallback(() => dispatch(toggleMobileMenu()), []);
+  const handleContactClick = useCallback(() => dispatch(openContactDialog()), []);
+  const handleHamburgerClick = useCallback(() => dispatch(toggleMobileMenu()), []);
   const activePath = menuItems
     .map(item => item.path)
     .find(path => {
@@ -30,7 +29,7 @@ const Navbar: FC = () => {
   return (
     <S.Navbar fixed={location.pathname !== '/'}>
       <S.Container>
-        <S.Brand onClick={handlers[0]}>
+        <S.Brand onClick={handleClickNavItem} data-item-index="0">
           <Logo />
           {location.pathname === '/portfolio' && (
             <S.Name>
@@ -47,16 +46,18 @@ const Navbar: FC = () => {
         <S.Nav>
           {menuItems.map(({ path, name }, i) => (
             <S.NavItem key={path}>
-              <S.NavLink onClick={handlers[i]}>{name}</S.NavLink>
+              <S.NavLink onClick={handleClickNavItem} data-item-index={i}>
+                {name}
+              </S.NavLink>
               <S.NavItemUnderline active={path === activePath} />
             </S.NavItem>
           ))}
           <S.NavItem key="contact">
-            <S.NavLink onClick={onContactClick}>Contact</S.NavLink>
+            <S.NavLink onClick={handleContactClick}>Contact</S.NavLink>
           </S.NavItem>
         </S.Nav>
         <S.Hamburger>
-          <S.HamburgerBars onClick={onHamburgerClick}>
+          <S.HamburgerBars onClick={handleHamburgerClick}>
             <S.HamburgerBar />
             <S.HamburgerBar />
             <S.HamburgerBar />

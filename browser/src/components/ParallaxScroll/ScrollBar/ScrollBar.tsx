@@ -1,6 +1,7 @@
 import React, {
   FC, PointerEvent, useCallback, useContext, useEffect, useRef, useState,
 } from 'react';
+import throttle from 'lodash/throttle';
 import { ParallaxScrollContext } from '../ParallaxScrollContext';
 import * as S from './styles';
 
@@ -43,16 +44,15 @@ const ScrollBar: FC<Props> = ({ bigNavbar, hideTimeout }) => {
     }, hideTimeout);
   };
 
-  const updateHandlePosition = useCallback((scrollRatio: number) => {
+  const updateHandlePosition = useCallback(throttle((scrollRatio: number) => {
     const barHeight = barRef.current.clientHeight;
     const handleHeight = handleRef.current.clientHeight;
     const freeBarHeight = barHeight - handleHeight;
     const handleTop = Math.round(freeBarHeight * scrollRatio);
-    const top = `${handleTop}px`;
-    handleRef.current.style.top = top;
+    handleRef.current.style.top = `${handleTop}px`;
     // Recharge the timeout that hides the scroll bar
     rechargeHideTimeout();
-  }, [hideTimeout]);
+  }, 1000 / 60), [hideTimeout]);
 
   const handlePointerEvent = useCallback((event: PointerEvent<HTMLDivElement>) => {
     if (event.type === 'pointerdown' && capturedPointerIdRef.current === null) {

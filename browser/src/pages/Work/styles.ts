@@ -11,6 +11,7 @@ export const Container = styled.div`
   ${containerMixin}
   padding: 65px 0 50px;
   color: white;
+  transform: translate3d(0, 0, 0);
 `;
 
 export const Box = styled.div`

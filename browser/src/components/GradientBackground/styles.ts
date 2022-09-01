@@ -11,4 +11,5 @@ export const GradientBackground = styled.div`
   background-image:
     radial-gradient(ellipse at top, #e66465, transparent),
     radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+  transform: translate3d(0, 0, 0);
 `;

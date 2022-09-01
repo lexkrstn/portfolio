@@ -14,6 +14,7 @@ export const Card = styled(NavLink)`
   transition: box-shadow 0.2s ease-in-out;
   cursor: pointer;
   background: #333;
+  transform: translate3d(0, 0, 0);
 
   &:hover {
     box-shadow: 11px 11px 0 rgba(0, 0, 0, 0.15);
