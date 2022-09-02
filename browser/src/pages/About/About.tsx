@@ -12,6 +12,7 @@ import CharSheet from './CharSheet';
 import Skills from './Skills';
 import Story from './Story';
 import * as S from './styles';
+import Appeal from '../../components/Appeal';
 
 // Cache for images.
 // The Image doesn't load on server side, so it's safe to keep it here in SSR.
@@ -82,6 +83,7 @@ const About: FC = () => {
             </S.Placeholder>
           )}
         </S.Section>
+        <Appeal />
       </S.Container>
     </S.About>
   );

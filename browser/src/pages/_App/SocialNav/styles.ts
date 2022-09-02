@@ -5,13 +5,13 @@ export const SocialNav = styled.div`
   position: fixed;
   z-index: 1000;
   top: 50%;
-  left: 15px;
+  right: 15px;
   transform: translateY(-50%);
   padding: 7px 5px;
   border-radius: 4px;
   background: rgba(0, 0, 0, .13);
 
-  @media (min-width: 1320px) {
+  @media (min-width: 800px) {
     display: block;
   }
 `;

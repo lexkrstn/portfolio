@@ -27,5 +27,7 @@ export default {
   basePath: '/',
   contact: {
     email: 'lexkrstn@gmail.com',
+    linkedIn: 'https://www.linkedin.com/in/alexander-korostin/',
+    github: 'https://github.com/lexkrstn',
   },
 };

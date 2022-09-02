@@ -13,7 +13,7 @@ export const Brand = styled.span`
   font-size: 2em;
   font-family: ${props => props.theme.font.family.heading};
   cursor: pointer;
-  transition: font-size ${props => props.theme.routeRiffleDuration} ease;
+  transition: font-size ${({ theme }) => theme.routeRiffleDuration}ms ease;
 
   svg {
     display: block;
@@ -45,8 +45,8 @@ export const Navbar = styled.nav<{ fixed: boolean }>`
   font-size: 16px;
   ${({ theme: { routeRiffleDuration: duration } }) => css`
     transition:
-      background-color ${duration} ease,
-      height ${duration} ease;
+      background-color ${duration}ms ease,
+      height ${duration}ms ease;
   `}
 
   ${props => props.fixed && css`
@@ -103,6 +103,7 @@ export const HamburgerBar = styled.div`
 `;
 
 export const Nav = styled.ul`
+  position: relative;
   display: none;
   list-style: none;
   margin: 0;
@@ -129,12 +130,14 @@ export const NavItemUnderline = styled.div<{ active?: boolean }>`
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  display: block;
+  width: 100%;
+  visibility: ${({ active }) => active ? 'visible' : 'hidden'};
   height: 2px;
-  background: transparent;
+  background: #fff;
   pointer-events: none;
-  transition: background-color ${props => props.theme.routeRiffleDuration} ease;
+  transition:
+    left ${({ theme }) => theme.routeRiffleDuration}ms ease,
+    width ${({ theme }) => theme.routeRiffleDuration}ms ease;
 
   &::after {
     content: '';
@@ -145,17 +148,10 @@ export const NavItemUnderline = styled.div<{ active?: boolean }>`
     display: block;
     height: 0;
     width: 0;
-    border-bottom: 4px solid transparent;
+    border-bottom: 4px solid #fff;
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    transition: border-color ${props => props.theme.routeRiffleDuration} ease;
   }
-
-  ${props => props.active && css`
-    background: white;
-
-    &::after { border-bottom-color: white; }
-  `}
 `;
 
 export const NavLink = styled.span`

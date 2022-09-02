@@ -30,3 +30,23 @@ export const Link = styled.span`
   font-weight: 400;
   cursor: pointer;
 `;
+
+export const SocialNav = styled.p`
+  margin: 5px 0 0;
+`;
+
+export const SocialButton = styled.a`
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  line-height: 1;
+  font-size: 0;
+  margin-left: 10px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 100ms ease;
+
+  &:first-child { margin-left: 0; }
+
+  &:hover { opacity: 1; }
+`;

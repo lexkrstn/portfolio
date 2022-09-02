@@ -7,6 +7,10 @@ interface ThemeProps<T> {
 export const containerWrapMixin = (props: ThemeProps<Theme>) => css`
   padding-left: ${props.theme.container.margin}px;
   padding-right: ${props.theme.container.margin}px;
+  @media (min-width: 800px) {
+    padding-left: 55px;
+    padding-right: 80px;
+  }
 `;
 
 export const containerMixin = (props: ThemeProps<Theme>) => css`

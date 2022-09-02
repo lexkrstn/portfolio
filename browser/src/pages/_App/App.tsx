@@ -3,11 +3,9 @@ import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import React, { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { matchPath } from 'react-router';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { selectWalkMode } from '../Home/duck';
 import theme from '../../theme';
-import { isRootRoute } from '../../utils/routes';
 import MobileDrawer from '../../components/MobileDrawer';
 import ParallaxScroll from '../../components/ParallaxScroll';
 import RouteRiffler from '../../components/RouteRiffler';
@@ -29,7 +27,6 @@ const App: FC<Props> = ({ location, route: { routes } }) => {
   const snackbar = useSelector(selectSnackbar);
   const mobileMenuOpen = useSelector(selectMobileMenuOpen);
   const parallaxHeight = (location.pathname === '/' && walkMode === 'scroll') ? 1 : 0;
-  const activeRoute = routes.find(aRoute => matchPath(location.pathname, aRoute));
   const handleCloseSnackbar = useCallback(() => {
     dispatch(closeSnackbar());
   }, []);
@@ -51,12 +48,8 @@ const App: FC<Props> = ({ location, route: { routes } }) => {
           >
             <Global styles={S.GlobalStyle} />
             <Navbar />
-            {isRootRoute(activeRoute, routes) && (
-              <>
-                <PageNav location={location} routes={routes} />
-                <SocialNav />
-              </>
-            )}
+            <PageNav location={location} routes={routes} />
+            <SocialNav />
             <RouteRiffler location={location} routes={routes} />
           </ParallaxScroll>
         </MobileDrawer>

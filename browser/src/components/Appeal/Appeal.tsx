@@ -1,6 +1,9 @@
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { openContactDialog } from '../../pages/_App/duck';
+import config from '../../config';
 import * as S from './styles';
 
 /**
@@ -21,6 +24,20 @@ const Appeal: FC = () => {
         or drop a line in
         the <S.Link onClick={onContactClick}>contact form</S.Link>
       </S.Para>
+      <S.SocialNav>
+        <S.SocialButton
+          href={config.contact.linkedIn}
+          title="LinkedIn"
+        >
+          <LinkedInIcon fontSize="medium" viewBox="2 2 20 20" />
+        </S.SocialButton>
+        <S.SocialButton
+          href={config.contact.github}
+          title="GitHub"
+        >
+          <GitHubIcon fontSize="medium" />
+        </S.SocialButton>
+      </S.SocialNav>
     </S.Appeal>
   );
 };

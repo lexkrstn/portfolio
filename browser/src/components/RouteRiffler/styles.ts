@@ -19,12 +19,13 @@ export const makeGlobalStyles = (theme: Theme) => css`
       will-change: transform;
       pointer-events: none;
       transform-style: flat;
+      backface-visibility: hidden;
     }
     .scroll-down-enter-active,
     .scroll-down-exit-active,
     .scroll-up-enter-active,
     .scroll-up-exit-active {
-      transition: transform ${theme.routeRiffleDuration} linear;
+      transition: transform ${theme.routeRiffleDuration}ms linear;
     }
     .scroll-down-enter {
       transform: translateZ(-50vw) rotateY(90deg) translateZ(50vw);

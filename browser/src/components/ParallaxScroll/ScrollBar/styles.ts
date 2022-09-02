@@ -13,9 +13,10 @@ export const ScrollBar = styled.div<{ bigNavbar?: boolean, visible?: boolean }>`
   width: 4px;
   border-radius: 2px;
   background: rgba(0, 0, 0, .14);
-  transition: opacity .5s ease;
   ${({ theme: { routeRiffleDuration: duration } }) => css`
-    transition: opacity .5s ease, margin-top ${duration} ease;
+    transition:
+      opacity ${duration}ms ease,
+      margin-top ${duration}ms ease;
   `}
   ${({ bigNavbar }) => css`
     margin-top: ${bigNavbar ? BIG_NAVBAR_HEIGHT : NAVBAR_HEIGHT}px;

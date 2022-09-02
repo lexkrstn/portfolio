@@ -20,7 +20,7 @@ interface MyTheme {
     size: Record<TextSize, number>;
   };
   lineHeight: Record<TextSize, number>;
-  routeRiffleDuration: string;
+  routeRiffleDuration: number;
 }
 
 declare module '@emotion/react' {
@@ -69,7 +69,7 @@ const myTheme: MyTheme = {
     h3: baseLineHeight,
     h4: baseLineHeight,
   },
-  routeRiffleDuration: '.5s',
+  routeRiffleDuration: 500,
 };
 
 export default createTheme({

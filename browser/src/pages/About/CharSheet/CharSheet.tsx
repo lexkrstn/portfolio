@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import LocationOn from '@mui/icons-material/LocationOn';
 import config from '../../../config';
 import { yearsFrom } from '../../../utils';
 import * as S from './styles';
@@ -15,7 +16,10 @@ const CharSheet: FC = () => (
     </S.Attribute>
     <S.Attribute>
       <S.AttributeName>Location</S.AttributeName>
-      <S.AttributeValue>Ukraine</S.AttributeValue>
+      <S.AttributeValue>
+        <LocationOn fontSize="small" style={{ verticalAlign: 'middle' }} />
+        {' Ukraine'}
+      </S.AttributeValue>
     </S.Attribute>
     <S.Attribute>
       <S.AttributeName>Email</S.AttributeName>

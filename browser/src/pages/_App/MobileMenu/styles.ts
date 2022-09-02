@@ -27,9 +27,9 @@ export const Brand = styled.span`
   text-decoration: none;
   font-weight: 400;
   font-size: 2em;
-  font-family: ${props => props.theme.font.family.heading};
+  font-family: ${({ theme }) => theme.font.family.heading};
   cursor: pointer;
-  transition: font-size ${props => props.theme.routeRiffleDuration} ease;
+  transition: font-size ${({ theme }) => theme.routeRiffleDuration}ms ease;
 
   svg {
     display: block;
@@ -76,30 +76,30 @@ export const SocialNav = styled.nav`
 
 export const SocialButton = styled.a`
   display: block;
-  color: inherit;
+  color: #333;
   text-decoration: none;
   margin-bottom: 15px;
-
-  &.linkedin {
-    color: #2867B2;
+  &:hover {
+    color: #1eb902;
   }
+`;
 
-  &.github {
-    color: #333;
-  }
+type Network = 'linkedin' | 'github';
 
-  svg {
-    vertical-align: middle;
-  }
+const BRAND_COLORS: Record<Network, string> = {
+  linkedin: '#2867B2',
+  github: '#333',
+};
+
+export const SocialIcon = styled.span<{ network: Network }>`
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0;
+  ${({ network }) => `color: ${BRAND_COLORS[network]};`}
 `;
 
 export const SocialName = styled.span`
   vertical-align: middle;
   margin-left: 0.6em;
-  color: #333;
   transition: color .2s ease;
-
-  ${SocialButton}:hover & {
-    color: #1eb902;
-  }
 `;
