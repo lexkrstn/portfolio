@@ -2,13 +2,12 @@ import { Module, Global } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import path from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MailerService } from './mail';
 import config from './config';
 import { ContactModule } from './contact';
 import { SkillsModule } from './skills';
 import { PortfolioModule } from './portfolio';
+import { HealthModule } from './health/health.module';
 
 @Global()
 @Module({
@@ -29,16 +28,12 @@ import { PortfolioModule } from './portfolio';
     ContactModule,
     SkillsModule,
     PortfolioModule,
-  ],
-  controllers: [
-    AppController,
+    HealthModule,
   ],
   providers: [
-    AppService,
     MailerService,
   ],
   exports: [
-    AppService,
     MailerService,
   ],
 })

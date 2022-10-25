@@ -1,17 +1,18 @@
 FROM node:16-alpine
+FROM node:current-alpine
 WORKDIR /opt/portfolio
-COPY . .
-RUN npm i && \
-    npm run build:prod
 
-FROM node:16-alpine
-WORKDIR /opt/portfolio
 COPY . .
-RUN npm i --production && \
-    npm i -g migrate-mongo
-COPY --from=0 /opt/portfolio/dist ./dist
-COPY --from=0 /opt/portfolio/public/js ./public/js
+
+RUN apk --no-cache add curl && \
+    npm i -g migrate-mongo && \
+    npm i && \
+    npm run build && \
+    npm prune --production
+
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost:3000/health || exit 1
 
 EXPOSE 80 3000
 
-CMD ./deploy/entrypoint.sh
+CMD ./scripts/entrypoint.sh

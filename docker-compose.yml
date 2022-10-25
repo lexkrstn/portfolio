@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.5'
 
 services:
 
@@ -8,6 +8,19 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 200M
+    networks:
+      - portfolio_mongo
 
   portfolio:
     image: lexkrstn/portfolio
@@ -15,6 +28,7 @@ services:
     depends_on:
       - mongo
     ports:
+      - "8080:8080"
       - "443:443"
       - "3000:3000"
     volumes:
@@ -30,3 +44,9 @@ services:
       SSL_CERT: /opt/portfolio/tls/certificate.crt
       MAIL_USER:
       MAIL_PASSWORD:
+    networks:
+      - portfolio_mongo
+
+networks:
+  portfolio_mongo:
+    driver: bridge
