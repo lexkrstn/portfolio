@@ -13,7 +13,7 @@ Prerequisites
 - [NodeJS LTS](https://nodejs.dev)
 - [MongoDB 5+](https://docs.mongodb.com/manual/installation/)
 
-### Steps to deploy to a local server
+### Steps to deploy on a local server
 ```bash
 # 1. Get a copy of the project from git
 git clone git@github.com:lexkrstn/portfolio.git
@@ -34,6 +34,23 @@ migrate-mongo up
 # 6. Start the server
 npm run start:prod
 ```
+
+### Steps to deploy on AWS
+
+1. Install Docker
+2. Copy `docker-compose.yml`, `.env`, `scripts/gencert.sh`, and `nginx.conf`
+   into the EC2 instance user's home folder.
+3. Comment out SSL server configs in nginx.conf
+4. Get certificates:
+   ```sh
+   docker compose up -d nginx
+   docker compose up --profile certbot
+   docker compose down
+   ```
+5. Startup:
+   ```sh
+   docker compose up -d
+   ```
 
 ### Configuration
 
@@ -56,61 +73,3 @@ The preferred way to configure the server is by setting environment variables:
 
 An alternative way is to create a file named `.env` in the root of the project
 and put all the environment variables there (one per line).
-
-## Commands cheatsheet
-
-NPM:
-- `npm run start` - starts SSR and API servers concurrently in debug mode
-- `npm run start:prod` - starts SSR and API servers concurrently
-- `npm run start:ssr` - starts SSR server in debug mode
-- `npm run start:ssr:prod` - starts SSR server
-- `npm run start:api` - starts API server in debug mode
-- `npm run start:api:prod` - starts API server
-- `npm run start:browser` - starts webpack dev server
-- `npm run build` - builds SSR and API servers in debug mode
-- `npm run build:prod` - builds SSR and API servers
-- `npm run build:api` - builds API server in debug mode
-- `npm run build:ssr` - builds SSR server in debug mode
-- `npm run build:browser` - builds browser application in debug mode
-- `npm run watch:api` - builds API server in JIT mode
-- `npm run watch:ssr` - builds SSR server in JIT mode
-- `npm run watch:browser` - builds browser application in JIT mode
-- `npm run lint` - performs linting the browser, api and ssr code
-- `npm run lint:api` - performs linting the API server code
-- `npm run lint:ssr` - performs linting the SSR server code
-- `npm run lint:browser` - performs linting the browser application code
-- `npm run test` - performs testing the browser, api and ssr
-- `npm run test:api` - performs testing the API server
-- `npm run test:api:watch` - runs API server unit tests in watch mode
-- `npm run test:api:e2e` - runs end-to-end API server tests
-- `npm run test:api:coverage` - runs API tests and generates coverage report
-- `npm run test:ssr` - performs unit testing of the SSR server
-- `npm run test:browser` - performs testing the browser application
-- `npm run test:browser:coverage` - runs tests and generates coverage report
-- `npm run test:browser:watch` - runs browser app unit tests in watch mode
-
-Docker:
-```bash
-# Build the image
-docker build . -t lexkrstn/portfolio
-# Run the container
-docker run -p 80:80 -p 3000:3000 -d  -e SSR_PORT=80 -e 'API_EXTERNAL_URL=http://3.145.156.98:3000' --name portfolio lexkrstn/portfolio
-# Run the stack
-docker-compose up -d
-# List images
-docker images
-docker rmi $(docker images -a -q)
-# Get container ID
-docker ps
-docker kill $(docker ps -q)
-# Print app output
-docker logs portfolio
-# Enter the container
-docker exec -it portfolio /bin/sh
-docker run -it --entrypoint /bin/sh ${IMAGEID} -s
-```
-
-Misc:
-- `migrate-mongo up` | `migrate-mongo down`
-- `migrate-mongo create`
-- `migrate-mongo status`

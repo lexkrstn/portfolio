@@ -4,6 +4,7 @@ services:
 
   mongo:
     image: mongo
+    container_name: mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -15,22 +16,29 @@ services:
       retries: 5
       start_period: 30s
     deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 60s
       resources:
         limits:
-          cpus: '1'
-          memory: 200M
+          cpus: '0.5'
+          memory: 300M
+        reservations:
+          cpus: '0.1'
+          memory: 100M
     networks:
-      - portfolio_mongo
+      - common
 
   portfolio:
     image: lexkrstn/portfolio
+    container_name: portfolio
     restart: always
+    build:
+      context: .
     depends_on:
       - mongo
-    ports:
-      - "8080:8080"
-      - "443:443"
-      - "3000:3000"
     volumes:
       - /opt/portfolio/tls:/opt/portfolio/tls
     environment:
@@ -38,15 +46,77 @@ services:
       DB_USER: root
       DB_PASSWORD: example
       DB_HOST: mongo
-      SSR_PORT: 443
-      API_EXTERNAL_URL: https://lexkrstn.com:3000
-      SSL_KEY: /opt/portfolio/tls/private.key
-      SSL_CERT: /opt/portfolio/tls/certificate.crt
-      MAIL_USER:
-      MAIL_PASSWORD:
+      API_EXTERNAL_URL: https://lexkrstn.com
+    env_file:
+      - .env
     networks:
-      - portfolio_mongo
+      - common
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 60s
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 300M
+        reservations:
+          cpus: '0.5'
+          memory: 100M
+    logging:
+      driver: json-file
+      options:
+        max-size: 50K
+        max-file: "10"
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: unless-stopped
+    depends_on:
+      - portfolio
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    networks:
+      - common
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 30s
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 100M
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    profiles: ["certbot"]
+    restart: "no"
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    # certonly: only generate certificate without installing
+    # webroot: use our own webserver in this case NGINX
+    # w: root directory of webserver for the challenges
+    # force-renewal: on repeated run renew certificates
+    # email: your email for notifcations
+    # d: domain for the certificate (it can be multiple -d)
+    # agree-tos: agree the terms of service automatically
+    command: >
+      certonly --webroot --agree-tos --force-renewal
+      -w /var/www/certbot
+      --email lexkrtn@gmail.com
+      -d lexkrstn.com
 
 networks:
-  portfolio_mongo:
+  common:
     driver: bridge
