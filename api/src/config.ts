@@ -1,41 +1,6 @@
 const TEST = process.env.NODE_ENV === 'test';
 
-export interface ContactConfig {
-  email: string;
-  subject: string;
-}
-
-export interface DatabaseConfig {
-  host: string;
-  port: number;
-  user: string;
-  password: string;
-  name: string;
-  uri: string;
-}
-
-export interface MailerConfig {
-  host: string,
-  port?: number,
-  secure: boolean,
-  auth: {
-    user: string,
-    pass: string,
-  },
-  tls?: {
-    ciphers: string,
-  },
-}
-
-export interface Config {
-  host: string;
-  port: number;
-  contact: ContactConfig,
-  database: DatabaseConfig;
-  mailer: MailerConfig
-}
-
-function makeDatabaseConfig(): DatabaseConfig {
+function makeDatabaseConfig() {
   const defaultPort = 27017;
   const host = process.env.DB_HOST || 'localhost';
   const port = parseInt(process.env.DB_PORT, 10) || defaultPort;
@@ -48,9 +13,12 @@ function makeDatabaseConfig(): DatabaseConfig {
   return { host, port, user, password, name, uri };
 }
 
-export default (): Config => ({
+const getConfig = () => ({
   host: process.env.API_HOST || '0.0.0.0',
   port: parseInt(process.env.API_PORT, 10) || 3000,
+  cache: {
+    ttl: parseInt(process.env.CACHE_TTL, 10) || 60 * 60 * 24, // seconds
+  },
   contact: {
     email: process.env.CONTACT_EMAIL || 'lexkrstn@gmail.com',
     subject: 'A message from portfolio visitor',
@@ -68,3 +36,10 @@ export default (): Config => ({
     },
   },
 });
+
+export type Config = ReturnType<typeof getConfig>;
+export type MailerConfig = Config['mailer'];
+export type DatabaseConfig = Config['database'];
+export type ContactConfig = Config['contact'];
+
+export default getConfig;

@@ -3,9 +3,9 @@ import { ConfigService } from '@nestjs/config';
 import { get } from 'lodash';
 import { ContactService } from './contact.service';
 import { MailerService, Mail } from '../mail';
-import { Config } from '../config';
+import getConfig from '../config';
 
-const mockConfig: Pick<Config, 'contact'> = {
+const mockConfig: Pick<ReturnType<typeof getConfig>, 'contact'> = {
   contact: {
     email: 'mytest@email.com',
     subject: 'test subject',

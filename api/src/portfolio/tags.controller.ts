@@ -1,8 +1,9 @@
-import { Controller, Get } from '@nestjs/common';
+import { CacheInterceptor, Controller, Get, UseInterceptors } from '@nestjs/common';
 import { Tag } from './tag.schema';
 import { TagsService } from './tags.service';
 
 @Controller()
+@UseInterceptors(CacheInterceptor)
 export class TagsController {
   public constructor(private readonly tagsService: TagsService) {}
 
