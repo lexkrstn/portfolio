@@ -130,6 +130,7 @@ router.get('*', async (req, res) => {
       styleTags: styles,
       title: config.site.name,
       config: pick(config, ...config.browser.usesConfigs),
+      staticUrl: config.staticUrl,
     };
     res.render('index', vars, (err, html) => {
       if (err) {

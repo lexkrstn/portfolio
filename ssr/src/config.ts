@@ -16,10 +16,12 @@ export default {
     internalUrl: process.env.API_INTERNAL_URL || `${schema}localhost:3000`,
     externalUrl: process.env.API_EXTERNAL_URL || `${schema}localhost:3000`,
   },
+  staticUrl: process.env.STATIC_URL || '',
   browser: {
     usesConfigs: [
       'api.internalUrl',
       'api.externalUrl',
+      'staticUrl',
     ],
   },
 };

@@ -11,6 +11,7 @@ import {
 } from './duck';
 import Appeal from '../../components/Appeal';
 import TagFilter from '../../components/TagFilter';
+import config from '../../config';
 import * as S from './styles';
 
 /**
@@ -56,7 +57,7 @@ const Portfolio: FC = () => {
                 </>
               )}
               {!selectedTag && (
-                <>Showing all works. Use the filter to list them by skill.</>
+                <>Showing all works. Use the filter to list them by skill????.</>
               )}
             </S.ResultSummary>
             {!!works && !!tags && (
@@ -67,7 +68,7 @@ const Portfolio: FC = () => {
                       <Grid item key={work._id} xs={12} md={6} lg={4}>
                         <Card
                           caption={work.name}
-                          cover={work.thumbnail}
+                          cover={`${config.staticUrl}/images/portfolio/${work.thumbnail}`}
                           route={`/portfolio/${work.slug}`}
                           tags={worksTags[i]}
                           onClickTag={onClickTag}

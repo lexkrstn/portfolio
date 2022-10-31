@@ -14,7 +14,7 @@ const SkillCard: FC<Props> = ({ skill }) => {
     <S.SkillCard>
       <S.Header>
         {!!skill.icon && (
-          <S.Icon src={`${config.basePath}images/skills/${skill.icon}`} />
+          <S.Icon src={`${config.staticUrl}/images/skills/${skill.icon}`} />
         )}
         <S.Name>{skill.name}</S.Name>
         {!!skill.masteryYear && (

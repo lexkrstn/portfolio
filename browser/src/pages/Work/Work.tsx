@@ -6,10 +6,11 @@ import { isVideoUrl } from '../../utils';
 import Slider from '../../components/Slider';
 import Image from '../../components/Image';
 import Appeal from '../../components/Appeal';
-import { fetchWork, selectWork, selectWorkFetched } from '../Portfolio/duck';
-import * as S from './styles';
 import Loading from '../../components/Loading';
 import Video from '../../components/Video';
+import config from '../../config';
+import { fetchWork, selectWork, selectWorkFetched } from '../Portfolio/duck';
+import * as S from './styles';
 
 type Props = RouteConfigComponentProps<{ id: string }>;
 
@@ -51,7 +52,7 @@ const Work: FC<Props> = ({ match }) => {
                   <React.Fragment key={src}>
                     {!isVideoUrl(src) && (
                       <Image
-                        src={src}
+                        src={`${config.staticUrl}/images/portfolio/${src}`}
                         alt={`${work.name} ${i + 1}`}
                         aspect={2}
                         cache={imageCache.current}

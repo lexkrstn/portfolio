@@ -19,14 +19,14 @@ const getWorks = () => [
     name: 'Theatre Management System',
     slug: 'tms',
     tags: ['JavaScript', 'PHP', 'MySQL', 'jQuery', 'REST', 'ExpressJS', 'NodeJS'],
-    thumbnail: '/images/portfolio/tms/thumbnail.png',
+    thumbnail: 'tms/thumbnail.png',
     screenshots: [
-      '/images/portfolio/tms/schedule.png',
-      '/images/portfolio/tms/dashboard.png',
-      '/images/portfolio/tms/schedule-import.png',
-      '/images/portfolio/tms/schedule-shift.png',
-      '/images/portfolio/tms/servers.png',
-      '/images/portfolio/tms/spl.png',
+      'tms/schedule.png',
+      'tms/dashboard.png',
+      'tms/schedule-import.png',
+      'tms/schedule-shift.png',
+      'tms/servers.png',
+      'tms/spl.png',
     ],
     description: `
       A software program for managing the essential operations of cinema theatres.
@@ -71,10 +71,10 @@ const getWorks = () => [
       'TypeScript', 'JavaScript', 'MySQL', 'Vue', 'Vuex', 'REST', 'ExpressJS',
       'NodeJS', 'Stylus', 'Knex.js', 'Objection.js',
     ],
-    thumbnail: '/images/portfolio/tmv/thumbnail.jpg',
+    thumbnail: 'tmv/thumbnail.jpg',
     screenshots: [
-      '/images/portfolio/tmv/schedule.jpg',
-      '/images/portfolio/tmv/dashboard.png',
+      'tmv/schedule.jpg',
+      'tmv/dashboard.png',
     ],
     description: `
       A software program for managing Android Smart TV advertising screens in cinemas.
@@ -110,12 +110,12 @@ const getWorks = () => [
       'JavaScript', 'Vue', 'Vuex', 'REST', 'ExpressJS',
       'NodeJS', 'Stylus', 'Knex.js', 'Objection.js', 'MySQL',
     ],
-    thumbnail: '/images/portfolio/vpnmgr/thumbnail.png',
+    thumbnail: 'vpnmgr/thumbnail.png',
     screenshots: [
-      '/images/portfolio/vpnmgr/dashboard.png',
-      '/images/portfolio/vpnmgr/peer-view.png',
-      '/images/portfolio/vpnmgr/peer-edit.png',
-      '/images/portfolio/vpnmgr/client.png',
+      'vpnmgr/dashboard.png',
+      'vpnmgr/peer-view.png',
+      'vpnmgr/peer-edit.png',
+      'vpnmgr/client.png',
     ],
     description: `
       A system program with web interface for managing WireGuard VPN connections.
@@ -150,10 +150,10 @@ const getWorks = () => [
     tags: [
       'TypeScript', 'Vue', 'Vuex', 'Stylus',
     ],
-    thumbnail: '/images/portfolio/socket/thumbnail.png',
+    thumbnail: 'socket/thumbnail.png',
     screenshots: [
       'https://www.youtube.com/embed/qBhHPsEVCHI',
-      '/images/portfolio/socket/dashboard.png',
+      'socket/dashboard.png',
     ],
     description: `
       The web interface for remote control of Krisberg's smart power outlet.
@@ -196,9 +196,9 @@ const getWorks = () => [
     tags: [
       'JavaScript', 'NodeJS', 'ExpressJS', 'jQuery', 'REST',
     ],
-    thumbnail: '/images/portfolio/sp-proxy/thumbnail.png',
+    thumbnail: 'sp-proxy/thumbnail.png',
     screenshots: [
-      '/images/portfolio/sp-proxy/dashboard.png',
+      'sp-proxy/dashboard.png',
       'https://www.youtube.com/embed/hNJ3R1kJLFk',
     ],
     description: `
@@ -246,13 +246,13 @@ const getWorks = () => [
       'JavaScript', 'NodeJS', 'MySQL', 'jQuery', 'REST', 'Knex.js', 'Objection.js',
       'ExpressJS',
     ],
-    thumbnail: '/images/portfolio/aggregator/thumbnail.png',
+    thumbnail: 'aggregator/thumbnail.png',
     screenshots: [
-      '/images/portfolio/aggregator/dashboard.png',
-      '/images/portfolio/aggregator/release.png',
-      '/images/portfolio/aggregator/distributor.png',
-      '/images/portfolio/aggregator/release-edit.png',
-      '/images/portfolio/aggregator/releases.png',
+      'aggregator/dashboard.png',
+      'aggregator/release.png',
+      'aggregator/distributor.png',
+      'aggregator/release-edit.png',
+      'aggregator/releases.png',
     ],
     description: `
       A grabber service that collects movie release information and provides
@@ -296,11 +296,11 @@ const getWorks = () => [
       'JavaScript', 'NodeJS', 'MySQL', 'Knex.js', 'Objection.js',
       'Vue', 'Vuex', 'Stylus', 'GraphQL', 'ExpressJS',
     ],
-    thumbnail: '/images/portfolio/replanner/thumbnail.png',
+    thumbnail: 'replanner/thumbnail.png',
     screenshots: [
-      '/images/portfolio/replanner/schedule.png',
-      '/images/portfolio/replanner/release-dialog.png',
-      '/images/portfolio/replanner/dashboard.png',
+      'replanner/schedule.png',
+      'replanner/release-dialog.png',
+      'replanner/dashboard.png',
     ],
     description: `
       A service that allows bookers (cinema employees) to make a repertory
@@ -350,10 +350,10 @@ const getWorks = () => [
     tags: [
       'TypeScript', 'JavaScript', 'Sass/Less',
     ],
-    thumbnail: '/images/portfolio/hallplan/thumbnail.png',
+    thumbnail: 'hallplan/thumbnail.png',
     screenshots: [
-      '/images/portfolio/hallplan/demo.png',
-      '/images/portfolio/hallplan/demo2.png',
+      'hallplan/demo.png',
+      'hallplan/demo2.png',
     ],
     description: `
       An interactive TypeScript widget that represents the cinema's seating layout.
@@ -391,10 +391,10 @@ const getWorks = () => [
     tags: [
       'TypeScript', 'React', 'Styled Components',
     ],
-    thumbnail: '/images/portfolio/react-styled-modal/thumbnail.png',
+    thumbnail: 'react-styled-modal/thumbnail.png',
     screenshots: [
-      '/images/portfolio/react-styled-modal/demo.png',
-      '/images/portfolio/react-styled-modal/demo2.png',
+      'react-styled-modal/demo.png',
+      'react-styled-modal/demo2.png',
     ],
     description: `
       A React library that allows you to display popup modals and dialogs.
@@ -431,10 +431,10 @@ const getWorks = () => [
     tags: [
       'JavaScript', 'React', 'Styled Components',
     ],
-    thumbnail: '/images/portfolio/react-styled-collapser/thumbnail.png',
+    thumbnail: 'react-styled-collapser/thumbnail.png',
     screenshots: [
-      '/images/portfolio/react-styled-collapser/demo.png',
-      '/images/portfolio/react-styled-collapser/demo2.png',
+      'react-styled-collapser/demo.png',
+      'react-styled-collapser/demo2.png',
     ],
     description: `
       A React library that allows you to display collapsable content.
@@ -472,10 +472,10 @@ const getWorks = () => [
     tags: [
       'JavaScript', 'jQuery', 'Sass/Less',
     ],
-    thumbnail: '/images/portfolio/jquery-sked-tape/thumbnail.png',
+    thumbnail: 'jquery-sked-tape/thumbnail.png',
     screenshots: [
-      '/images/portfolio/jquery-sked-tape/demo.png',
-      '/images/portfolio/jquery-sked-tape/modal.png',
+      'jquery-sked-tape/demo.png',
+      'jquery-sked-tape/modal.png',
     ],
     description: `
       A jQuery library that allows you to display an interactive schedule component.
@@ -516,11 +516,11 @@ const getWorks = () => [
       'TypeScript', 'NodeJS', 'Mongo', 'NestJS', 'ExpressJS',
       'React', 'Redux', 'Styled Components', 'REST',
     ],
-    thumbnail: '/images/portfolio/portfolio/thumbnail.jpg',
+    thumbnail: 'portfolio/thumbnail.jpg',
     screenshots: [
-      '/images/portfolio/portfolio/home.jpg',
-      '/images/portfolio/portfolio/works.jpg',
-      '/images/portfolio/portfolio/about.jpg',
+      'portfolio/home.jpg',
+      'portfolio/works.jpg',
+      'portfolio/about.jpg',
     ],
     description: `
       My personal webpage describing my professional skills, the services I
@@ -557,12 +557,12 @@ const getWorks = () => [
     tags: [
       'PHP', 'WordPress', 'MySQL', 'jQuery',
     ],
-    thumbnail: '/images/portfolio/old/mari/thumbnail.jpg',
+    thumbnail: 'old/mari/thumbnail.jpg',
     screenshots: [
-      '/images/portfolio/old/mari/main.jpg',
+      'old/mari/main.jpg',
       'https://www.youtube.com/embed/5XmdxfKMaYk',
-      '/images/portfolio/old/mari/events.jpg',
-      '/images/portfolio/old/mari/about.png',
+      'old/mari/events.jpg',
+      'old/mari/about.png',
     ],
     description: `
       A WordPress website for a shopping and entertainment center in Moscow.
@@ -592,13 +592,13 @@ const getWorks = () => [
     tags: [
       'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
     ],
-    thumbnail: '/images/portfolio/old/interma/thumbnail.jpg',
+    thumbnail: 'old/interma/thumbnail.jpg',
     screenshots: [
-      '/images/portfolio/old/interma/main.jpg',
-      '/images/portfolio/old/interma/products.jpg',
-      '/images/portfolio/old/interma/product.jpg',
-      '/images/portfolio/old/interma/objects.jpg',
-      '/images/portfolio/old/interma/academy.jpg',
+      'old/interma/main.jpg',
+      'old/interma/products.jpg',
+      'old/interma/product.jpg',
+      'old/interma/objects.jpg',
+      'old/interma/academy.jpg',
     ],
     description: `
       Online store of heating systems.
@@ -631,11 +631,11 @@ const getWorks = () => [
     tags: [
       'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
     ],
-    thumbnail: '/images/portfolio/old/baserelief/thumbnail.jpg',
+    thumbnail: 'old/baserelief/thumbnail.jpg',
     screenshots: [
-      '/images/portfolio/old/baserelief/main.jpg',
-      '/images/portfolio/old/baserelief/products.jpg',
-      '/images/portfolio/old/baserelief/portfolio.jpg',
+      'old/baserelief/main.jpg',
+      'old/baserelief/products.jpg',
+      'old/baserelief/portfolio.jpg',
     ],
     description: `
       Online store for a landscape design studio.
@@ -668,10 +668,10 @@ const getWorks = () => [
     tags: [
       'PHP', 'WordPress', 'MySQL', 'jQuery', 'Sass/Less',
     ],
-    thumbnail: '/images/portfolio/old/beauty-of-lake/thumbnail.jpg',
+    thumbnail: 'old/beauty-of-lake/thumbnail.jpg',
     screenshots: [
-      '/images/portfolio/old/beauty-of-lake/main.jpg',
-      '/images/portfolio/old/beauty-of-lake/main2.jpg',
+      'old/beauty-of-lake/main.jpg',
+      'old/beauty-of-lake/main2.jpg',
     ],
     description: `
       Website for a beauty saloon.
@@ -702,11 +702,11 @@ const getWorks = () => [
     tags: [
       'PHP', 'WordPress', 'WooCommerce', 'MySQL', 'jQuery', 'Sass/Less',
     ],
-    thumbnail: '/images/portfolio/old/logoshar/thumbnail.png',
+    thumbnail: 'old/logoshar/thumbnail.png',
     screenshots: [
-      '/images/portfolio/old/logoshar/main.png',
-      '/images/portfolio/old/logoshar/products.png',
-      '/images/portfolio/old/logoshar/price.png',
+      'old/logoshar/main.png',
+      'old/logoshar/products.png',
+      'old/logoshar/price.png',
     ],
     description: `
       Online store of helium balloons.
@@ -739,10 +739,10 @@ const getWorks = () => [
     tags: [
       'PHP', 'WordPress', 'MySQL', 'jQuery', 'Sass/Less',
     ],
-    thumbnail: '/images/portfolio/old/ur-kons/thumbnail.jpg',
+    thumbnail: 'old/ur-kons/thumbnail.jpg',
     screenshots: [
-      '/images/portfolio/old/ur-kons/main.jpg',
-      '/images/portfolio/old/ur-kons/article.jpg',
+      'old/ur-kons/main.jpg',
+      'old/ur-kons/article.jpg',
     ],
     description: `
       Website for a medical activities licensing center.

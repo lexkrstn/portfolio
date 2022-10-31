@@ -1,5 +1,5 @@
 import {
-  CacheInterceptor, CacheTTL, Controller, Get, NotFoundException, Param, UseInterceptors,
+  CacheInterceptor, Controller, Get, NotFoundException, Param, UseInterceptors,
 } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 import { isObjectId } from '../utils';

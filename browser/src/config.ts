@@ -1,8 +1,9 @@
 interface GlobalConfig {
   api: {
-    internalUrl: string,
-    externalUrl: string,
-  },
+    internalUrl: string;
+    externalUrl: string;
+  };
+  staticUrl: string;
 }
 
 function getSsrConfig(): GlobalConfig {
@@ -13,6 +14,7 @@ function getSsrConfig(): GlobalConfig {
       internalUrl: process.env.API_INTERNAL_URL || `${schema}localhost:3000`,
       externalUrl: process.env.API_EXTERNAL_URL || `${schema}localhost:3000`,
     },
+    staticUrl: process.env.STATIC_URL || '',
   };
 }
 
@@ -24,6 +26,7 @@ const globalConfig = isBrowser
 
 export default {
   apiUrl: `${globalConfig.api[isBrowser ? 'externalUrl' : 'internalUrl']}/api/v1`,
+  staticUrl: globalConfig.staticUrl,
   basePath: '/',
   contact: {
     email: 'lexkrstn@gmail.com',

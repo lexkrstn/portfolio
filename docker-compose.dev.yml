@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+
+  portfolio:
+    environment:
+      API_EXTERNAL_URL: https://localhost
+      # STATIC_URL: https://localhost/static
+      # Or the following, but it requires the host to be added to /etc/hosts
+      STATIC_URL: https://static.localhost
+    volumes:
+      - static:/mnt/static
+      - .:/opt/portfolio
+      - /opt/wallbase/node_modules # excluding from mounting due to some binaries

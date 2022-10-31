@@ -13,6 +13,7 @@ import Skills from './Skills';
 import Story from './Story';
 import * as S from './styles';
 import Appeal from '../../components/Appeal';
+import config from '../../config';
 
 // Cache for images.
 // The Image doesn't load on server side, so it's safe to keep it here in SSR.
@@ -52,7 +53,7 @@ const About: FC = () => {
                 <S.PhotoAndName>
                   <S.Photo>
                     <Image
-                      src="/images/photo.png"
+                      src={`${config.staticUrl}/images/photo.png`}
                       height={200}
                       aspect={1}
                       cache={imageCache}
