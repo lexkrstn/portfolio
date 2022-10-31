@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TagsService } from './tags.service';
 import { TagsController } from './tags.controller';
@@ -12,6 +13,7 @@ describe('TagsController', () => {
     getAll = jest.fn(() => Promise.resolve(['']));
     module = await Test
       .createTestingModule({
+        imports: [CacheModule.register({ isGlobal: true })],
         controllers: [TagsController],
         providers: [{
           provide: TagsService,

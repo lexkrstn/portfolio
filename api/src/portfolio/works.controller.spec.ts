@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { mockObjectId } from '../utils/mock';
 import { WorksService } from './works.service';
@@ -16,6 +17,7 @@ describe('WorksController', () => {
   beforeAll(async () => {
     module = await Test
       .createTestingModule({
+        imports: [CacheModule.register({ isGlobal: true })],
         controllers: [WorksController],
         providers: [{
           provide: WorksService,

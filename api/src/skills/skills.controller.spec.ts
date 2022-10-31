@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { SkillsService } from './skills.service';
 import { SkillsController } from './skills.controller';
@@ -12,6 +13,7 @@ describe('SkillsController', () => {
     getAll = jest.fn(() => Promise.resolve(['']));
     module = await Test
       .createTestingModule({
+        imports: [CacheModule.register({ isGlobal: true })],
         controllers: [SkillsController],
         providers: [{
           provide: SkillsService,
