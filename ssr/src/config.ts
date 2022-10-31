@@ -17,11 +17,13 @@ export default {
     externalUrl: process.env.API_EXTERNAL_URL || `${schema}localhost:3000`,
   },
   staticUrl: process.env.STATIC_URL || '',
+  contactEmail: process.env.CONTACT_EMAIL || '',
   browser: {
     usesConfigs: [
       'api.internalUrl',
       'api.externalUrl',
       'staticUrl',
+      'contactEmail',
     ],
   },
 };

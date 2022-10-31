@@ -10,13 +10,14 @@ const user = process.env.DB_USER || '';
 const password = process.env.DB_PASSWORD || '';
 const userPassword = user && password ? `${user}:${password}@` : '';
 const portPostfix = port !== defaultPort ? `:${port}` : '';
-const url = `mongodb://${userPassword}${host}${portPostfix}`;
-const databaseName = process.env.DB_NAME || (TEST ? 'portfolio_test' : 'portfolio');
+const name = process.env.DB_NAME || (TEST ? 'portfolio_test' : 'portfolio');
+const url = `mongodb://${userPassword}${host}${portPostfix}/${name}?authSource=admin`;
+
+console.log(`Migrate mongo connecting to ${url}`);
 
 const config = {
   mongodb: {
     url,
-    databaseName,
 
     options: {
       useNewUrlParser: true, // removes a deprecation warning when connecting

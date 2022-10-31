@@ -8,25 +8,27 @@ services:
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_PASSWORD: hgfUjhb65hh
     volumes:
       - mongo:/data/db
+    ports:
+      - "27017:27017"
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
       interval: 10s
       timeout: 10s
       retries: 5
-      start_period: 30s
+      start_period: 60s
     deploy:
       restart_policy:
         condition: on-failure
-        delay: 10s
+        delay: 1m # How long to wait between restart attempts
         max_attempts: 3
-        window: 60s
+        window: 30s # How long to wait before deciding if a restart has succeede
       resources:
         limits:
           cpus: '0.4'
-          memory: 200M
+          memory: 500M
     networks:
       - common
 
@@ -42,10 +44,11 @@ services:
       - static:/mnt/static
     environment:
       STATIC_DIR: /mnt/static
-      STATIC_URL: https://d12d0xnegwp9l0.cloudfront.net
+      # STATIC_URL: https://d12d0xnegwp9l0.cloudfront.net
+      STATIC_URL: https://static.lexkrstn.com
       NODE_ENV: production
       DB_USER: root
-      DB_PASSWORD: example
+      DB_PASSWORD: hgfUjhb65hh
       DB_HOST: mongo
       API_EXTERNAL_URL: https://lexkrstn.com
     env_file:
@@ -113,8 +116,9 @@ services:
     command: >
       certonly --webroot --agree-tos --force-renewal
       -w /var/www/certbot
-      --email lexkrtn@gmail.com
+      --email l3xkrtn@gmail.com
       -d lexkrstn.com
+      -d static.lexkrstn.com
 
 networks:
   common:

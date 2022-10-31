@@ -7,9 +7,8 @@ function makeDatabaseConfig() {
   const user = process.env.DB_USER || '';
   const password = process.env.DB_PASSWORD || '';
   const userPassword = user && password ? `${user}:${password}@` : '';
-  const portPostfix = port !== defaultPort ? `:${port}` : '';
-  const uri = `mongodb://${userPassword}${host}${portPostfix}`;
   const name = process.env.DB_NAME || (TEST ? 'portfolio_test' : 'portfolio');
+  const uri = `mongodb://${userPassword}${host}:${port}/${name}?authSource=admin`;
   return { host, port, user, password, name, uri };
 }
 
@@ -20,19 +19,16 @@ const getConfig = () => ({
     ttl: parseInt(process.env.CACHE_TTL, 10) || 60 * 60 * 24, // seconds
   },
   contact: {
-    email: process.env.CONTACT_EMAIL || 'lexkrstn@gmail.com',
+    email: process.env.CONTACT_EMAIL || 'l3xkrstn@gmail.com',
     subject: 'A message from portfolio visitor',
   },
   database: makeDatabaseConfig(),
   mailer: {
-    host: 'smtp.gmail.com',
-    secure: false, // true for 465, false for 587
+    host: process.env.MAIL_HOST || '',
+    secure: !!parseInt(process.env.MAIL_SECURE ?? '0', 10), // true for 465, false for 587
     auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASSWORD,
-    },
-    tls: {
-      ciphers: 'SSLv3',
+      user: process.env.MAIL_USER || '',
+      pass: process.env.MAIL_PASSWORD || '',
     },
   },
 });

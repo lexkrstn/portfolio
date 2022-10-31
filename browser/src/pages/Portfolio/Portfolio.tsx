@@ -57,7 +57,7 @@ const Portfolio: FC = () => {
                 </>
               )}
               {!selectedTag && (
-                <>Showing all works. Use the filter to list them by skill????.</>
+                <>Showing all works. Use the filter to list them by skill.</>
               )}
             </S.ResultSummary>
             {!!works && !!tags && (

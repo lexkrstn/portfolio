@@ -4,6 +4,7 @@ interface GlobalConfig {
     externalUrl: string;
   };
   staticUrl: string;
+  contactEmail: string;
 }
 
 function getSsrConfig(): GlobalConfig {
@@ -15,6 +16,7 @@ function getSsrConfig(): GlobalConfig {
       externalUrl: process.env.API_EXTERNAL_URL || `${schema}localhost:3000`,
     },
     staticUrl: process.env.STATIC_URL || '',
+    contactEmail: process.env.CONTACT_EMAIL,
   };
 }
 
@@ -29,7 +31,7 @@ export default {
   staticUrl: globalConfig.staticUrl,
   basePath: '/',
   contact: {
-    email: 'lexkrstn@gmail.com',
+    email: globalConfig.contactEmail || 'l3xkrstn@gmail.com',
     linkedIn: 'https://www.linkedin.com/in/alexander-korostin/',
     github: 'https://github.com/lexkrstn',
   },

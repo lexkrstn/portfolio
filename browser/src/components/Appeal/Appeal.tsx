@@ -17,8 +17,10 @@ const Appeal: FC = () => {
       <S.Heading>Let&apos;s talk</S.Heading>
       <S.Para>Wanna get in touch or talk about a project?</S.Para>
       <S.Para>
-        Feel free to contact me via email
-        at <a href="mailto:lexkrstn@gmail.com">lexkrstn@gmail.com</a>
+        {'Feel free to contact me via email at '}
+        <a href={`mailto:${config.contact.email}`} target="_blank" rel="noreferrer">
+          {config.contact.email}
+        </a>
       </S.Para>
       <S.Para>
         or drop a line in

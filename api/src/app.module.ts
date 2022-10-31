@@ -29,7 +29,6 @@ import { HealthModule } from './health/health.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('database.uri'),
-        dbName: configService.get<string>('database.name'),
       }),
       inject: [ConfigService],
     }),
