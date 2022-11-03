@@ -1,6 +1,9 @@
 const TEST = process.env.NODE_ENV === 'test';
 
-function makeDatabaseConfig() {
+function getDatabaseUri() {
+  if (process.env.DB_URL) {
+    return process.env.DB_URL;
+  }
   const defaultPort = 27017;
   const host = process.env.DB_HOST || 'localhost';
   const port = parseInt(process.env.DB_PORT, 10) || defaultPort;
@@ -8,8 +11,7 @@ function makeDatabaseConfig() {
   const password = process.env.DB_PASSWORD || '';
   const userPassword = user && password ? `${user}:${password}@` : '';
   const name = process.env.DB_NAME || (TEST ? 'portfolio_test' : 'portfolio');
-  const uri = `mongodb://${userPassword}${host}:${port}/${name}?authSource=admin`;
-  return { host, port, user, password, name, uri };
+  return `mongodb://${userPassword}${host}:${port}/${name}?authSource=admin`;
 }
 
 const getConfig = () => ({
@@ -22,7 +24,9 @@ const getConfig = () => ({
     email: process.env.CONTACT_EMAIL || 'l3xkrstn@gmail.com',
     subject: 'A message from portfolio visitor',
   },
-  database: makeDatabaseConfig(),
+  database: {
+    uri: getDatabaseUri(),
+  },
   mailer: {
     host: process.env.MAIL_HOST || '',
     secure: !!parseInt(process.env.MAIL_SECURE ?? '0', 10), // true for 465, false for 587

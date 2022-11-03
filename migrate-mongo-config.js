@@ -2,22 +2,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const TEST = process.env.NODE_ENV === 'test';
-const defaultPort = 27017;
-const host = process.env.DB_HOST || 'localhost';
-const port = parseInt(process.env.DB_PORT, 10) || defaultPort;
-const user = process.env.DB_USER || '';
-const password = process.env.DB_PASSWORD || '';
-const userPassword = user && password ? `${user}:${password}@` : '';
-const portPostfix = port !== defaultPort ? `:${port}` : '';
-const name = process.env.DB_NAME || (TEST ? 'portfolio_test' : 'portfolio');
-const url = `mongodb://${userPassword}${host}${portPostfix}/${name}?authSource=admin`;
-
-console.log(`Migrate mongo connecting to ${url}`);
-
 const config = {
   mongodb: {
-    url,
+    url: process.env.DB_URL,
 
     options: {
       useNewUrlParser: true, // removes a deprecation warning when connecting

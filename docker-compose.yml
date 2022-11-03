@@ -6,6 +6,7 @@ services:
     image: mongo
     container_name: mongo
     restart: unless-stopped
+    profiles: ["mongo"]
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: hgfUjhb65hh
@@ -38,8 +39,8 @@ services:
     restart: unless-stopped
     build:
       context: .
-    depends_on:
-      - mongo
+    # depends_on:
+    #   - mongo
     volumes:
       - static:/mnt/static
     environment:
@@ -47,9 +48,6 @@ services:
       # STATIC_URL: https://d12d0xnegwp9l0.cloudfront.net
       STATIC_URL: https://static.lexkrstn.com
       NODE_ENV: production
-      DB_USER: root
-      DB_PASSWORD: hgfUjhb65hh
-      DB_HOST: mongo
       API_EXTERNAL_URL: https://lexkrstn.com
     env_file:
       - .env
