@@ -22,6 +22,7 @@ const getConfig = () => ({
   },
   contact: {
     email: process.env.CONTACT_EMAIL || 'l3xkrstn@gmail.com',
+    from: process.env.CONTACT_FROM || '',
     subject: 'A message from portfolio visitor',
   },
   database: {

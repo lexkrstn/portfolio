@@ -43,6 +43,7 @@ export class ContactService {
       to: this.contactConfig.email,
       subject: this.contactConfig.subject,
       ...ContactService.addContactToMessageBody(email),
+      from: this.contactConfig.from || email.from,
     });
   }
 }

@@ -7,6 +7,7 @@ import getConfig from '../config';
 
 const mockConfig: Pick<ReturnType<typeof getConfig>, 'contact'> = {
   contact: {
+    from: '',
     email: 'mytest@email.com',
     subject: 'test subject',
   },
