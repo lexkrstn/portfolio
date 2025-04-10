@@ -1,73 +1,62 @@
-version: '3.5'
+version: '3.7'
 
 services:
-
-  mongo:
-    image: mongo
-    container_name: mongo
-    restart: unless-stopped
-    profiles: ["mongo"]
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: hgfUjhb65hh
-    volumes:
-      - mongo:/data/db
-    ports:
-      - "27017:27017"
-    healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 60s
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 1m # How long to wait between restart attempts
-        max_attempts: 3
-        window: 30s # How long to wait before deciding if a restart has succeede
-      resources:
-        limits:
-          cpus: '0.4'
-          memory: 500M
-    networks:
-      - common
 
   portfolio:
     image: lexkrstn/portfolio
     container_name: portfolio
-    restart: unless-stopped
+    restart: always
     build:
       context: .
-    # depends_on:
-    #   - mongo
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
     volumes:
       - static:/mnt/static
     environment:
       STATIC_DIR: /mnt/static
-      # STATIC_URL: https://d12d0xnegwp9l0.cloudfront.net
-      STATIC_URL: https://static.lexkrstn.com
+      STATIC_URL: https://static.akorostin.com
       NODE_ENV: production
-      API_EXTERNAL_URL: https://lexkrstn.com
+      API_EXTERNAL_URL: https://akorostin.com
     env_file:
       - .env
     networks:
       - common
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 60s
-      resources:
-        limits:
-          cpus: '0.4'
-          memory: 300M
+    build:
+      context: .
+      dockerfile: Dockerfile
+    healthcheck:
+      test: curl --fail http://localhost:3000/api/v1/health || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
     logging:
       driver: json-file
       options:
         max-size: 50K
         max-file: "10"
+
+  mongo:
+    image: mongo:7.0.8
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - mongo:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    ports:
+      - 27017:27017
+    networks:
+      - common
+    command: --quiet --logpath /dev/null
 
   nginx:
     image: nginx
@@ -85,16 +74,11 @@ services:
       - static:/var/www/static
     networks:
       - common
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 30s
-      resources:
-        limits:
-          cpus: '0.2'
-          memory: 100M
+    logging:
+      driver: json-file
+      options:
+        max-size: 50K
+        max-file: "10"
 
   certbot:
     image: certbot/certbot
@@ -115,8 +99,8 @@ services:
       certonly --webroot --agree-tos --force-renewal
       -w /var/www/certbot
       --email l3xkrtn@gmail.com
-      -d lexkrstn.com
-      -d static.lexkrstn.com
+      -d akorostin.com
+      -d static.akorostin.com
 
 networks:
   common:
@@ -124,4 +108,6 @@ networks:
 
 volumes:
   static:
+    driver: local
   mongo:
+    driver: local

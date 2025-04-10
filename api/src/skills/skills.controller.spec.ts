@@ -1,4 +1,4 @@
-import { CacheModule } from '@nestjs/common';
+import { CacheModule } from '@nestjs/cache-manager';
 import { Test, TestingModule } from '@nestjs/testing';
 import { SkillsService } from './skills.service';
 import { SkillsController } from './skills.controller';

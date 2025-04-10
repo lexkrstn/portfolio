@@ -4,11 +4,11 @@ services:
 
   portfolio:
     environment:
-      API_EXTERNAL_URL: https://localhost
+      API_EXTERNAL_URL: http://localhost
       # STATIC_URL: https://localhost/static
       # Or the following, but it requires the host to be added to /etc/hosts
-      STATIC_URL: https://static.localhost
+      STATIC_URL: http://static.localhost
     volumes:
       - static:/mnt/static
       - .:/opt/portfolio
-      - /opt/wallbase/node_modules # excluding from mounting due to some binaries
+      - /opt/portfolio/node_modules # excluding from mounting due to some binaries

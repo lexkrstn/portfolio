@@ -10,11 +10,118 @@ module.exports = {
   },
 
   async down(db) {
-    await db.collection('works').deleteMany();
+    await db.collection('works').deleteMany({});
   },
 };
 
 const getWorks = () => [
+  {
+    name: 'ShipNEXT',
+    slug: 'shipnext',
+    tags: ['TypeScript', 'PostgreSQL', 'NodeJS', 'NestJS', 'ExpressJS', 'RabbitMQ', 'Redis', 'Mongo', 'REST'],
+    thumbnail: 'shipnext/thumbnail.jpg',
+    screenshots: [
+      'shipnext/fleet.png',
+      'shipnext/market.png',
+      'shipnext/trading.png',
+    ],
+    description: `
+      An AI-powered shipping platform that automates freight and cargo transportation by sea.
+    `,
+    about: `
+      ShipNEXT is an AI-powered platform designed for instant cargo-to-ship
+      matching, shipping solution discovery, and freight negotiations. It
+      leverages Large Language Models (LLMs) to extract cargo and vessel request
+      data from email correspondence, providing shippers, brokers, and charterers
+      with a high level of automation throughout the shipping process.
+
+      From a technical standpoint, the application is built using dozens of
+      microservices and a central API service on the back end. I was responsible
+      for developing the server-side of the application as a Principal Software
+      Engineer. I independently designed and implemented some of the most
+      critical subsystems and microservices, including the route planner and
+      market monitor. Additionally, I contributed to the development of the
+      trading subsystem and an AI-driven contact book that automatically
+      extracts contact information from emails, working alongside my team.
+
+      The ShipNEXT application is the flagship product of ShipNEXT B.V., a
+      Belgian company specializing in IT solutions for the maritime industry.
+    `,
+    techniques: [
+      'NodeJS / Express / Mongo — old API',
+      'NodeJS / NestJS / PostgreSQL — new API',
+      'TypeORM',
+      'Mongoose',
+      'RabbitMQ – message bus for microservices',
+      'Redis – pub/sub',
+      'Python - a few AI-driven microservices',
+    ],
+    links: [
+      {
+        label: 'ShipNEXT',
+        url: 'https://shipnext.com',
+        description: 'The product\'s website',
+      },
+      {
+        label: 'Shipnext B.V.',
+        url: 'https://www.linkedin.com/company/ship-next/posts/?feedView=all',
+        description: 'The company\'s LinkedIn page',
+      },
+    ],
+  },
+  {
+    name: 'Route Planner',
+    slug: 'shipnext',
+    tags: ['Go', 'PostgreSQL', 'REST'],
+    thumbnail: 'route-planner/thumbnail.jpg',
+    screenshots: [
+      'route-planner/density.png',
+      'route-planner/test.png',
+    ],
+    description: `
+      A vessel route planner and freight cost calculator for maritime logistics.
+    `,
+    about: `
+      The Route Planner is one of the most critical services within ShipNEXT.
+      It calculates optimal routes between ports as well as custom land and sea
+      points. The service leverages historical vessel position data from the
+      Automatic Identification System (AIS) — an automated tracking system using
+      shipborne transceivers — to extract waypoint data and construct a maritime
+      transportation graph.
+
+      The Route Planner is capable of minimizing shipping costs, sulfur emissions,
+      and transportation risks by intelligently avoiding SECA (Sulfur Emission
+      Control Areas) and pirate zones, while constructing the most efficient
+      route possible based on weather conditions and vessel parameters, such as
+      deadweight, speed and emission characteristics.
+
+      I single-handedly designed and developed this service from the ground up.
+      The development process involved extensive research, during which I
+      studied dozens of scientific papers and created original algorithms to
+      extract meaningful insights from historical data. Some of the peripheral
+      findings (which did not fall under NDA or disclose any commercial secrets)
+      were published in peer-reviewed scientific journals.
+    `,
+    techniques: [
+      'Go – API, graph traversal',
+      'Python - waypoint extraction from historic data',
+      'PostGIS (PostgreSQL extension) - to handle geographic / geometric data',
+      'pgRouting (PostgreSQL extension) - for optimal route extraction from historic data',
+      'PostgreSQL – complex queries for mining graph from AIS data',
+    ],
+    links: [
+      {
+        label: 'ShipNEXT',
+        url: 'https://shipnext.com',
+        description: 'The product\'s website',
+      },
+      {
+        label: 'Shipnext B.V.',
+        url: 'https://www.linkedin.com/company/ship-next/posts/?feedView=all',
+        description: 'The company\'s LinkedIn page',
+      },
+    ],
+  },
   {
     name: 'Theatre Management System',
     slug: 'tms',
@@ -42,7 +149,7 @@ const getWorks = () => [
       functions to synchronise schedules with ticketing (POS) systems.
 
       I was involved in the development of both the server side and the browser
-      side of the application as a freelancer. Some of the most important subsystems
+      side of the application. Some of the most important subsystems
       (e.g. scheduling system) were created by myself from scratch.
 
       The TMS application is one of the products of Krisberg, a Russian
@@ -121,8 +228,8 @@ const getWorks = () => [
       A system program with web interface for managing WireGuard VPN connections.
     `,
     about: `
-      A web tool to help manage VPN client configurations on a Linux server
-      with WireGuard installed on it.
+      A web tool to help manage VPN client configurations on Linux servers
+      with WireGuard on board. The tool was developed by myself from scratch.
 
       WireGuard itself does not provide out-of-the-box methods for restricting
       unwanted access to internal network, so the tool uses iptables chains for

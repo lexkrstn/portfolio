@@ -85,9 +85,9 @@ const Navbar: FC = () => {
               <S.NavItemUnderline active={path === activePath} />
             </S.NavItem>
           ))}
-          <S.NavItem key="contact">
+          {/**<S.NavItem key="contact">
             <S.NavLink onClick={handleContactClick}>Contact</S.NavLink>
-          </S.NavItem>
+          </S.NavItem> **/}
           <S.NavItemUnderline ref={dynamicUnderlineRef} active={!activePath} />
         </S.Nav>
         <S.Hamburger>

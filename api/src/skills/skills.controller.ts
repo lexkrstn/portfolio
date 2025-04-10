@@ -1,4 +1,5 @@
-import { CacheInterceptor, Controller, Get, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, UseInterceptors } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { Skill } from './skill.schema';
 import { SkillsService } from './skills.service';
 

@@ -13,6 +13,7 @@ const tags = [
   { name: 'WooCommerce', workCount: 0 },
   { name: 'Sass/Less', workCount: 0 },
   { name: 'MySQL', workCount: 0 },
+  { name: 'PostgreSQL', workCount: 0},
   { name: 'jQuery', workCount: 0 },
   { name: 'GraphQL', workCount: 0 },
   { name: 'REST', workCount: 0 },
@@ -21,6 +22,9 @@ const tags = [
   { name: 'Stylus', workCount: 0 },
   { name: 'Mongo', workCount: 0 },
   { name: 'NestJS', workCount: 0 },
+  { name: 'Go', workCount: 0 },
+  { name: 'RabbitMQ', workCount: 0 },
+  { name: 'Redis', workCount: 0 },
 ];
 
 module.exports = {
@@ -29,6 +33,6 @@ module.exports = {
   },
 
   async down(db) {
-    await db.collection('tags').deleteMany();
+    await db.collection('tags').deleteMany({});
   },
 };

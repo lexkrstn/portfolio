@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Image from '../../components/Image';
 import GradientBackground from '../../components/GradientBackground';
 import RingSpinner from '../../components/RingSpinner';
+import Appeal from '../../components/Appeal';
+import config from '../../config';
 import {
   selectSkills, selectBasicSkills, selectMiscSkills, selectLangSkills,
   selectSkillsFetched, fetchSkills,
@@ -11,9 +13,8 @@ import {
 import CharSheet from './CharSheet';
 import Skills from './Skills';
 import Story from './Story';
+import Certificates from './Certificates';
 import * as S from './styles';
-import Appeal from '../../components/Appeal';
-import config from '../../config';
 
 // Cache for images.
 // The Image doesn't load on server side, so it's safe to keep it here in SSR.
@@ -71,6 +72,10 @@ const About: FC = () => {
             <Story />
           </Grid>
         </Grid>
+        {/**<S.Section>
+          <S.Heading>Certificates</S.Heading>
+          <Certificates />
+        </S.Section>**/}
         <S.Section>
           <S.Heading>Skills &amp; experience</S.Heading>
           <Skills

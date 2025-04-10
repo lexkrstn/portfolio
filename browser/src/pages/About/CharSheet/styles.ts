@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const CharSheet = styled.div`
   margin: 0 0 15px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
   background: rgba(0,0,0,.2);
   padding: 10px 15px;
@@ -14,8 +14,8 @@ export const CharSheet = styled.div`
 
 export const Attribute = styled.dl`
   display: flex;
-  margin: 0 0 8px;
-  padding: 0 0 8px;
+  margin: 0 0 4px;
+  padding: 0 0 4px;
   border-bottom: 1px solid rgba(0,0,0,.1);
 
   &:last-child {

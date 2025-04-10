@@ -32,7 +32,9 @@ module.exports = (env, options) => {
               internalUrl: 'http://localhost:3000',
               externalUrl: 'http://localhost:3000',
             },
+            staticUrl: 'http://localhost:8080',
           },
+          staticUrl: 'http://localhost:8080',
         },
       }),
     ];
@@ -51,10 +53,10 @@ module.exports = (env, options) => {
       'app': './browser/src/index.tsx',
     },
     devServer: {
-      contentBase: path.join(__dirname, '..', 'public'),
+      static: path.join(__dirname, '..', 'public'),
       compress: true,
       port: 8080,
-      disableHostCheck: false,
+      allowedHosts: 'all',
       historyApiFallback: true,
     },
     resolve: {

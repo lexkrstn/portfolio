@@ -1,4 +1,5 @@
-import { Module, Global, CacheModule } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
+import { CacheModule } from '@nestjs/cache-manager';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import path from 'path';

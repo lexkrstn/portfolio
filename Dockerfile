@@ -3,11 +3,11 @@ WORKDIR /opt/portfolio
 
 COPY . .
 
-RUN npm i -g migrate-mongo && \
-    npm i && \
+RUN npm ci && \
     npm run build && \
-    npm prune --production
+    npm prune --production && \
+    npm i -g migrate-mongo
 
-EXPOSE 80 3000
+EXPOSE 80 8080
 
 CMD ./scripts/entrypoint.sh

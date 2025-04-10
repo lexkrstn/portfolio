@@ -21,7 +21,7 @@ const skills = [
     name: 'PHP',
     icon: 'php.svg',
     masteryYear: 2009,
-    note: 'The first website I created was written in this language.',
+    note: 'I created a lot of websites in this language before NodeJS.',
     group: 'basic',
     level: 5,
     weight: 2,
@@ -30,7 +30,7 @@ const skills = [
     name: 'JavaScript',
     icon: 'javascript.svg',
     masteryYear: 2009,
-    note: 'The most popular language, so I use it regularly, including ES2021 syntax.',
+    note: 'The most popular language, so I use it regularly.',
     group: 'basic',
     level: 5,
     weight: 3,
@@ -41,23 +41,23 @@ const skills = [
     masteryYear: 2015,
     note: 'I love it for simlicity. This website is written in this stack, btw.',
     group: 'basic',
-    level: 5,
+    level: 4,
     weight: 4,
   },
   {
     name: 'Vue / Vuex',
     icon: 'vue.svg',
     masteryYear: 2019,
-    note: 'Simple but powerful. Wrote a few apps for my customers on Vue.',
+    note: 'Simple yet powerful. Wrote a few apps for my customers on Vue.',
     group: 'basic',
-    level: 5,
+    level: 4,
     weight: 5,
   },
   {
     name: 'ExpressJS',
     icon: 'nodejs.svg',
     masteryYear: 2015,
-    note: 'Most of my NodeJS apps are written on it and MySQL or PostgreSQL.',
+    note: 'Most of my NodeJS apps are written using this framework.',
     group: 'basic',
     level: 5,
     weight: 6,
@@ -77,7 +77,7 @@ const skills = [
     masteryYear: 2015,
     note: 'Most of my own projects use it due to its abundance of features.',
     group: 'basic',
-    level: 4,
+    level: 5,
     weight: 8,
   },
   {
@@ -93,9 +93,9 @@ const skills = [
     name: 'NestJS',
     icon: 'nestjs.svg',
     masteryYear: 2021,
-    note: 'An excellent framework I\'ve been using for all my new projects.',
+    note: 'An excellent framework I\'ve been using for some of my new projects.',
     group: 'basic',
-    level: 4,
+    level: 5,
     weight: 12,
   },
   {
@@ -108,12 +108,12 @@ const skills = [
     weight: 12,
   },
   {
-    name: 'MongoDB',
+    name: 'MongoDB / Mongoose',
     icon: 'mongo.svg',
     masteryYear: 0,
     note: 'Have more of a theretical knowledge. Still, this website is powered by Mongo.',
     group: 'basic',
-    level: 2,
+    level: 5,
     weight: 11,
   },
   {
@@ -131,7 +131,7 @@ const skills = [
     masteryYear: 2021,
     note: 'I have used it for caching and synchronization in a few projects.',
     group: 'basic',
-    level: 4,
+    level: 5,
     weight: 13,
   },
   {
@@ -140,7 +140,7 @@ const skills = [
     masteryYear: 2021,
     note: 'I\'ve been involved in creating several NodeJS microservices on it.',
     group: 'basic',
-    level: 4,
+    level: 5,
     weight: 14,
   },
   {
@@ -156,9 +156,9 @@ const skills = [
     name: 'Go',
     icon: 'go.svg',
     masteryYear: 2022,
-    note: 'You can find some opensource projects on my GitHub profile page.',
+    note: 'I\'ve built a few commercial applications in Go.',
     group: 'basic',
-    level: 3,
+    level: 5,
     weight: 16,
   },
 
@@ -195,7 +195,7 @@ const skills = [
     masteryYear: 2009,
     note: 'Just using its most common aspects on a day-to-day basis.',
     group: 'misc',
-    level: 4,
+    level: 5,
     weight: 4,
   },
   {
@@ -204,7 +204,7 @@ const skills = [
     masteryYear: 2009,
     note: 'Cannot help but mention WP, because I started my freelance career with it.',
     group: 'misc',
-    level: 4,
+    level: 3,
     weight: 5,
   },
   {
@@ -231,7 +231,7 @@ const skills = [
     masteryYear: 2019,
     note: 'Also have some experience working on GraphQL / Apollo projects.',
     group: 'misc',
-    level: 3,
+    level: 4,
     weight: 8,
   },
   {
@@ -256,7 +256,7 @@ const skills = [
     name: 'RxJS',
     icon: 'rxjs.svg',
     masteryYear: 2015,
-    note: 'I got to know RxJS from Angular and have been using it in React apps too.',
+    note: 'I got to know RxJS from Angular and have been using it in some React apps too.',
     group: 'misc',
     level: 3,
     weight: 11,
@@ -267,7 +267,7 @@ const skills = [
     masteryYear: 2019,
     note: 'Most of my apps reside in containers nowadays.',
     group: 'misc',
-    level: 4,
+    level: 5,
     weight: 12,
   },
 
@@ -275,9 +275,9 @@ const skills = [
     name: 'English',
     icon: '',
     masteryYear: 0,
-    note: 'Reading - B2, listening - B1, according to <a href="http://efset.org">Efset</a>.',
+    note: 'Reading - B2, listening - B2, according to <a href="http://efset.org">Efset</a>.',
     group: 'lang',
-    level: 5,
+    level: 6,
     weight: 0,
   },
   {
@@ -306,6 +306,6 @@ module.exports = {
   },
 
   async down(db) {
-    await db.collection('skills').deleteMany();
+    await db.collection('skills').deleteMany({});
   },
 };

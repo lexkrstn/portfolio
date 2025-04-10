@@ -1,4 +1,5 @@
-import { CacheInterceptor, Controller, Get, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, UseInterceptors } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { Tag } from './tag.schema';
 import { TagsService } from './tags.service';
 

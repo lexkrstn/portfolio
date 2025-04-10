@@ -12,8 +12,8 @@ Technology stack:
 1. Install Docker
 2. Clone the repo:
    ```sh
-   git clone git@github.com:lexkrstn/wallbase.git
-   cd ./wallbase
+   git clone git@github.com:lexkrstn/portfolio.git
+   cd ./portfolio
    ```
 3. Create self-signed certificates:
    ```sh
@@ -33,26 +33,31 @@ Technology stack:
 
 Prerequisites
 - [NodeJS LTS](https://nodejs.dev)
-- [MongoDB 5+](https://docs.mongodb.com/manual/installation/)
 
 ```bash
-# 1. Get a copy of the project from git
+# Install MongoDB:
+docker pull mongodb/mongodb-community-server:latest
+
+# Run MongoDb
+docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
+
+# Get a copy of the project from git
 git clone git@github.com:lexkrstn/portfolio.git
 cd ./portfolio
 
-# 2. Install NPM dependencies
+# Install NPM dependencies
 npm i
 
-# 3. Build the project
+# Build the project
 npm run build
 
-# 4. Configure the server (optional, see the options below)
+# Configure the server (optional, see the options below)
 
-# 5. Install MongoDB migration tool and run migrations
+# Install MongoDB migration tool and run migrations
 npm i -g migrate-mongo
 migrate-mongo up
 
-# 6. Start the server
+# Start the server
 npm run start:prod
 ```
 
