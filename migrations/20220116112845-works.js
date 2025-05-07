@@ -71,7 +71,7 @@ const getWorks = () => [
   },
   {
     name: 'Route Planner',
-    slug: 'shipnext',
+    slug: 'route-planner',
     tags: ['Go', 'PostgreSQL', 'REST'],
     thumbnail: 'route-planner/thumbnail.jpg',
     screenshots: [

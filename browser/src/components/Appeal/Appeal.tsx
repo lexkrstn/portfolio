@@ -22,10 +22,10 @@ const Appeal: FC = () => {
           {config.contact.email}
         </a>
       </S.Para>
-      <S.Para>
+      {/*<S.Para>
         or drop a line in
         the <S.Link onClick={onContactClick}>contact form</S.Link>
-      </S.Para>
+      </S.Para>*/}
       <S.SocialNav>
         <S.SocialButton
           href={config.contact.linkedIn}

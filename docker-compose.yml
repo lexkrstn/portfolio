@@ -11,10 +11,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mongo
-    volumes:
-      - static:/mnt/static
     environment:
-      STATIC_DIR: /mnt/static
       STATIC_URL: https://static.akorostin.com
       NODE_ENV: production
       API_EXTERNAL_URL: https://akorostin.com
@@ -71,7 +68,6 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-      - static:/var/www/static
     networks:
       - common
     logging:
