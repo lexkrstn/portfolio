@@ -1,6 +1,45 @@
 extends layout
 
 block headScripts
+	meta(name='description' content='Alexander Korostin is a software engineer and AI researcher specializing in ship route optimization using historical AIS data. He is the author of scientific articles on maritime logistics and develops intelligent algorithms for global cargo planning.')
+
+	meta(property='og:type' content='profile')
+	meta(property='og:title' content='Alexander Korostin')
+	meta(property='og:description' content='Alexander Korostin is a software engineer and AI researcher specializing in ship route optimization using historical AIS data. He is the author of scientific articles on maritime logistics and develops intelligent algorithms for global cargo planning.')
+	meta(property='og:image' content='https://static.akorostin.com/images/photo.png')
+	meta(property='og:url' content='https://akorostin.com')
+
+	meta(name='twitter:card' content='summary')
+	meta(name='twitter:title' content='Alexander Korostin')
+	meta(name='twitter:description' content='Alexander Korostin is a software engineer and AI researcher specializing in ship route optimization using historical AIS data. He is the author of scientific articles on maritime logistics and develops intelligent algorithms for global cargo planning.')
+	meta(name='twitter:image' content='https://static.akorostin.com/images/photo.png')
+
+	script(type='application/ld+json').
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Alexander Korostin",
+			"url": "https://akorostin.com",
+			"image": "https://static.akorostin.com/images/photo.png",
+			"sameAs": [
+				"https://www.linkedin.com/in/alexander-korostin/",
+				"https://www.facebook.com/lexkrstn",
+				"https://github.com/lexkrstn",
+				"https://scholar.google.com/citations?user=xJVRZX0AAAAJ",
+				"https://orcid.org/0009-0007-7510-6757"
+			],
+			"jobTitle": "Principal Software Engineer",
+			"worksFor": {
+				"@type": "Organization",
+				"name": "ShipNext"
+			},
+			"alumniOf": {
+				"@type": "CollegeOrUniversity",
+				"name": "Classic Private University"
+			},
+			"description": "Alexander Korostin is a software engineer and AI researcher specializing in ship route optimization using historical AIS data. He is the author of scientific articles on maritime logistics and develops intelligent algorithms for global cargo planning."
+		}
+
 	script(type='text/javascript').
 		window.__INITIAL_STATE__ = !{JSON.stringify(initialState)};
 		window.__CONFIG__ = !{JSON.stringify(config)};
