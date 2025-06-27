@@ -73,7 +73,7 @@ const getWorks = () => [
     name: 'Route Planner',
     slug: 'route-planner',
     tags: ['Go', 'PostgreSQL', 'REST'],
-    thumbnail: 'route-planner/thumbnail.jpg',
+    thumbnail: 'route-planner/thumbnail.png',
     screenshots: [
       'route-planner/density.png',
       'route-planner/test.png',
