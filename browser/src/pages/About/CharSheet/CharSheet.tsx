@@ -23,6 +23,12 @@ const CharSheet: FC = () => (
       </S.AttributeValue>
     </S.Attribute>
     <S.Attribute>
+      <S.AttributeName>ORCID</S.AttributeName>
+      <S.AttributeValue>
+        <a href="https://orcid.org/0009-0007-7510-6757" target="_blank">0009-0007-7510-6757</a>
+      </S.AttributeValue>
+    </S.Attribute>
+    <S.Attribute>
       <S.AttributeName>Location</S.AttributeName>
       <S.AttributeValue>
         <LocationOn fontSize="small" style={{ verticalAlign: 'middle' }} />

@@ -1,6 +1,7 @@
 import { push } from 'connected-react-router';
 import React, { FC, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
 import { ParallaxScrollContext } from '../../components/ParallaxScroll';
 import ScrollButton from '../../components/ScrollButton';
 import Canvas from '../../components/Canvas';
@@ -23,6 +24,9 @@ const Home: FC = () => {
 
   return (
     <S.Home>
+      <Helmet>
+        <title>Alexander Korostin | Home Page</title>
+      </Helmet>
       <Canvas
         walkMode={walkMode}
         onReachedEnd={navigatePortfolio}

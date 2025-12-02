@@ -2,6 +2,7 @@ import Grid from '@mui/material/Grid';
 import React, { FC, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { Helmet } from 'react-helmet-async';
 import GradientBackground from '../../components/GradientBackground';
 import RingSpinner from '../../components/RingSpinner';
 import Card from '../../components/Card';
@@ -39,6 +40,9 @@ const Portfolio: FC = () => {
 
   return (
     <S.Portfolio>
+      <Helmet>
+        <title>Alexander Korostin | Portfolio</title>
+      </Helmet>
       <GradientBackground />
       <S.Container>
         <S.Heading>Works</S.Heading>

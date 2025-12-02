@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteConfigComponentProps } from 'react-router-config';
+import { Helmet } from 'react-helmet-async';
 import GradientBackground from '../../components/GradientBackground';
 import { isVideoUrl } from '../../utils';
 import Slider from '../../components/Slider';
@@ -39,6 +40,9 @@ const Work: FC<Props> = ({ match }) => {
 
   return (
     <S.Work>
+      <Helmet>
+        <title>Alexander Korostin | {work?.name}</title>
+      </Helmet>
       <GradientBackground />
       <S.Container>
         <S.Box>

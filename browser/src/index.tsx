@@ -5,6 +5,7 @@ import React from 'react';
 import { hydrate, render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
+import { HelmetProvider } from 'react-helmet-async';
 import './polyfills';
 import routes from './routes';
 import storeFactory, { history } from './storeFactory';
@@ -13,9 +14,11 @@ const store = storeFactory();
 
 const root = (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      {renderRoutes(routes)}
-    </ConnectedRouter>
+    <HelmetProvider>
+      <ConnectedRouter history={history}>
+        {renderRoutes(routes)}
+      </ConnectedRouter>
+    </HelmetProvider>
   </Provider>
 );
 

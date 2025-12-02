@@ -1,18 +1,18 @@
 extends layout
 
 block headScripts
-	meta(name='description' content='Alexander Korostin is a software engineer and AI researcher specializing in ship route optimization using historical AIS data. He is the author of scientific articles on maritime logistics and develops intelligent algorithms for global cargo planning.')
+	meta(name='description', content='Alexander Korostin is a backend software engineer and AI researcher specializing in high-load systems and maritime shipping.')
 
-	meta(property='og:type' content='profile')
-	meta(property='og:title' content='Alexander Korostin')
-	meta(property='og:description' content='Alexander Korostin is a software engineer and AI researcher specializing in ship route optimization using historical AIS data. He is the author of scientific articles on maritime logistics and develops intelligent algorithms for global cargo planning.')
-	meta(property='og:image' content='https://static.akorostin.com/images/photo.png')
-	meta(property='og:url' content='https://akorostin.com')
+	meta(property='og:type', content='profile')
+	meta(property='og:title', content='Alexander Korostin')
+	meta(property='og:description', content='Alexander Korostin is a backend software engineer and AI researcher specializing in high-load systems and maritime shipping.')
+	meta(property='og:image', content='https://static.akorostin.com/images/photo.png')
+	meta(property='og:url', content='https://akorostin.com')
 
-	meta(name='twitter:card' content='summary')
-	meta(name='twitter:title' content='Alexander Korostin')
-	meta(name='twitter:description' content='Alexander Korostin is a software engineer and AI researcher specializing in ship route optimization using historical AIS data. He is the author of scientific articles on maritime logistics and develops intelligent algorithms for global cargo planning.')
-	meta(name='twitter:image' content='https://static.akorostin.com/images/photo.png')
+	meta(name='twitter:card', content='summary')
+	meta(name='twitter:title', content='Alexander Korostin')
+	meta(name='twitter:description', content='Alexander Korostin is a backend software engineer and AI researcher specializing in high-load systems and maritime shipping.')
+	meta(name='twitter:image', content='https://static.akorostin.com/images/photo.png')
 
 	script(type='application/ld+json').
 		{
@@ -43,6 +43,14 @@ block headScripts
 	script(type='text/javascript').
 		window.__INITIAL_STATE__ = !{JSON.stringify(initialState)};
 		window.__CONFIG__ = !{JSON.stringify(config)};
+
+	script(async, src='https://www.googletagmanager.com/gtag/js?id=G-VKLER4KDDK')
+	script.
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-VKLER4KDDK');
 
 block content
 	div#app-slot!= markup

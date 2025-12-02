@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# Disallow: /admin # Example of disallowing a private folder
+# Disallow: /temp/ # Example of disallowing temporary files
+
+Sitemap: https://akorostin.com/sitemap.xml

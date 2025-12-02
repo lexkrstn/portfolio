@@ -1,6 +1,7 @@
 import Grid from '@mui/material/Grid';
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
 import Image from '../../components/Image';
 import GradientBackground from '../../components/GradientBackground';
 import RingSpinner from '../../components/RingSpinner';
@@ -39,6 +40,9 @@ const About: FC = () => {
 
   return (
     <S.About>
+      <Helmet>
+        <title>Alexander Korostin | About me</title>
+      </Helmet>
       <GradientBackground />
       <S.Container>
         <Grid container spacing={4}>

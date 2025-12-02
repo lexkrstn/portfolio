@@ -15,7 +15,7 @@ export const Container = styled.div`
   transform: translate3d(0, 0, 0);
 `;
 
-export const Title = styled.h1`
+export const Title = styled.p`
   margin: 15px 0 20px;
   font-size: 2em;
   font-weight: 300;
@@ -48,7 +48,7 @@ export const Photo = styled.div`
   }
 `;
 
-export const Name = styled.h2`
+export const Name = styled.h1`
   flex: 1 1 auto;
   margin: 0 0 0 25px;
   padding: 0;
