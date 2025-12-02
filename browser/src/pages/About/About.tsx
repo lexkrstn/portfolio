@@ -15,6 +15,7 @@ import CharSheet from './CharSheet';
 import Skills from './Skills';
 import Story from './Story';
 import Certificates from './Certificates';
+import Publications from './Publications';
 import * as S from './styles';
 
 // Cache for images.
@@ -92,6 +93,10 @@ const About: FC = () => {
               <RingSpinner size="2em" />
             </S.Placeholder>
           )}
+        </S.Section>
+        <S.Section>
+          <S.Heading>Publications</S.Heading>
+          <Publications />
         </S.Section>
         <Appeal />
       </S.Container>
