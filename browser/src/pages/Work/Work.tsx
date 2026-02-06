@@ -41,7 +41,7 @@ const Work: FC<Props> = ({ match }) => {
   return (
     <S.Work>
       <Helmet>
-        <title>Alexander Korostin | {work?.name}</title>
+        <title>{`Alexander Korostin | ${work?.name ?? 'Work'}`}</title>
       </Helmet>
       <GradientBackground />
       <S.Container>
