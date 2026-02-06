@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const TEST = process.env.NODE_ENV === 'test';
 
 function getDatabaseUri() {
